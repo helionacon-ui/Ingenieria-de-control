@@ -9,7 +9,7 @@ Es una sola página estática (`index.html`), sin compilación ni dependencias l
 1. Crea un repositorio nuevo en GitHub (por ejemplo `ingenieria-de-control`).
 2. Sube `index.html`, `.nojekyll` y este `README.md` a la rama `main`.
 3. En el repositorio: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)` y **Save**.
-4. En uno o dos minutos la guía estará en `https://<tu-usuario>.github.io/Ingenieria-de-control/`.
+4. En uno o dos minutos la guía estará en `https://<tu-usuario>.github.io/ingenieria-de-control/`.
 
 ## Verla en local
 
