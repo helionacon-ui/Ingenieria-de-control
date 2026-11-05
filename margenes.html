@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Margen de fase y de ganancia · Ingeniería de Control</title>
+<meta name="description" content="Cómo se calculan ωc, ω180, el MF y el MG, cómo se leen en Bode y en Nyquist y el ancho de banda.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-margenes single">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn on" style="--tc:var(--c6)" aria-current="page"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c6);--tcs:var(--c6s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">MF</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Bloque 2 · Frecuencia · página 6 de 15</p>
+      <h1>Margen de fase y de ganancia</h1>
+      <p class="phero-desc">Cómo se calculan ωc, ω180, el MF y el MG, cómo se leen en Bode y en Nyquist y el ancho de banda.</p>
+      
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:40.0%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#margenes" style="--tc:var(--c6)">Margen de fase y margen de ganancia</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other here" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c6);--tcs:var(--c6s)">
+<div class="sh"><span class="badge" aria-hidden="true">MF</span><div class="shx"><p class="kick">Bloque 2 · a fondo</p><h2 id="margenes">Margen de fase y margen de ganancia</h2><div class="tags"><span class="tag">en todos los exámenes</span><span class="tag">Ogata 7-7</span><span class="tag">Práctica 7 §3</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>Un lazo cerrado está al borde de oscilar cuando, en alguna frecuencia, la señal da la vuelta completa al lazo con <b>la misma amplitud</b> (|L| = 1) y <b>dada la vuelta</b> (fase −180°): se realimenta a sí misma y no se apaga. Los márgenes miden lo lejos que estás de ese borde, cada uno por un lado.</p>
+<ul>
+<li><b>Margen de fase:</b> en la frecuencia donde |L| = 1, cuántos grados más de retraso aguantaría el lazo antes de llegar a −180°.</li>
+<li><b>Margen de ganancia:</b> en la frecuencia donde la fase vale −180°, cuántas veces (o cuántos dB) podrías subir la ganancia antes de llegar a |L| = 1.</li>
+</ul>
+<p>Para un sistema de fase mínima con P = 0, <b>estable ⟺ MF &gt; 0 y MG &gt; 0 dB</b>. Valores de diseño típicos: MF entre 40° y 60°, MG mayor de 6 a 10 dB.</p>
+</div>
+
+<div class="chuleta">
+<span class="label">Definiciones</span>
+<div class="rows">
+<div class="row"><b>Frecuencia de cruce de ganancia ω<sub>c</sub></b><div class="eq">\[|G(j\omega_c)H(j\omega_c)|=1\;(0\text{ dB})\]</div></div>
+<div class="row"><b>Margen de fase</b><div class="eq">\[MF=180^\circ+\angle G(j\omega_c)H(j\omega_c)\]</div></div>
+<div class="row"><b>Frecuencia de cruce de fase ω<sub>180</sub></b><div class="eq">\[\angle G(j\omega_{180})H(j\omega_{180})=-180^\circ\]</div></div>
+<div class="row"><b>Margen de ganancia</b><div class="eq">\[MG=\frac{1}{|GH(j\omega_{180})|},\quad MG_{dB}=-20\log|GH(j\omega_{180})|\]</div></div>
+</div></div>
+
+<h3>Dónde se leen: en el Bode y en el Nyquist</h3>
+<figure class="fig">
+<p class="ft">Simulador · los dos márgenes en las dos gráficas</p>
+<div class="ctrl">
+  <label for="mgSel">Función <select id="mgSel"></select></label>
+  <label for="mgK">K × <span id="mgKV" class="mono">1.00</span><input id="mgK" type="range" min="-1.3" max="1" step="0.01" value="0"></label>
+</div>
+<div class="readout" id="mgR"></div>
+<div class="figs2"><div class="plot" id="mgBode"></div><div class="plot" id="mgNyq"></div></div>
+<figcaption><b>Verde: el margen de fase.</b> En el Bode es la distancia vertical, en ω<sub>c</sub>, de la fase a −180°; en el Nyquist es el ángulo entre el punto donde la curva corta la circunferencia unidad y el semieje real negativo. <b>Ámbar: el margen de ganancia.</b> En el Bode es la distancia, en ω<sub>180</sub>, del módulo a 0 dB; en el Nyquist, lo que le falta al corte con el eje real para llegar a −1.</figcaption>
+<p class="try">con «K/(s(s+1)(s+5))», sube K hasta que el MG llegue a 0 dB (K = 30): el MF también llega a 0° y la curva pasa justo por −1. Con más K los dos son negativos.</p>
+</figure>
+
+<h3>Cómo se calculan sin gráfica (el método de los apuntes)</h3>
+<ol class="steps">
+<li><b>ω<sub>c</sub>:</b> iguala el módulo a 1 y eleva al cuadrado para quitar las raíces. Con \(t=\omega^2\) suele quedar una ecuación de segundo o tercer grado. Ejemplo: \(\left|\frac{40}{j\omega(j\omega+2)}\right|=1\Rightarrow \omega^4+4\omega^2-1600=0\Rightarrow t=38{,}05,\ \omega_c=6{,}17\) rad/s.</li>
+<li><b>Fase en ω<sub>c</sub>:</b> suma los ángulos factor a factor: \(-90^\circ-\arctan(6{,}17/2)=-162^\circ\). Así <b>MF = 18°</b>. Si la fase te sale como un ángulo positivo raro (por ejemplo +152°), réstale 360°: es −208° y el MF es −28°.</li>
+<li><b>ω<sub>180</sub>:</b> separa la parte real e imaginaria del denominador y haz <b>Im = 0</b>. Ejemplo con \(s(s+1)(s+6)\): \(D(j\omega)=-7\omega^2+j(6\omega-\omega^3)\Rightarrow\omega_{180}=\sqrt6\).</li>
+<li><b>MG:</b> evalúa el módulo en ω<sub>180</sub>: \(|G|=\frac{5}{7\cdot6}=0{,}119\Rightarrow MG=18{,}5\) dB.</li>
+<li><b>Ancho de banda:</b> se calcula con el <b>lazo cerrado</b> \(T=\frac{G}{1+GH}\). Busca dónde \(|T(j\omega)|\) cae 3 dB respecto a \(|T(0)|\). Si \(T(0)\ne1\) (tipo 0), se baja 3 dB desde \(20\log T(0)\), no desde 0 dB (problema 8 de los apuntes).</li>
+</ol>
+
+<div class="box trap"><h4>Casos especiales que el profesor pregunta</h4>
+<ul>
+<li><b>Orden 1 o 2 sin retardo:</b> la fase nunca llega a −180°, así que <b>MG = ∞</b>. Pasa con 30/(s+1)², 40/(s(s+2)) y el alerón de 2024.</li>
+<li><b>|G| &lt; 1 a todas las frecuencias:</b> no hay ω<sub>c</sub> y el MF no está definido; el lazo es estable con margen de sobra. Es el problema 6 de los apuntes, 20/((s+40)(s²+2s+4)), donde el máximo de |G| es 0,144.</li>
+<li><b>Varios cruces de 0 dB</b> (por un pico de resonancia): el MF que cuenta es el peor.</li>
+<li><b>MF negativo o MG negativo en dB:</b> lazo cerrado inestable (si P = 0).</li>
+<li><b>MATLAB</b> (<code>margin</code>) da el MG en veces, no en dB; conviértelo con 20·log.</li>
+<li><b>Un retardo</b> \(e^{-Ls}\) no cambia el módulo, así que ω<sub>c</sub> no se mueve, pero resta \(\omega_cL\) radianes al MF. Lo ves en el simulador de abajo.</li>
+</ul></div>
+
+<figure class="fig">
+<p class="ft">Simulador · lo que un retardo le hace al margen de fase</p>
+<div class="ctrl"><label for="dlL">retardo L = <span id="dlLV" class="mono">0.00</span> s<input id="dlL" type="range" min="0" max="1.5" step="0.01" value="0"></label><div class="readout" id="dlR"></div></div>
+<div class="plot" id="dlPlot"></div>
+<figcaption><b>L(s) = 2·e<sup>−Ls</sup>/(s(s+1)).</b> El módulo (arriba) no cambia; la fase (abajo) cae cada vez más deprisa. MF = MF<sub>sin retardo</sub> − ω<sub>c</sub>·L·180/π.</figcaption>
+</figure>
+
+<h3>Qué dice el MF sobre la respuesta temporal</h3>
+<p>Para un lazo cerrado de segundo orden, el MF fija el amortiguamiento y, con él, el sobrepico. Es la tabla que conviene tener en la cabeza para interpretar el resultado de un problema:</p>
+<div class="tw" id="mfTab"></div>
+
+<h3>Generador de ejercicios con corrección</h3>
+<p>Cada vez que pulsas «Nuevo» sale una G(s) distinta. Calcula ω<sub>c</sub>, MF, ω<sub>180</sub> y MG a mano (escribe «inf» si es infinito) y comprueba. Si fallas, te enseña la solución con el método de los apuntes.</p>
+<div class="box">
+<div class="ctrl"><label for="gnT">Tipo <select id="gnT"><option value="a">K/(s(s+a))</option><option value="b" selected>K/(s(s+a)(s+b))</option><option value="c">K/((s+a)(s+b)(s+c))</option><option value="d">K/((s+a)²)</option></select></label><button type="button" class="btn pri" id="gnNew">Nuevo</button></div>
+<p id="gnQ" class="qp" style="margin:12px 0"></p>
+<div class="ctrl">
+<label for="gnWc">ω<sub>c</sub> <input type="number" id="gnWc" step="any"></label>
+<label for="gnMF">MF (°) <input type="number" id="gnMF" step="any"></label>
+<label for="gnW1">ω<sub>180</sub> <input type="text" id="gnW1" style="width:110px"></label>
+<label for="gnMG">MG (dB) <input type="text" id="gnMG" style="width:110px"></label>
+</div>
+<div class="ctrl" style="margin-top:10px"><button type="button" class="btn pri" id="gnChk">Comprobar</button><button type="button" class="btn" id="gnShow">Ver solución</button><span class="readout" id="gnRes"></span></div>
+<div class="out" id="gnSol" hidden style="margin-top:10px"></div>
+</div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="nyquist.html" style="--tc:var(--c7)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>N</i>Nyquist a mano</span></a><a class="pg-card next" href="diseno.html" style="--tc:var(--c3)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>T6</i>Diseño de compensadores</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

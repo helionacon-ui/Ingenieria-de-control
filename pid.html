@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sistemas controlados y PID · Ingeniería de Control</title>
+<meta name="description" content="Temas 1 a 4: respuesta de los sistemas, el controlador PID y sus mejoras, sintonía y estructuras de control.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-pid">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn on" style="--tc:var(--c2)" aria-current="page"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c2);--tcs:var(--c2s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">PID</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Bloque 1 · PID · página 2 de 15</p>
+      <h1>Sistemas controlados y PID</h1>
+      <p class="phero-desc">Temas 1 a 4: respuesta de los sistemas, el controlador PID y sus mejoras, sintonía y estructuras de control.</p>
+      <div class="phero-chips"><a href="#t1">Sistemas controlados</a><a href="#t2">Controlador PID</a><a href="#t3">Sintonía del PID</a><a href="#t4">Estructuras de control</a></div>
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:13.3%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#t1" style="--tc:var(--c2)">Sistemas controlados</a><a href="#t2" style="--tc:var(--c2)">Controlador PID</a><a href="#t3" style="--tc:var(--c2)">Sintonía del PID</a><a href="#t4" style="--tc:var(--c2)">Estructuras de control</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other here" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c1);--tcs:var(--c1s)">
+  <div class="sh"><span class="badge" aria-hidden="true">T1</span><div class="shx"><p class="kick">Bloque 1 · PID</p><h2 id="t1">Sistemas controlados</h2><p class="sub2">Variables del lazo, respuesta transitoria y error permanente. Ogata 5-2, 5-3, 5-6 y 5-8.</p></div></div>
+
+  <div class="cero">
+    <div class="label">Desde cero</div>
+    <p>Cuando cambias la consigna (pides 38 °C en vez de 30 °C), la salida no salta al instante. Hace un recorrido: sube, a veces se pasa, oscila y se asienta. Ese recorrido es la <b>respuesta transitoria</b>. Lo que queda al final, la diferencia entre lo que pediste y lo que tienes, es el <b>error en régimen permanente</b>. Un buen control sube rápido, se pasa poco y acaba sin error.</p>
+  </div>
+
+  <div class="chuleta">
+    <div class="label">Chuleta</div>
+    <div class="rows">
+      <div class="row"><span class="label">Primer orden</span><div class="eq">\[G=\frac{K}{\tau s+1}\;\Rightarrow\;y(t)=K\big(1-e^{-t/\tau}\big)\]</div></div>
+      <div class="row"><span class="label">Segundo orden</span><div class="eq">\[\frac{C(s)}{R(s)}=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}\]</div></div>
+      <div class="row"><span class="label">Sobrepico y tiempos</span><div class="eq">\[M_p=e^{-\zeta\pi/\sqrt{1-\zeta^2}}\quad t_p=\frac{\pi}{\omega_d}\quad t_s\approx\frac{4}{\zeta\omega_n}\]</div></div>
+      <div class="row"><span class="label">Errores (realimentación unitaria)</span><div class="eq">\[e_{\text{esc}}=\frac{1}{1+K_p}\quad e_{\text{rampa}}=\frac{1}{K_v}\quad K_v=\lim_{s\to0}sG\]</div></div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p>Un sistema de control mide la <b>variable controlada</b> y, y la compara con la <b>referencia</b> r (consigna o setpoint). El <b>controlador</b> convierte el error e = r − y en la <b>señal de control</b> u, que mueve el <b>actuador</b>. Las <b>perturbaciones</b> d empujan la salida por su cuenta.</p>
+  </div>
+  <figure class="fig">
+    <div class="plot" id="dLoop"></div>
+    <figcaption><b>Lazo de realimentación.</b> C(s) es el controlador, G(s) la planta (actuador + proceso) y H(s) el sensor. En casi todos los problemas H(s) = 1: realimentación unitaria.</figcaption>
+  </figure>
+
+  <h3>Primer orden: la constante de tiempo</h3>
+  <div class="prose"><p>El sistema más simple tiene un solo polo, en s = −1/τ. Responde sin oscilar y su rapidez la da τ: a los τ segundos ha recorrido el 63 % del camino, y a los 4τ, el 98 %. Un depósito que se llena o un horno que se calienta se comportan así.</p></div>
+  <figure class="fig">
+    <div class="ctrl"><label for="tau">τ = <span id="tauV" class="mono">2.0</span> s<input id="tau" type="range" min="0.5" max="8" step="0.1" value="2"></label><div class="readout" id="rtau"></div></div>
+    <div class="plot" id="pTau"></div>
+    <figcaption><b>Respuesta al escalón de 1/(τs+1).</b> El punto marca t = τ, donde la salida vale 0,632. La línea discontinua es la tangente en el origen: corta el valor final justo en t = τ.</figcaption>
+  </figure>
+
+  <h3>Segundo orden: amortiguamiento y oscilación</h3>
+  <div class="prose">
+    <p>Con dos polos aparece la oscilación. Si los polos son complejos, s = −ζω<sub>n</sub> ± jω<sub>d</sub>, la respuesta se pasa de la consigna y oscila. El <b>amortiguamiento</b> ζ (entre 0 y 1) fija cuánto oscila: con ζ pequeño, mucho. La <b>frecuencia natural</b> ω<sub>n</sub> fija lo rápido que va. Fíjate en la relación MF ≈ 100·ζ: un margen de fase pequeño (Tema 5) significa un sistema muy oscilante.</p>
+  </div>
+  <figure class="fig">
+    <div class="ctrl">
+      <label for="zeta">ζ = <span id="zetaV" class="mono">0.40</span><input id="zeta" type="range" min="0.05" max="1.5" step="0.01" value="0.4"></label>
+      <div class="readout" id="zetaR"></div>
+    </div>
+    <div class="figs2"><div class="plot" id="pStep2"></div><div class="plot" id="pPoles"></div></div>
+    <figcaption><b>Segundo orden con ω<sub>n</sub> = 1 rad/s.</b> A la izquierda, la salida; a la derecha, los polos en el plano s. Con ζ ≥ 1 los polos son reales y no hay sobrepico.</figcaption>
+    <p class="try">baja ζ hasta 0,1: los polos se acercan al eje vertical y la respuesta casi no deja de oscilar. Con ζ = 0 estarían sobre el eje y la oscilación no pararía nunca.</p>
+  </figure>
+
+  <h3>Error permanente: el tipo del sistema</h3>
+  <div class="prose">
+    <p>Cuenta los integradores del lazo abierto, es decir, los factores 1/s: ese número es el <b>tipo</b>. Un tipo 0 sigue un escalón con error 1/(1+K<sub>p</sub>), y una rampa no la puede seguir. Un tipo 1 sigue el escalón sin error y la rampa con error 1/K<sub>v</sub>. Cuanta más ganancia, menos error. Por eso el primer paso de cualquier diseño es elegir K para cumplir el error que pide el enunciado.</p>
+  </div>
+  <figure class="fig">
+    <div class="ctrl">
+      <div class="seg" role="group" aria-label="Tipo"><button id="ty0" aria-pressed="true">Tipo 0: K/(s+1)</button><button id="ty1" aria-pressed="false">Tipo 1: K/(s(s+1))</button></div>
+      <div class="seg" role="group" aria-label="Entrada"><button id="inS" aria-pressed="true">Escalón</button><button id="inR" aria-pressed="false">Rampa</button></div>
+      <label for="kty">K = <span id="ktyV" class="mono">4.0</span><input id="kty" type="range" min="0.5" max="20" step="0.5" value="4"></label>
+      <div class="readout" id="rty"></div>
+    </div>
+    <div class="plot" id="pType"></div>
+    <figcaption><b>Lazo cerrado con realimentación unitaria.</b> Gris discontinuo: la referencia. Azul: la salida. El chip muestra el error al final de la simulación y el valor teórico.</figcaption>
+    <p class="try">elige tipo 0 con rampa: el error crece sin parar. Con tipo 1 y rampa, el error se queda fijo en 1/K.</p>
+  </figure>
+
+  <div class="examen"><span class="label">Cómo cae en el examen</span><p>No como pregunta propia, pero lo necesitas en el problema grande: el apartado «error &lt; X» y el «dibuja la respuesta al escalón» salen de aquí.</p></div>
+</section>
+
+<section class="sec" style="--tc:var(--c2);--tcs:var(--c2s)">
+  <div class="sh"><span class="badge" aria-hidden="true">T2</span><div class="shx"><p class="kick">Bloque 1 · PID</p><h2 id="t2">Controlador PID</h2><p class="sub2">Acciones básicas y mejoras de la estructura. Ogata 8-1, 8-5 y 8-6; transparencias Ing_Control_4_2.</p></div></div>
+
+  <div class="cero">
+    <div class="label">Desde cero · conducir</div>
+    <p>Imagina que conduces y quieres ir por el centro del carril. El PID suma tres reacciones:</p>
+    <ul>
+      <li><b>P (proporcional), el presente:</b> cuanto más desviado estás, más giras el volante. Sola, te deja casi centrado, pero no del todo si hay viento lateral.</li>
+      <li><b>I (integral), el pasado:</b> si llevas un rato desviado hacia el mismo lado, giras cada vez más. Es la que acaba eliminando el error que deja el viento.</li>
+      <li><b>D (derivativa), el futuro:</b> si ves que te acercas rápido al centro, empiezas a enderezar antes de pasarte. Evita los bandazos.</li>
+    </ul>
+  </div>
+
+  <div class="chuleta">
+    <div class="label">Chuleta</div>
+    <div class="rows">
+      <div class="row"><span class="label">PID ideal</span><div class="eq">\[u=K_p\Big(e+\frac{1}{T_i}\!\int e\,dt+T_d\frac{de}{dt}\Big)\]</div></div>
+      <div class="row"><span class="label">PID real (2 GDL + filtro)</span><div class="eq">\[u=K_p\Big[(br-y)+\frac{1}{T_is}(r-y)+\frac{T_ds}{1+T_ds/N}(cr-y)\Big]\]</div></div>
+      <div class="row"><span class="label">Antiwindup por recálculo</span><div class="eq">\[\frac{dI}{dt}=\frac{K_p}{T_i}e+\frac{1}{T_t}(u-v),\quad T_t\approx\sqrt{T_iT_d}\]</div></div>
+      <div class="row"><span class="label">PID discreto (posición)</span><div class="eq">\[u_k=K_p\Big[e_k+\frac{T}{T_i}\sum_{i=0}^{k}e_i+\frac{T_d}{T}(e_k-e_{k-1})\Big]\]</div></div>
+    </div>
+  </div>
+
+  <figure class="fig">
+    <div class="ctrl">
+      <label for="pk">Kp = <span id="pkV" class="mono">4.8</span><input id="pk" type="range" min="0.2" max="8" step="0.1" value="4.8"></label>
+      <label for="pi">Ti = <span id="piV" class="mono">1.8</span> s<input id="pi" type="range" min="0.5" max="20" step="0.1" value="1.8"></label>
+      <label for="pd">Td = <span id="pdV" class="mono">0.45</span> s<input id="pd" type="range" min="0" max="2" step="0.05" value="0.45"></label>
+      <div class="seg" role="group" aria-label="Preajustes"><button id="prP" aria-pressed="false">P</button><button id="prPI" aria-pressed="false">PI</button><button id="prPID" aria-pressed="true">PID (ZN)</button></div>
+    </div>
+    <div class="readout" id="rpid"></div>
+    <div class="plot" id="pPlay"></div>
+    <figcaption><b>Banco de pruebas: PID sobre G(s) = 1/(s+1)³.</b> Ti = 20 s equivale casi a quitar la integral, y Td = 0 quita la derivativa. Los preajustes son los valores de Ziegler–Nichols (Tema 3). La derivativa actúa sobre la medida, con filtro N = 10.</figcaption>
+    <p class="try">pulsa P: la salida se queda en 0,8. Sube Ti hasta 20 con Kp = 4,8 y Td = 0: error permanente. Después baja Ti: el error desaparece, pero oscila más. Por último sube Td: la oscilación se amortigua.</p>
+  </figure>
+
+  <h3>Windup: integral + actuador saturado</h3>
+  <div class="prose">
+    <p>El actuador tiene límites: una válvula no se abre más del 100 %. Si la señal de control se satura, el error baja más despacio de lo que el controlador espera, pero la integral lo sigue sumando. Cuando la salida por fin llega a la consigna, la integral está «cargada» y empuja de más: sobrepico grande y recuperación lenta. Es el <b>windup</b>.</p>
+    <p>La solución clásica es el <b>recálculo</b> (back-calculation): se compara la salida del PID, v, con la del actuador, u, y la diferencia se resta al integrador con ganancia 1/T<sub>t</sub>. Mientras no hay saturación, u = v y no hace nada. La otra solución es la <b>integración condicional</b>: congelar el integrador mientras el actuador está saturado.</p>
+  </div>
+  <div class="figs2">
+    <figure class="fig"><div class="plot" id="dAW"></div><figcaption><b>Antiwindup por recálculo.</b> El lazo naranja solo actúa cuando u ≠ v, es decir, cuando el actuador está saturado.</figcaption></figure>
+    <figure class="fig">
+      <div class="ctrl">
+        <label for="umax">límite = <span id="umaxV" class="mono">1.20</span><input id="umax" type="range" min="1.05" max="4" step="0.05" value="1.2"></label>
+        <label for="awOn"><input id="awOn" type="checkbox" checked> antiwindup</label>
+      </div>
+      <div class="plot" id="pWind"></div>
+      <figcaption><b>PI (Kp = 3,6, Ti = 3,02 s) con el actuador limitado.</b> Rojo: sin antiwindup. Azul: el caso elegido. Abajo, la señal de control.</figcaption>
+      <p class="try">sube el límite hasta 4: el actuador ya no se satura y las dos curvas coinciden.</p>
+    </figure>
+  </div>
+
+  <h3>Setpoint en escalón: la patada derivativa</h3>
+  <div class="prose">
+    <p>Si la D actúa sobre el error e = r − y, un escalón en r produce una derivada enorme: un pico brutal en la señal de control. Ogata lo llama «patada en el punto de consigna». La P también da un salto brusco. La solución es el <b>PID de dos grados de libertad</b>: la D actúa solo sobre la medida (c = 0, esquema PI-D) y la P sobre una referencia ponderada b·r − y, con 0 ≤ b ≤ 1 (con b = 0 y c = 0 queda el I-PD). La integral siempre ve el error completo, así que el error permanente sigue siendo cero.</p>
+  </div>
+  <figure class="fig">
+    <div class="ctrl"><label for="bw2">b = <span id="bw2V" class="mono">1.00</span><input id="bw2" type="range" min="0" max="1" step="0.05" value="1"></label></div>
+    <div class="figs2"><div class="plot" id="pKickY"></div><div class="plot" id="pKickU"></div></div>
+    <figcaption><b>PID de Ziegler–Nichols ante un escalón de consigna.</b> Rojo: D sobre el error (patada). Azul: D solo sobre la medida y P con peso b. A la izquierda la salida, a la derecha la señal de control (recortada a ±12 para que se vea: el pico rojo es mucho mayor).</figcaption>
+    <p class="try">baja b a 0,5: el sobrepico baja y la señal de control arranca más suave.</p>
+  </figure>
+
+  <div class="prose">
+    <p><b>Ruido y ganancia derivativa.</b> T<sub>d</sub>·s tiene ganancia infinita en alta frecuencia, así que amplifica el ruido del sensor. Se filtra con T<sub>d</sub>s/(1 + T<sub>d</sub>s/N), con N entre 3 y 20 (Ogata lo escribe con γ = 1/N ≈ 0,1). Así la ganancia derivativa queda limitada a K<sub>p</sub>·N.</p>
+    <p><b>Discretización.</b> Un ordenador calcula u cada T segundos (periodo de muestreo). La P queda igual; la integral se aproxima sumando rectángulos (o trapecios, Tustin), y la derivada, por diferencias hacia atrás. La <b>forma de velocidad</b> calcula solo el incremento Δu<sub>k</sub>: no arrastra un sumatorio, así que no sufre windup y el cambio de manual a automático es suave.</p>
+  </div>
+  <div class="examen"><span class="label">Cómo cae en el examen</span><p>Es la cuestión más repetida: «¿qué problema hay con la integral si la señal está saturada?» (2015, 2017), «explica un método de discretización» (2015) y «problemas con un setpoint en escalón» (2024). Responde siempre con el problema, su causa y la solución con su ecuación o su diagrama.</p></div>
+</section>
+
+<section class="sec" style="--tc:var(--c3);--tcs:var(--c3s)">
+  <div class="sh"><span class="badge" aria-hidden="true">T3</span><div class="shx"><p class="kick">Bloque 1 · PID</p><h2 id="t3">Sintonía del PID</h2><p class="sub2">Métodos experimentales y analíticos. Ogata 8-2, tablas 8-1 y 8-2; transparencias Ing_Control_5_5.</p></div></div>
+
+  <div class="cero">
+    <div class="label">Desde cero</div>
+    <p>Sintonizar es elegir los tres números Kp, Ti y Td. Probar al azar en una planta real es caro y peligroso, así que se hace un <b>ensayo</b> sencillo (dar un escalón o subir la ganancia hasta que oscile), se miden dos o tres datos y una <b>tabla</b> te da los parámetros. Es un punto de partida, no el ajuste final.</p>
+  </div>
+
+  <div class="tw"><table>
+    <thead><tr><th>Método</th><th>Qué se mide</th><th>P</th><th>PI</th><th>PID</th></tr></thead>
+    <tbody>
+      <tr><td>ZN respuesta a escalón (Tabla 8-1)</td><td>K, L, T de la curva en S</td><td class="num">Kp = T/(K·L)</td><td class="num">0,9·T/(K·L) · Ti = L/0,3</td><td class="num">1,2·T/(K·L) · Ti = 2L · Td = 0,5L</td></tr>
+      <tr><td>ZN ganancia crítica (Tabla 8-2)</td><td>Kcr y Pcr</td><td class="num">0,5·Kcr</td><td class="num">0,45·Kcr · Ti = Pcr/1,2</td><td class="num">0,6·Kcr · Ti = 0,5·Pcr · Td = 0,125·Pcr</td></tr>
+      <tr><td>Relé (Åström–Hägglund)</td><td>amplitud a y periodo del ciclo límite</td><td colspan="3">Ku = 4d/(π·a), Pu medido, y después la Tabla 8-2</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>ZN en lazo abierto: la curva de reacción</h3>
+  <div class="prose"><p>Se aplica un escalón a la planta sin controlador y se dibuja la tangente en el punto de inflexión de la curva en S. Donde la tangente corta el 0 está el retardo aparente L; donde alcanza el valor final, L + T. Sirve cuando la respuesta no oscila y la planta no tiene integradores.</p></div>
+  <figure class="fig">
+    <div class="plot" id="pZN"></div>
+    <figcaption><b>Curva de reacción de G(s) = 1/(s+1)³.</b> Inflexión en t = 2 s; la tangente da L ≈ 0,81 s y T ≈ 3,69 s, con K = 1. Por la tabla, el PID sale con K<sub>p</sub> ≈ 5,5, T<sub>i</sub> ≈ 1,6 s y T<sub>d</sub> ≈ 0,4 s.</figcaption>
+  </figure>
+
+  <h3>ZN en lazo cerrado: la ganancia crítica</h3>
+  <div class="prose"><p>Con solo acción P, se sube K<sub>p</sub> hasta que la salida oscila de forma sostenida: esa es la ganancia crítica K<sub>cr</sub>, y el periodo de la oscilación es P<sub>cr</sub>. Sobre el papel, K<sub>cr</sub> sale del criterio de Routh (la fila que se anula) y la frecuencia, de la ecuación auxiliar. Para 1/(s+1)³ se obtiene K<sub>cr</sub> = 8 y ω<sub>cr</sub> = √3 rad/s, así que P<sub>cr</sub> = 3,63 s.</p></div>
+  <figure class="fig">
+    <div class="ctrl"><label for="kcr">Kp = <span id="kcrV" class="mono">5.0</span><input id="kcr" type="range" min="1" max="10" step="0.1" value="5"></label><div class="readout" id="rkcr"></div></div>
+    <div class="plot" id="pKcr"></div>
+    <figcaption><b>Lazo cerrado con solo P sobre 1/(s+1)³.</b> Busca la ganancia a la que la oscilación ni crece ni se apaga.</figcaption>
+    <p class="try">ve subiendo Kp: con 8,0 la oscilación se mantiene con un periodo de unos 3,6 s; con más, crece sin control.</p>
+  </figure>
+
+  <h3>Método del relé</h3>
+  <div class="prose"><p>Llevar una planta real al borde de la inestabilidad es arriesgado. Åström y Hägglund propusieron cambiar el controlador por un <b>relé</b>, un interruptor que da +d o −d según el signo del error. El lazo entra solo en un ciclo límite de amplitud pequeña y controlada, justo en la frecuencia donde la fase vale −180°. Midiendo su amplitud a y su periodo se obtiene K<sub>u</sub> ≈ 4d/(πa). Es automático y seguro.</p></div>
+  <figure class="fig">
+    <div class="ctrl"><label for="rd">d = <span id="rdV" class="mono">1.0</span><input id="rd" type="range" min="0.2" max="2" step="0.1" value="1"></label><div class="readout" id="rrel"></div></div>
+    <div class="plot" id="pRelay"></div>
+    <figcaption><b>Ensayo de relé sobre 1/(s+1)³.</b> Naranja: la salida del relé (±d). Azul: la salida de la planta. La estimación de K<sub>u</sub> y P<sub>u</sub> se compara con los valores exactos (8 y 3,63 s).</figcaption>
+  </figure>
+
+  <h3>Asignación de polos (PI a una planta de primer orden)</h3>
+  <div class="prose"><p>Aquí no se ensaya nada: se calcula. Con G = K/(τs+1) y un PI, el lazo cerrado es de segundo orden. Del sobrepico pedido sacas ζ, del tiempo de establecimiento sacas ω<sub>n</sub>, e igualas coeficientes con la ecuación característica.</p></div>
+  <div class="eq">\[s^2+\frac{1+KK_p}{\tau}s+\frac{KK_p}{\tau T_i}=s^2+2\zeta\omega_ns+\omega_n^2\;\Rightarrow\;K_p=\frac{2\zeta\omega_n\tau-1}{K},\quad T_i=\frac{KK_p}{\tau\,\omega_n^2}\]</div>
+  <div class="examen"><span class="label">Cómo cae en el examen</span><p>Un problema corto de Ziegler–Nichols (sept 2020), un PI por asignación de polos con condiciones de M<sub>p</sub> y t<sub>s</sub> (sept 2017) o «explica el método del relé» (2024). Los tienes resueltos en <a href="examenes.html#examenes">Exámenes anteriores</a>.</p></div>
+</section>
+
+<section class="sec" style="--tc:var(--c4);--tcs:var(--c4s)">
+  <div class="sh"><span class="badge" aria-hidden="true">T4</span><div class="shx"><p class="kick">Bloque 1 · PID</p><h2 id="t4">Estructuras de control</h2><p class="sub2">Feedforward, cascada, ratio y multivariable. No están en el Ogata: TEORÍA EXAMENES RESUELTA y Práctica 5.</p></div></div>
+
+  <div class="cero">
+    <div class="label">Desde cero</div>
+    <p>Un solo lazo PID reacciona cuando el daño ya está hecho: primero la perturbación mueve la salida y luego el PID la corrige. Las estructuras de este tema añaden información para reaccionar antes. El <b>feedforward</b> mide la perturbación y la compensa por adelantado, como frenar al ver un semáforo en ámbar. La <b>cascada</b> pone un segundo lazo rápido que corrige la perturbación antes de que llegue a la salida.</p>
+  </div>
+
+  <div class="chuleta">
+    <div class="label">Chuleta</div>
+    <div class="rows">
+      <div class="row"><span class="label">Feedforward ideal</span><div class="eq">\[G_{ff}(s)=-\frac{G_d(s)}{G_p(s)}\]</div></div>
+      <div class="row"><span class="label">Feedforward estático</span><div class="eq">\[G_{ff}=-\frac{K_d}{K_p}\]</div><p>Si la inversa exacta no es realizable.</p></div>
+      <div class="row"><span class="label">Cascada</span><p>Lazo interno 3 a 5 veces más rápido; el secundario suele ser un P; se sintoniza primero el interno.</p></div>
+      <div class="row"><span class="label">Ratio</span><p>Mantiene la proporción entre dos caudales: la consigna del controlado es R·(caudal medido).</p></div>
+    </div>
+  </div>
+
+  <h3>Feedforward</h3>
+  <div class="prose"><p>Con y = G<sub>p</sub>·u + G<sub>d</sub>·d, para que d no llegue a y hay que imponer G<sub>p</sub>·G<sub>ff</sub> + G<sub>d</sub> = 0. Feedforward y feedback van juntos: el primero corrige rápido lo que se mide y el segundo corrige los errores de modelo y las perturbaciones que no se miden. Si G<sub>p</sub> tiene más retardo que G<sub>d</sub>, la inversa exacta no es realizable y se usa solo la ganancia estática.</p></div>
+  <figure class="fig"><div class="plot" id="dFF"></div><figcaption><b>Feedforward + feedback.</b> La perturbación medida pasa por G<sub>ff</sub> y se suma a la salida del controlador antes de la planta.</figcaption></figure>
+  <figure class="fig">
+    <div class="ctrl">
+      <label for="ffOn"><input id="ffOn" type="checkbox" checked> feedforward</label>
+      <label for="ffG">acierto del modelo = <span id="ffGV" class="mono">100</span> %<input id="ffG" type="range" min="0" max="150" step="5" value="100"></label>
+      <div class="readout" id="rff"></div>
+    </div>
+    <div class="plot" id="pFF"></div>
+    <figcaption><b>Rechazo de una perturbación escalón en t = 5 s.</b> G<sub>p</sub> = 1/(5s+1), G<sub>d</sub> = 1/(2s+1), PI de realimentación (K<sub>p</sub> = 2, T<sub>i</sub> = 5 s). La consigna es 0: cualquier desviación es error. Rojo: solo realimentación. Azul: con el feedforward elegido, G<sub>ff</sub> = −(5s+1)/(2s+1) escalado por el acierto del modelo.</figcaption>
+    <p class="try">pon el acierto en 70 %: el feedforward ya no anula la perturbación, pero la realimentación corrige lo que queda.</p>
+  </figure>
+
+  <h3>Cascada</h3>
+  <div class="prose"><p>Dos lazos anidados. El controlador primario mide la variable principal y le da la consigna al secundario, que controla una variable intermedia más rápida. Por ejemplo, la temperatura fija la consigna de caudal y el lazo de caudal mueve la válvula. Sirve cuando las perturbaciones importantes entran en el proceso interno: el lazo secundario las corrige antes de que lleguen a la salida.</p></div>
+  <figure class="fig"><div class="plot" id="dCas"></div><figcaption><b>Control en cascada.</b> C₁ y G₁ forman el lazo primario (lento); C₂ y G₂ el secundario (rápido). La perturbación d₂ entra en el lazo interno, que la absorbe.</figcaption></figure>
+  <figure class="fig">
+    <div class="ctrl"><label for="kc2">Kc₂ (P interno) = <span id="kc2V" class="mono">5</span><input id="kc2" type="range" min="1" max="20" step="1" value="5"></label><div class="readout" id="rcas"></div></div>
+    <div class="plot" id="pCas"></div>
+    <figcaption><b>Perturbación d₂ = 1 en t = 5 s.</b> G₂ = 1/(s+1) (válvula), G₁ = 1/(10s+1) (proceso). Rojo: un solo lazo PI. Azul: cascada con P interno y el mismo PI fuera.</figcaption>
+    <p class="try">sube Kc₂: el lazo interno se hace más rápido y la desviación de la salida es todavía menor.</p>
+  </figure>
+  <div class="examen"><span class="label">Cómo cae en el examen</span><p>«Calcula la señal de control m para que y siga a y<sub>sp</sub> con feedforward y dibuja el diagrama» (2015 y 2017), «dibuja feedforward y feedback juntos» o «dibuja la cascada y explica cada bloque y variable» (2024). Practica los dos dibujos de memoria con todas las letras.</p></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="empezar.html" style="--tc:var(--c0)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>0</i>Empieza aquí</span></a><a class="pg-card next" href="frecuencia.html" style="--tc:var(--c5)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>T5</i>Respuesta en frecuencia</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

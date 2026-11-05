@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nyquist a mano · Ingeniería de Control</title>
+<meta name="description" content="La receta para dibujar el Nyquist, los diagramas polares que hay que saber y el criterio Z = N + P.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-nyquist single">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn on" style="--tc:var(--c7)" aria-current="page"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c7);--tcs:var(--c7s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">N</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Bloque 2 · Frecuencia · página 5 de 15</p>
+      <h1>Nyquist a mano</h1>
+      <p class="phero-desc">La receta para dibujar el Nyquist, los diagramas polares que hay que saber y el criterio Z = N + P.</p>
+      
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:33.3%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#nyquist" style="--tc:var(--c7)">Diagrama de Nyquist a mano, paso a paso</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other here" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c7);--tcs:var(--c7s)">
+<div class="sh"><span class="badge" aria-hidden="true">N</span><div class="shx"><p class="kick">Bloque 2 · a fondo</p><h2 id="nyquist">Diagrama de Nyquist a mano, paso a paso</h2><div class="tags"><span class="tag">Ing_Control_3 pp. 24–28</span><span class="tag">Ogata 7-3, 7-5 y 7-6</span><span class="tag">Práctica 7</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>El Bode dibuja el módulo y la fase por separado. El Nyquist (también llamado <b>diagrama polar</b>) dibuja <b>la misma información en una sola curva</b>: para cada ω, el número complejo L(jω) es una flecha con longitud |L| y ángulo ∠L. La curva es el camino que recorre la punta de esa flecha cuando ω va de 0 a ∞.</p>
+<p>¿Para qué? Porque el lazo cerrado se vuelve inestable cuando 1 + L(jω) = 0, es decir, cuando L(jω) pasa por el punto <b>−1</b>. Mirando si la curva <b>rodea</b> el −1, y por cuánto se libra, sabes si el lazo cerrado es estable y con qué margen. Es el criterio de Nyquist.</p>
+</div>
+
+<div class="chuleta">
+<span class="label">Criterio de Nyquist (transparencia 24)</span>
+<div class="eq">\[Z=N+P\]</div>
+<div class="rows">
+<div class="row"><b>Z</b><p>Polos del lazo cerrado en el semiplano derecho (ceros de 1 + GH). Estable si Z = 0.</p></div>
+<div class="row"><b>N</b><p>Vueltas en sentido horario de la curva completa (ω de −∞ a +∞) alrededor de −1.</p></div>
+<div class="row"><b>P</b><p>Polos de G(s)H(s) en el semiplano derecho. En casi todos los ejercicios P = 0, y entonces estable ⟺ la curva no rodea el −1.</p></div>
+</div></div>
+
+<h3>La receta</h3>
+<ol class="steps">
+<li><b>Inicio (ω → 0⁺).</b> Depende del tipo. Tipo 0: empieza en el eje real positivo, en \(K_B\). Tipo 1: viene del infinito con ángulo −90° (desde abajo), pegada a una asíntota vertical en \(\text{Re}=\lim_{\omega\to0}\text{Re}\,G(j\omega)\). Tipo 2: viene del infinito con −180°.</li>
+<li><b>Final (ω → ∞).</b> Si hay más polos que ceros, acaba en el origen llegando con ángulo \(-90(n-m)\)°, que es la fase final del Bode.</li>
+<li><b>Separa parte real e imaginaria.</b> Multiplica el denominador, sustituye s = jω y agrupa: \(G(j\omega)=\frac{N(j\omega)}{D_r(\omega)+jD_i(\omega)}\). Si el numerador es una constante, basta con el conjugado del denominador.</li>
+<li><b>Corte con el eje real negativo:</b> Im G = 0 da \(\omega_{180}\); el valor de Re en ese punto da el MG (\(MG=-20\log|\text{Re}|\)). Si el corte queda a la izquierda de −1, rodea el −1.</li>
+<li><b>Corte con el eje imaginario:</b> Re G = 0 da \(\omega_{90}\) (útil para situar la curva).</li>
+<li><b>Une los puntos</b> siguiendo la fase del Bode. Después dibuja el simétrico respecto del eje real (es ω &lt; 0) y, si hay integradores, ciérralo con un arco de radio infinito de \(N\cdot180\)° en sentido horario.</li>
+<li><b>Cuenta N, mira P y aplica Z = N + P.</b></li>
+</ol>
+
+<details open><summary>Ejemplo completo: \(G(s)=\dfrac{K}{s(s+1)(0{,}5s+1)}\) con K = 5 (Ogata 7-27) <span class="src">el problema que más se repite</span></summary><div class="inner">
+<ol class="steps">
+<li>Denominador en jω: \(j\omega(1+j\omega)(1+0{,}5j\omega)=-1{,}5\omega^2+j(\omega-0{,}5\omega^3)\).</li>
+<li>Multiplicando por el conjugado: \(\text{Re}\,G=\frac{-1{,}5K\omega^2}{|D|^2}\), \(\ \text{Im}\,G=\frac{-K(\omega-0{,}5\omega^3)}{|D|^2}\), con \(|D|^2=2{,}25\omega^4+(\omega-0{,}5\omega^3)^2\).</li>
+<li><b>Inicio:</b> tipo 1. La asíntota vertical está en \(\lim_{\omega\to0}\text{Re}\,G=-1{,}5K=-7{,}5\). La curva baja desde −j∞ pegada a Re = −7,5.</li>
+<li><b>Final:</b> tres polos, ningún cero: llega al origen con −270° (desde arriba, por el eje imaginario positivo).</li>
+<li><b>Corte con el eje real:</b> \(\omega-0{,}5\omega^3=0\Rightarrow\omega_{180}=\sqrt2\). Allí \(\text{Re}\,G=\frac{-1{,}5K\cdot2}{2{,}25\cdot4}=-\frac K3=-1{,}67\).</li>
+<li><b>Criterio:</b> −1,67 está a la izquierda de −1, así que la curva completa rodea el −1 dos veces en sentido horario: N = 2. P = 0 (los polos 0, −1, −2 no están en el semiplano derecho). <b>Z = 2: inestable</b>, con dos polos de lazo cerrado en el semiplano derecho.</li>
+<li><b>Ganancia crítica:</b> el corte vale −K/3, que pasa por −1 con K = 3. Con K &lt; 3 es estable. MG con K = 5: \(-20\log(5/3)=-4{,}4\) dB.</li>
+</ol>
+</div></details>
+
+<figure class="fig">
+<p class="ft">Simulador · Nyquist y Bode a la vez</p>
+<div class="ctrl">
+  <label for="nxSel">Función <select id="nxSel"></select></label>
+  <label for="nxK">K × <span id="nxKV" class="mono">1.00</span><input id="nxK" type="range" min="-1" max="1" step="0.01" value="0"></label>
+  <label for="nxW">ω = <span id="nxWV" class="mono">1.00</span> rad/s<input id="nxW" type="range" min="-2" max="2" step="0.01" value="0"></label>
+  <label for="nxM"><input type="checkbox" id="nxM" checked> rama ω &lt; 0</label>
+</div>
+<div class="readout" id="nxR"></div>
+<div class="figs2"><div class="plot" id="nxNyq"></div><div class="plot" id="nxBode"></div></div>
+<div class="out" id="nxTxt"></div>
+<figcaption><b>El punto naranja es el mismo ω en las dos gráficas.</b> Su distancia al origen en el Nyquist es el módulo del Bode (en veces, no en dB) y su ángulo es la fase. Punto azul: −1. Discontinuo: la rama de ω &lt; 0, simétrica. El recuadro de abajo da los datos que necesitas para dibujarlo a mano: inicio, final, cortes con los ejes y el recuento Z = N + P.</figcaption>
+<p class="try">elige «K/(s(s+1)(0,5s+1))» y mueve ω: cuando la fase del Bode cruza −180°, el punto cruza el eje real negativo. Después sube K hasta que ese cruce pase de −1: Z pasa de 0 a 2.</p>
+</figure>
+
+<h3>Diagramas polares que tienes que saber de memoria</h3>
+<div class="grid2">
+<div class="box"><h4>\(\frac{1}{1+j\omega T}\)</h4><p>Semicircunferencia de centro 0,5 y radio 0,5 por debajo del eje real: empieza en 1 (ω = 0), pasa por 0,5 − 0,5j en la esquina y llega al origen con −90°.</p></div>
+<div class="box"><h4>\(\frac{K}{j\omega}\)</h4><p>Todo el semieje imaginario negativo: viene de −j∞ y llega al origen. Fase constante −90°.</p></div>
+<div class="box"><h4>\(e^{-j\omega L}\) (retardo)</h4><p>La circunferencia unidad, recorrida infinitas veces en sentido horario. No cambia el módulo pero resta fase sin límite; por eso un retardo desestabiliza.</p></div>
+<div class="box"><h4>Segundo orden \(\frac{\omega_n^2}{s^2+2\zeta\omega_ns+\omega_n^2}\)</h4><p>Empieza en 1, corta el eje imaginario en \(-j\frac{1}{2\zeta}\) (en ω = ω<sub>n</sub>) y llega al origen con −180°. Cuanto menor ζ, más grande es el bucle.</p></div>
+</div>
+
+<div class="box trap"><h4>Errores típicos con Nyquist</h4>
+<ul>
+<li>Contar las vueltas solo con la rama ω &gt; 0. El criterio usa la curva <b>completa</b>: la rama positiva, su simétrica y el arco infinito de los integradores.</li>
+<li>Olvidar P. Si G(s) tiene un polo inestable (por ejemplo \(\frac{1}{s-1}\)), el lazo cerrado es estable solo si la curva rodea el −1 en sentido <b>antihorario</b> P veces.</li>
+<li>Confundir dónde empieza el tipo 1: no empieza en el origen ni en el eje real, sino en el infinito, abajo.</li>
+</ul></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="bode.html" style="--tc:var(--c5)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>B</i>Bode a mano</span></a><a class="pg-card next" href="margenes.html" style="--tc:var(--c6)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>MF</i>Margen de fase y de ganancia</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

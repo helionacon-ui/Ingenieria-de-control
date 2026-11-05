@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Maqueta de tanques · Ingeniería de Control</title>
+<meta name="description" content="El trabajo de 1 punto: modelo de los tanques, linealización, simulación del control y guion de la exposición.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-maqueta single">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn on" style="--tc:var(--c2)" aria-current="page"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c2);--tcs:var(--c2s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">Lab</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Practicar · página 12 de 15</p>
+      <h1>Maqueta de tanques</h1>
+      <p class="phero-desc">El trabajo de 1 punto: modelo de los tanques, linealización, simulación del control y guion de la exposición.</p>
+      
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:80.0%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#maqueta" style="--tc:var(--c2)">Trabajo con la maqueta de tanques acoplados</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other here" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c2);--tcs:var(--c2s)">
+<div class="sh"><span class="badge" aria-hidden="true">Lab</span><div class="shx"><p class="kick">Practicar · 1 punto</p><h2 id="maqueta">Trabajo con la maqueta de tanques acoplados</h2><p class="sub2">Según «Explicación trabajos con la maqueta de tanques»: vale 1 punto sobre 10 para el examen y se evalúa con una exposición.</p></div></div>
+<div class="cero"><span class="label">Desde cero</span><p>La maqueta tiene una bomba que llena el tanque 1; el tanque 1 desagua por gravedad en el tanque 2, y el tanque 2 desagua fuera. Un Arduino mide las dos alturas con sensores de ultrasonidos y MATLAB calcula cada 0,3 s la tensión PWM de la bomba (0–250). Tu trabajo es entender la planta, obtener su modelo, proponer un lazo de control, probarlo en simulación y después en la maqueta real.</p></div>
+
+<h3>Las siete tareas del trabajo, y qué hacer en cada una</h3>
+<div class="tw"><table>
+<tr><th>Tarea</th><th>Qué hacer</th><th>Qué enseñar en la exposición</th></tr>
+<tr><td>1 · Estudio de la planta</td><td>Variables: entrada u (PWM de la bomba), salidas h₁ y h₂ (cm), perturbaciones (válvulas de desagüe, fugas). Sensores: ultrasonidos, h = 49 − t/58,138 cm.</td><td>Foto o esquema con las variables señaladas</td></tr>
+<tr><td>2 · Puntos de funcionamiento</td><td>Elegir alturas de trabajo en la zona lineal: el programa usa 7, 10 y 12 cm. Medir la u de equilibrio de cada una.</td><td>Tabla altura ↔ u de equilibrio</td></tr>
+<tr><td>3 · Dinámica: modelo e identificación</td><td>Escalón de u en lazo abierto alrededor de un punto. Tanque 1: primer orden K/(τs+1). Tanque 2 respecto a u: segundo orden. Validar comparando la simulación con datos nuevos.</td><td>Curva medida frente a modelo</td></tr>
+<tr><td>4 · Propuesta de lazos</td><td>P o PI sobre h₁; PI sobre h₂; o cascada (h₂ fuera, h₁ dentro).</td><td>Diagramas de bloques</td></tr>
+<tr><td>5 · Control en simulación</td><td>Sintonía (ZN, asignación de polos o frecuencia) y prueba con los escalones de referencia.</td><td>Respuestas simuladas</td></tr>
+<tr><td>6 · Control de la planta</td><td>Mismos parámetros en la maqueta. Cuidado con la saturación 0–250 y el windup si hay integral.</td><td>Respuestas reales y comparación</td></tr>
+<tr><td>7 · Conclusiones</td><td>Qué funcionó, diferencias simulación-realidad (no linealidad, ruido, retardo del sensor).</td><td>Tres o cuatro conclusiones concretas</td></tr>
+</table></div>
+
+<h3>El modelo de los tanques</h3>
+<p>Cada tanque es un balance de volumen: lo que entra menos lo que sale. El caudal de salida por un orificio sigue la ley de Torricelli, proporcional a √h, así que el modelo es <b>no lineal</b>:</p>
+<div class="eq">\[A_1\frac{dh_1}{dt}=k_b\,u-c_1\sqrt{h_1},\qquad A_2\frac{dh_2}{dt}=c_1\sqrt{h_1}-c_2\sqrt{h_2}\]</div>
+<p>Linealizando alrededor de un punto de funcionamiento \(\bar h\) (la pendiente de \(c\sqrt h\) es \(\frac{c}{2\sqrt{\bar h}}\)) sale una función de transferencia de primer orden por tanque:</p>
+<div class="eq">\[\frac{\Delta h_1}{\Delta u}=\frac{K_1}{\tau_1s+1},\quad K_1=\frac{2k_b\sqrt{\bar h_1}}{c_1},\quad \tau_1=\frac{2A_1\sqrt{\bar h_1}}{c_1};\qquad \frac{\Delta h_2}{\Delta h_1}=\frac{K_2}{\tau_2s+1}\]</div>
+<p>Consecuencia práctica: τ y K <b>crecen con la altura</b> (con √h). Un controlador sintonizado a 7 cm se comporta algo distinto a 12 cm; coméntalo en las conclusiones.</p>
+
+<figure class="fig"><p class="ft">Simulador · la maqueta con su programa</p>
+<div class="ctrl">
+<div class="seg" role="group" aria-label="Lazo"><button id="tkA" aria-pressed="true">P sobre h₁ (programa)</button><button id="tkB" aria-pressed="false">PI sobre h₁</button><button id="tkC" aria-pressed="false">PI sobre h₂</button><button id="tkD" aria-pressed="false">Cascada h₂ / h₁</button><button id="tkE" aria-pressed="false">Lazo abierto (escalón)</button></div>
+</div>
+<div class="ctrl">
+<label for="tkKp">Kp = <span id="tkKpV" class="mono">200</span><input id="tkKp" type="range" min="5" max="300" step="5" value="200"></label>
+<label for="tkKi">Ki = <span id="tkKiV" class="mono">0.0</span><input id="tkKi" type="range" min="0" max="5" step="0.1" value="0"></label>
+<label for="tkAW"><input type="checkbox" id="tkAW" checked> antiwindup</label>
+</div>
+<div class="readout" id="tkR"></div>
+<div class="plot" id="tkPlot"></div>
+<figcaption><b>Modelo de Torricelli</b> con A = 50 cm², c₁ = c₂ = 5 cm<sup>2,5</sup>/s y bomba de 0,6 cm³/s por unidad de PWM por encima de 100 (valores ilustrativos: identifica los reales en el laboratorio). Referencia como en el programa: 7 cm, 10 cm a los 150 s y 12 cm desde los 240 s (se simulan 600 s). Muestreo T = 0,3 s, u = 140 + c, saturada entre 0 y 250.</figcaption>
+<p class="try">con «P sobre h₁» y Kp = 200 (los valores del programa), la bomba va casi todo el tiempo a tope o apagada: es casi un todo-nada. Baja Kp a 20 y añade Ki: el control se suaviza. Después prueba la cascada.</p>
+</figure>
+
+<h3>Lo que hace el programa del laboratorio</h3>
+<ul>
+<li><b>Muestreo:</b> <code>Ts=0.3</code> s; <code>tiemposimu</code> fija cuántas muestras dura el ensayo.</li>
+<li><b>Referencia:</b> <code>[7*ones(500,1);10*ones(300,1);12*ones(…)]</code>: 7 cm durante 150 s, 10 cm durante 90 s y luego 12 cm.</li>
+<li><b>PID discreto:</b> <code>c=Pdig*error+Ddig*(error-erroranterior)/Ts+Idig*Ts*sumaerrores</code>. Es el de la <a href="examenes.html#q2">pregunta 2</a>: integral por rectángulos y derivada por diferencias hacia atrás.</li>
+<li><b>Polarización:</b> <code>u=140+c</code>, para que la bomba siempre trabaje cerca de su punto de equilibrio.</li>
+<li><b>Saturación:</b> u entre 0 y 250. Si pones <code>Idig</code> ≠ 0 sin antiwindup, <code>sumaerrores</code> sigue creciendo mientras u está saturada: es el windup de la <a href="examenes.html#q3">pregunta 3</a>. Añade una línea que congele <code>sumaerrores</code> cuando u está en un límite.</li>
+</ul>
+
+<h3>Guion de la exposición (10 diapositivas)</h3>
+<ol class="steps">
+<li>La planta: foto, esquema y variables (u, h₁, h₂, perturbaciones).</li>
+<li>Instrumentación: sensores de ultrasonidos, Arduino, bomba con PWM, periodo de muestreo.</li>
+<li>Puntos de funcionamiento elegidos y por qué.</li>
+<li>Modelo no lineal y linealización.</li>
+<li>Identificación: ensayo escalón, K, τ (y retardo si lo hay) en cada punto.</li>
+<li>Validación del modelo con datos que no se usaron para identificar.</li>
+<li>Lazos propuestos (diagramas de bloques) y método de sintonía.</li>
+<li>Resultados en simulación.</li>
+<li>Resultados en la maqueta real y comparación.</li>
+<li>Conclusiones: no linealidad, saturación y windup, ruido del sensor, mejoras posibles.</li>
+</ol>
+<div class="box trap"><h4>Preguntas que te pueden hacer en la exposición</h4>
+<ul><li>¿Por qué el modelo cambia con la altura? (Torricelli, √h.)</li>
+<li>¿Por qué P solo deja error y PI no? (Tipo 0 frente a tipo 1.)</li>
+<li>¿Qué pasa con la integral cuando la bomba se satura? (Windup y su solución.)</li>
+<li>¿Por qué controlar h₂ es más difícil que h₁? (Segundo orden: más retraso de fase, menos margen.)</li>
+<li>¿Qué ventaja tiene la cascada? (El lazo interno corrige rápido lo que pasa en el tanque 1.)</li></ul></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="problemas.html" style="--tc:var(--c8)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>Prof</i>Problemas resueltos</span></a><a class="pg-card next" href="calculadora.html" style="--tc:var(--c8)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>f(s)</i>Calculadora</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

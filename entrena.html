@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Entrena y autoevalúate · Ingeniería de Control</title>
+<meta name="description" content="Entrenadores que generan ejercicios nuevos (Bode, Nyquist, márgenes y compensadores), test y fichas.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-entrena">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn on" style="--tc:var(--c1)" aria-current="page"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c1);--tcs:var(--c1s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">✎</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Practicar · página 10 de 15</p>
+      <h1>Entrena y autoevalúate</h1>
+      <p class="phero-desc">Entrenadores que generan ejercicios nuevos (Bode, Nyquist, márgenes y compensadores), test y fichas.</p>
+      <div class="phero-chips"><a href="#entrena">Entrena a mano</a><a href="#auto">Autoevaluación</a></div>
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:66.7%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#entrena" style="--tc:var(--c1)">Entrena a mano</a><a href="#auto" style="--tc:var(--c1)">Autoevaluación</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other here" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c1);--tcs:var(--c1s)">
+<div class="sh"><span class="badge" aria-hidden="true">✎</span><div class="shx"><p class="kick">Practicar</p><h2 id="entrena">Entrena a mano</h2><p class="sub2">Cuatro entrenadores que generan ejercicios nuevos cada vez y corrigen tu respuesta: dibujar el Bode, reconocer el Nyquist, leer márgenes en una gráfica y diseñar un compensador.</p></div></div>
+
+<h3>1 · Dibuja tú el Bode asintótico</h3>
+<p>Te doy G(s). Escribe la recta de baja frecuencia y, para cada esquina, su frecuencia y la pendiente que queda después. Al comprobar, se dibuja tu asíntota sobre la correcta y se marcan las filas con error.</p>
+<div class="box">
+<div class="ctrl"><button type="button" class="btn pri" id="bdNew">Nueva función</button><span class="qp" id="bdQ" style="margin:0"></span></div>
+<div class="ctrl" style="margin-top:12px">
+<label for="bdS0">Pendiente inicial <select id="bdS0"><option>-40</option><option>-20</option><option>0</option><option>20</option></select> dB/déc</label>
+<label for="bdV1">Valor de la recta inicial (prolongada) en ω = 1 <input type="number" id="bdV1" step="any"> dB</label>
+</div>
+<div id="bdRows" style="display:flex;flex-direction:column;gap:8px;margin-top:10px"></div>
+<div class="ctrl" style="margin-top:12px"><button type="button" class="btn pri" id="bdChk">Comprobar</button><button type="button" class="btn" id="bdSol">Ver solución</button><span class="readout" id="bdRes"></span></div>
+<div class="plot" id="bdPlot"></div>
+</div>
+
+<h3>2 · Reconoce el Nyquist</h3>
+<p>¿Cuál de los cuatro dibujos es el Nyquist (rama ω &gt; 0) de la función? Fíjate en dónde empieza (tipo), con qué ángulo llega al origen (n − m) y si corta el eje real negativo.</p>
+<div class="box">
+<div class="ctrl"><button type="button" class="btn pri" id="nqNew">Nueva pregunta</button><span class="qp" id="nqQ" style="margin:0"></span><span class="readout" id="nqRes"></span></div>
+<div id="nqOpts" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;margin-top:12px"></div>
+<p class="qex" id="nqEx" hidden></p>
+</div>
+
+<h3>3 · Lee los márgenes en una gráfica</h3>
+<p>En el examen a veces te dan el Bode dibujado. Lee ω<sub>c</sub>, MF, ω<sub>180</sub> y MG en la gráfica (escribe «inf» si es infinito). La tolerancia es la de una lectura a ojo: 10 % en frecuencia, 4° en fase y 2 dB en módulo.</p>
+<div class="box">
+<div class="ctrl"><button type="button" class="btn pri" id="rdNew">Nueva gráfica</button></div>
+<div class="plot" id="rdPlot"></div>
+<div class="ctrl">
+<label for="rdWc">ω<sub>c</sub> <input type="number" id="rdWc" step="any"></label>
+<label for="rdMF">MF (°) <input type="number" id="rdMF" step="any"></label>
+<label for="rdW1">ω<sub>180</sub> <input type="text" id="rdW1" style="width:110px"></label>
+<label for="rdMG">MG (dB) <input type="text" id="rdMG" style="width:110px"></label>
+</div>
+<div class="ctrl" style="margin-top:10px"><button type="button" class="btn pri" id="rdChk">Comprobar</button><button type="button" class="btn" id="rdShow">Enseñar los valores</button><span class="readout" id="rdRes"></span></div>
+</div>
+
+<h3>4 · Diseña el compensador</h3>
+<p>Te doy la planta y las especificaciones. Decide si va adelanto o atraso, calcula K, α (o β) y T, y comprueba. La página calcula el K<sub>v</sub> y el MF de <b>tu</b> diseño, así que cualquier solución que cumpla vale.</p>
+<div class="box">
+<div class="ctrl"><button type="button" class="btn pri" id="cpNew">Nuevo problema</button></div>
+<p class="qp" id="cpQ" style="margin:12px 0"></p>
+<div class="ctrl">
+<label for="cpT">Tipo <select id="cpT"><option value="lead">adelanto (α &lt; 1)</option><option value="lag">atraso (β &gt; 1)</option></select></label>
+<label for="cpK">K <input type="number" id="cpK" step="any"></label>
+<label for="cpA">α o β <input type="number" id="cpA" step="any"></label>
+<label for="cpTT">T <input type="number" id="cpTT" step="any"></label>
+</div>
+<p class="note" style="margin:8px 0 0">Compensador: K·(Ts + 1)/(αTs + 1) o K·(Ts + 1)/(βTs + 1).</p>
+<div class="ctrl" style="margin-top:10px"><button type="button" class="btn pri" id="cpChk">Comprobar mi diseño</button><button type="button" class="btn" id="cpShow">Ver una solución</button><span class="readout" id="cpRes"></span></div>
+<div class="out" id="cpSol" hidden style="margin-top:10px"></div>
+<div class="plot" id="cpPlot"></div>
+</div>
+</section>
+
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">Test</span><div class="shx"><p class="kick">Practicar</p><h2 id="auto">Autoevaluación</h2></div></div>
+<p>Leer soluciones no es lo mismo que saber hacerlas. Aquí tienes un test por bloque y fichas de repaso. El generador de ejercicios de márgenes está en <a href="margenes.html#margenes">su sección</a>.</p>
+<h3>Test rápido por bloque</h3>
+<p>Cinco preguntas por bloque. Elige una respuesta: te dice al momento si es correcta y por qué. Tu mejor nota se guarda en este navegador.</p>
+<div class="ctrl quiz-tabs" id="qTabs"></div>
+<div class="box" id="quiz"></div>
+<h3>Fichas de repaso</h3>
+<p>Lee la pregunta, di la respuesta en voz alta y pulsa la ficha para comprobarla. <button type="button" class="btn" id="cardsSh">Barajar</button> <button type="button" class="btn" id="cardsHide">Taparlas todas</button></p>
+<div class="cards" id="cards"></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="simulacro.html" style="--tc:var(--c4)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>2 h</i>Simulacro de examen</span></a><a class="pg-card next" href="problemas.html" style="--tc:var(--c8)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>Prof</i>Problemas resueltos</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

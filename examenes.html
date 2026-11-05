@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Exámenes y teoría · Ingeniería de Control</title>
+<meta name="description" content="Los exámenes de años anteriores resueltos y todas las preguntas de teoría que han caído, con diagramas.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-examenes">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn on" style="--tc:var(--c8)" aria-current="page"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c8);--tcs:var(--c8s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">EX</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Practicar · página 8 de 15</p>
+      <h1>Exámenes y teoría</h1>
+      <p class="phero-desc">Los exámenes de años anteriores resueltos y todas las preguntas de teoría que han caído, con diagramas.</p>
+      <div class="phero-chips"><a href="#examenes">Exámenes anteriores</a><a href="#teoria">Preguntas de teoría de examen</a></div>
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:53.3%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#examenes" style="--tc:var(--c8)">Exámenes anteriores</a><a href="#teoria" style="--tc:var(--c8)">Preguntas de teoría de examen</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other here" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c8);--tcs:var(--c8s)">
+  <div class="sh"><span class="badge" aria-hidden="true">EX</span><div class="shx"><p class="kick">Practicar</p><h2 id="examenes">Exámenes anteriores</h2><p class="sub2">Problemas y cuestiones de los exámenes de tu carpeta, resueltos paso a paso. Intenta cada uno antes de abrir la solución.</p></div></div>
+  <p class="note">Los números están recalculados con las funciones de transferencia de cada enunciado. Donde el escaneo no se lee bien, se indica qué dato se ha supuesto. El problema de septiembre de 2017 está completo en <a href="problemas.html#profesor">Problemas de los apuntes del profesor</a> (P5). El botón «Comprobar» carga el sistema en la <a href="calculadora.html#calculadora">calculadora</a>.</p>
+  <div class="ex-list" id="exList"></div>
+</section>
+
+<section class="sec" style="--tc:var(--c3);--tcs:var(--c3s)">
+<div class="sh"><span class="badge" aria-hidden="true">?</span><div class="shx"><p class="kick">Practicar</p><h2 id="teoria">Preguntas de teoría de examen</h2><p class="sub2">Las 12 cuestiones de teoría que han caído en los exámenes de 2015, 2017, 2020 y 2024 y en la recopilación de teoría resuelta, cada una con un diagrama y la respuesta que puntúa.</p></div></div>
+<div class="cero"><span class="label">Cómo se contesta una cuestión de 1 punto</span>
+<p>Tres partes, en este orden: <b>qué es</b> (una frase), <b>un dibujo</b> (diagrama de bloques o gráfica con los ejes nombrados) y <b>la ecuación o la solución</b>. Los diagramas de esta sección están hechos para que los puedas reproducir a mano en un minuto.</p></div>
+<div class="tw"><table>
+<tr><th>Pregunta</th><th>Exámenes</th><th>Tema</th></tr>
+<tr><td><a href="#q1">1 · Calcular m para que y siga a la consigna (feedforward)</a></td><td>Sept 2015, sept 2017, recopilación</td><td>T4</td></tr>
+<tr><td><a href="#q2">2 · Explica un método de discretización de un PID</a></td><td>Sept 2015, recopilación</td><td>T2</td></tr>
+<tr><td><a href="#q3">3 · Saturación con parte integral: efecto y solución</a></td><td>Sept 2015, sept 2017, recopilación</td><td>T2</td></tr>
+<tr><td><a href="#q4">4 · Amplitud y frecuencia de la salida ante una senoide</a></td><td>Recopilación</td><td>T5</td></tr>
+<tr><td><a href="#q5">5 · Feedforward y feedback juntos: dibuja y explica</a></td><td>Recopilación</td><td>T4</td></tr>
+<tr><td><a href="#q6">6 · Mejorar el tiempo de respuesta sin importar el sobrepico</a></td><td>Recopilación</td><td>T2</td></tr>
+<tr><td><a href="#q7">7 · Dibuja todas las mejoras del PID que conozcas</a></td><td>Recopilación</td><td>T2</td></tr>
+<tr><td><a href="#q8">8 · Control en cascada: diagrama, variables y características</a></td><td>Dic 2024, recopilación</td><td>T4</td></tr>
+<tr><td><a href="#q9">9 · Concentración en dos tanques ante una entrada senoidal</a></td><td>Feb 2020</td><td>T5</td></tr>
+<tr><td><a href="#q10">10 · Método de sintonía por relé (relay feedback)</a></td><td>Dic 2024</td><td>T3</td></tr>
+<tr><td><a href="#q11">11 · Problemas de un PID con la consigna en escalón</a></td><td>Dic 2024</td><td>T2</td></tr>
+<tr><td><a href="#q12">12 · PI por asignación de polos con condiciones de Mp y ts</a></td><td>Sept 2017</td><td>T3</td></tr>
+</table></div>
+
+<!-- 1 -->
+<h3 id="q1">1 · Calcular m para que y siga a la consigna</h3>
+<p class="note">Sept 2015 C1 · sept 2017 C3 · recopilación p. 1. «Calcular cuál debe ser la señal de control m para conseguir que la salida y siga a la consigna y<sub>sp</sub> (control feedforward). Dibujar el diagrama de bloques de la solución.»</p>
+<figure class="fig"><p class="ft">Diagrama · la idea en un dibujo</p><div class="plot" id="dq1"></div>
+<figcaption><b>Dos caminos llegan a y:</b> la perturbación d por G<sub>d</sub> y la acción m por G<sub>p</sub>. El feedforward mide d y fabrica una m que llega a y con el signo contrario, así que las dos contribuciones se anulan.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<ol class="steps"><li>Salida: \(y=G_p\,m+G_d\,d\).</li>
+<li>Se impone \(y=y_{sp}\) y se despeja: \(m=\dfrac{y_{sp}}{G_p}-\dfrac{G_d}{G_p}\,d\).</li>
+<li>Si solo interesa anular la perturbación (\(y_{sp}=0\)): \(m=-G_{ff}\,d\) con \(G_{ff}=\dfrac{G_d}{G_p}\).</li>
+<li>Condición: hay que poder <b>medir d</b> y \(G_{ff}\) tiene que ser realizable. Si no lo es, se usa solo la ganancia estática \(-K_d/K_p\).</li></ol></div>
+
+<!-- 2 -->
+<h3 id="q2">2 · Explica un método de discretización de un PID</h3>
+<p class="note">Sept 2015 C2 · recopilación p. 2 · apuntes, pregunta 2.</p>
+<figure class="fig"><p class="ft">Diagrama · del PID continuo al del ordenador</p><div class="plot" id="dq2"></div>
+<div class="plot" id="pq2"></div>
+<figcaption><b>Arriba: la cadena.</b> El ordenador solo ve el error cada T segundos (e<sub>k</sub>), calcula u<sub>k</sub> y un retenedor la mantiene hasta la siguiente muestra. <b>Abajo: cómo se aproxima cada acción.</b> La integral, por el área de trapecios bajo e(t) (Tustin, en naranja); la derivada, por la pendiente entre dos muestras seguidas (en azul).</figcaption></figure>
+<div class="box key"><h4>Respuesta (el método de los apuntes)</h4>
+<ol class="steps"><li><b>Proporcional:</b> \(u_p(t_k)=K_p\,e(t_k)\Rightarrow G_p(z)=K_p\).</li>
+<li><b>Derivativa</b> (diferencias hacia atrás): \(u_d(t_k)=K_pT_d\,\frac{e_k-e_{k-1}}{T}\Rightarrow G_d(z)=\frac{K_pT_d}{T}(1-z^{-1})\).</li>
+<li><b>Integral</b> (Tustin, trapecios): \(\frac{u_i(t_k)-u_i(t_{k-1})}{T}=\frac{K_p}{T_i}\cdot\frac{e_k+e_{k-1}}{2}\Rightarrow G_i(z)=\frac{K_pT}{2T_i}\cdot\frac{1+z^{-1}}{1-z^{-1}}\).</li>
+<li>El PID discreto es la suma: \(U(z)=[G_p(z)+G_i(z)+G_d(z)]\,E(z)\).</li></ol></div>
+
+<!-- 3 -->
+<h3 id="q3">3 · Saturación de la señal de control con parte integral</h3>
+<p class="note">Sept 2015 C3 · sept 2017 C1 · recopilación p. 3 (dos versiones) · apuntes, pregunta 3.</p>
+<figure class="fig"><p class="ft">Diagrama · por qué aparece el windup</p><div class="plot" id="pq3"></div>
+<figcaption><b>Mientras el actuador está saturado</b> (franja gris), la salida sube despacio y el error es positivo mucho tiempo: la integral acumula un «área positiva» enorme (verde). Para descargarla, el error tiene que hacerse negativo el mismo tiempo: eso es el <b>sobrepico</b> (área roja). Es la explicación de los apuntes: el sumatorio de áreas tiene que volver a cero.</figcaption></figure>
+<figure class="fig"><p class="ft">Diagrama · la solución (recálculo)</p><div class="plot" id="dq3"></div>
+<figcaption>Se compara la salida del PID (v) con lo que el actuador entrega de verdad (u). Si son distintas, el actuador está saturado y la diferencia se resta a la entrada del integrador, que deja de cargarse.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<ol class="steps"><li><b>Problema:</b> windup. Con la señal saturada el error tarda en bajar y la integral sigue acumulándolo.</li>
+<li><b>Efecto:</b> gran sobrepico y recuperación lenta, porque la integral solo se descarga con error negativo.</li>
+<li><b>Solución 1 (recálculo):</b> realimentar u − v al integrador con ganancia 1/T<sub>t</sub> (T<sub>t</sub> ≈ √(T<sub>i</sub>T<sub>d</sub>)).</li>
+<li><b>Solución 2 (integración condicional):</b> congelar la integral mientras el actuador esté saturado.</li></ol></div>
+
+<!-- 4 -->
+<h3 id="q4">4 · Salida ante una senoide</h3>
+<p class="note">Recopilación p. 4 · apuntes, pregunta 4. «En el sistema G(s)H(s) = (s + 10)/((s + 1)(s + 3)s) introducimos una senoidal de amplitud 2 y frecuencia 10 rad/s. Calcular la frecuencia y la amplitud de la onda de salida.»</p>
+<figure class="fig"><p class="ft">Diagrama · qué cambia y qué no</p><div class="plot" id="pq4"></div>
+<figcaption><b>La frecuencia no cambia</b>: las crestas se repiten cada 2π/10 = 0,63 s en las dos señales. Cambian la amplitud (se multiplica por |G(j10)|) y la fase (se desplaza ∠G(j10)). La salida está ampliada ×40 para que se vea.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<ol class="steps"><li>Misma frecuencia: <b>ω = 10 rad/s</b>.</li>
+<li>Módulo: \(|G(j10)|=\frac{\sqrt{10^2+10^2}}{\sqrt{10^2+1}\,\sqrt{10^2+3^2}\cdot10}=\frac{14{,}14}{10{,}05\cdot10{,}44\cdot10}=0{,}0135\).</li>
+<li>Amplitud de salida: \(2\cdot0{,}0135=\mathbf{0{,}027}\).</li>
+<li>Fase: \(\arctan\frac{10}{10}-\left(90^\circ+\arctan10+\arctan\frac{10}{3}\right)=45^\circ-247{,}6^\circ=-202{,}6^\circ\) (equivale a +157,4°, como en los apuntes).</li>
+<li>\(y(t)=0{,}027\,\sin(10t-202{,}6^\circ)\).</li></ol></div>
+
+<!-- 5 -->
+<h3 id="q5">5 · Feedforward y feedback juntos</h3>
+<p class="note">Recopilación p. 5 · apuntes, pregunta 5. «Dibuja un diagrama de bloques con la estructura de control feedforward y feedback juntas. Explica cada uno de los bloques.»</p>
+<figure class="fig"><p class="ft">Diagrama · la estructura completa, con los sensores</p><div class="plot" id="dq5"></div>
+<figcaption>Es el dibujo de los apuntes. G<sub>m2</sub> mide la perturbación para el feedforward y G<sub>m1</sub> mide la salida para el feedback. Las dos acciones se suman antes del elemento final G<sub>f</sub> (la válvula).</figcaption></figure>
+<div class="box key"><h4>Respuesta: qué es cada bloque</h4>
+<div class="tw"><table><tr><th>Bloque</th><th>Qué es</th></tr>
+<tr><td>G<sub>sp</sub></td><td>Acondiciona la consigna y<sub>sp</sub></td></tr>
+<tr><td>G<sub>c1</sub></td><td>Controlador de realimentación (PID): corrige el error medido</td></tr>
+<tr><td>G<sub>m2</sub>, G<sub>c2</sub></td><td>Sensor de la perturbación y controlador feedforward</td></tr>
+<tr><td>G<sub>f</sub></td><td>Elemento final de control (actuador): da la variable manipulada m</td></tr>
+<tr><td>G<sub>p</sub>, G<sub>d</sub></td><td>Proceso visto desde m y desde la perturbación d</td></tr>
+<tr><td>G<sub>m1</sub></td><td>Sensor de la salida para la realimentación</td></tr></table></div>
+<p>Ecuaciones: \(y=G_p\,m+G_d\,d\) y \(m=G_f(c_1+c_2)=G_fG_{c1}e_1+G_fG_{c2}e_2\). El feedforward actúa antes de que d llegue a y; el feedback corrige lo que el feedforward no compensa (errores de modelo y perturbaciones no medidas).</p></div>
+
+<!-- 6 -->
+<h3 id="q6">6 · Mejorar el tiempo de respuesta sin importar el sobrepico</h3>
+<p class="note">Recopilación p. 6 · apuntes, pregunta 6.</p>
+<figure class="fig"><p class="ft">Diagrama · P, PD y PID sobre la misma planta</p><div class="plot" id="pq6"></div>
+<figcaption><b>Planta 1/((s+1)(2s+1)).</b> Gris: P con K<sub>p</sub> = 2, lento y con error. Azul: PD (K<sub>p</sub> = 8, T<sub>d</sub> = 0,4), mucho más rápido pero con error permanente. Naranja: PID, rápido y sin error, con más sobrepico.</figcaption></figure>
+<div class="box key"><h4>Respuesta (depende de lo que se pida)</h4>
+<ul><li><b>Si se tolera el error permanente:</b> un <b>PD</b>. La acción derivativa permite subir mucho K<sub>p</sub> (más rapidez) sin que oscile, y reduce el tiempo de establecimiento.</li>
+<li><b>Si el error tiene que ser cero:</b> un <b>PID</b>. La integral elimina el error; la P y la D dan un tiempo de subida y de establecimiento bajos.</li>
+<li>Como el sobrepico no importa, se puede subir K<sub>p</sub> hasta donde lo permita la estabilidad.</li></ul></div>
+
+<!-- 7 -->
+<h3 id="q7">7 · Dibuja todas las mejoras del PID que conozcas</h3>
+<p class="note">Recopilación p. 7 · apuntes, pregunta 7 · Práctica 2.</p>
+<figure class="fig"><p class="ft">Diagrama · el PID «completo» de la práctica 2</p><div class="plot" id="dq7"></div>
+<figcaption>Las tres mejoras en un solo dibujo. <b>1 · Referencia ponderada:</b> la P ve b·r − y. <b>2 · Derivada filtrada y sobre la medida:</b> la D ve −y a través de K·T<sub>d</sub>s/(1 + T<sub>d</sub>s/N). <b>3 · Antiwindup:</b> la diferencia entre la salida del PID y la del actuador vuelve al integrador por 1/T<sub>t</sub>.</figcaption></figure>
+<div class="box key"><h4>Respuesta: para qué sirve cada mejora</h4>
+<div class="tw"><table><tr><th>Mejora</th><th>Problema que resuelve</th></tr>
+<tr><td>Antiwindup (1/T<sub>t</sub>)</td><td>Sobrepico por saturación del actuador con integral</td></tr>
+<tr><td>Peso b en la referencia</td><td>Salto brusco de la P ante un escalón de consigna; separa el seguimiento de la consigna del rechazo de perturbaciones</td></tr>
+<tr><td>Derivada sobre −y</td><td>Patada derivativa ante un escalón de consigna</td></tr>
+<tr><td>Filtro T<sub>d</sub>s/(1 + T<sub>d</sub>s/N)</td><td>Amplificación del ruido de alta frecuencia</td></tr></table></div></div>
+
+<!-- 8 -->
+<h3 id="q8">8 · Control en cascada</h3>
+<p class="note">Dic 2024 C3: «Dibuja un diagrama de bloques para el control en cascada del sistema. Explica cada función de transferencia y cada variable que aparece.» · Recopilación p. 9: características.</p>
+<figure class="fig"><p class="ft">Diagrama · cascada con todas las letras</p><div class="plot" id="dq8"></div>
+<figcaption>Ejemplo típico: horno cuya temperatura (y<sub>1</sub>) depende del caudal de combustible (y<sub>2</sub>). Si la presión del combustible varía (d<sub>2</sub>), el lazo interno de caudal la corrige en segundos, antes de que la temperatura se entere.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<div class="tw"><table><tr><th>Símbolo</th><th>Qué es</th></tr>
+<tr><td>r<sub>1</sub>, y<sub>1</sub></td><td>Consigna y salida principal (la que importa: temperatura)</td></tr>
+<tr><td>C<sub>1</sub></td><td>Controlador primario (maestro); su salida es la consigna r<sub>2</sub> del secundario</td></tr>
+<tr><td>C<sub>2</sub></td><td>Controlador secundario (esclavo), normalmente un P</td></tr>
+<tr><td>G<sub>2</sub>, y<sub>2</sub></td><td>Proceso interno, rápido (válvula y caudal) y su salida medida</td></tr>
+<tr><td>G<sub>1</sub></td><td>Proceso externo, lento</td></tr>
+<tr><td>d<sub>2</sub></td><td>Perturbación que entra en el lazo interno</td></tr></table></div>
+<ul><li>El lazo interno tiene que ser 3 a 5 veces más rápido que el externo, y las perturbaciones esenciales deben actuar sobre él.</li>
+<li>Se sintoniza primero el interno y después el externo.</li>
+<li>Si todas las variables de estado se realimentasen así, sería una realimentación de estado.</li></ul></div>
+
+<!-- 9 -->
+<h3 id="q9">9 · Concentración en dos tanques ante una entrada senoidal</h3>
+<p class="note">Feb 2020 · apuntes, pregunta 8. «La concentración de alimentación varía como una senoidal de amplitud 0,1 mol/m³ y frecuencia 0,2 rad/min. Se requiere una variación menor de 0,05 mol/m³ a la salida. ¿Es posible sin cerrar el lazo?» Con C<sub>A2</sub>/C<sub>A0</sub> = K<sub>p</sub>/(τs + 1)², K<sub>p</sub> = 0,448 y τ = 8,25 min.</p>
+<figure class="fig"><p class="ft">Diagrama · los dos tanques y lo que pasa con la oscilación</p><div class="plot" id="dq9"></div><div class="plot" id="pq9"></div>
+<figcaption><b>Cada tanque es un filtro de primer orden</b> (τ = 8,25 min): una oscilación de 0,2 rad/min, con un periodo de 31 minutos, es demasiado rápida para que el tanque la siga entera. Dos tanques en serie la atenúan dos veces.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<ol class="steps"><li>La salida es una senoide de la misma frecuencia y amplitud \(0{,}1\cdot|G(j0{,}2)|\).</li>
+<li>\(|G(j0{,}2)|=\frac{0{,}448}{1+(8{,}25\cdot0{,}2)^2}=\frac{0{,}448}{1+1{,}65^2}=0{,}120\).</li>
+<li>Amplitud a la salida: \(0{,}1\cdot0{,}120=\mathbf{0{,}012}\) mol/m³ &lt; 0,05. <b>Sí: no hace falta regulación.</b></li></ol></div>
+
+<!-- 10 -->
+<h3 id="q10">10 · Método de sintonía por relé</h3>
+<p class="note">Dic 2024 C1: «Explica el método de sintonía relé feedback.»</p>
+<figure class="fig"><p class="ft">Diagrama · el ensayo</p><div class="plot" id="dq10"></div><div class="plot" id="pq10"></div>
+<figcaption><b>Arriba:</b> se sustituye el controlador por un relé de amplitud ±d. <b>Abajo:</b> el lazo entra solo en una oscilación estable; se miden su amplitud a y su periodo P<sub>u</sub>.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<ol class="steps"><li>Propuesto por Åström y Hägglund como alternativa segura al método de la ganancia crítica de Ziegler–Nichols.</li>
+<li>El relé hace oscilar el lazo justo en la frecuencia donde la fase de la planta vale −180° (la crítica).</li>
+<li>De la amplitud se obtiene la ganancia última: \(K_u=\dfrac{4d}{\pi a}\); el periodo medido es P<sub>u</sub>.</li>
+<li>Con K<sub>u</sub> y P<sub>u</sub> se aplica la tabla de Ziegler–Nichols en frecuencia (K<sub>p</sub> = 0,6K<sub>u</sub>, T<sub>i</sub> = 0,5P<sub>u</sub>, T<sub>d</sub> = 0,125P<sub>u</sub>).</li>
+<li>Ventajas: automático, con amplitud controlada, y sin llevar el sistema al borde de la inestabilidad.</li></ol></div>
+
+<!-- 11 -->
+<h3 id="q11">11 · Problemas de un PID con la consigna en escalón</h3>
+<p class="note">Dic 2024 C2: «Explica qué problemas nos podemos encontrar al usar un PID cuando el setpoint es un escalón. ¿Cómo se soluciona?»</p>
+<figure class="fig"><p class="ft">Diagrama · la patada en la señal de control</p><div class="plot" id="pq11"></div>
+<figcaption><b>Señal de control ante un escalón de consigna.</b> Rojo: PID clásico, con D y P sobre el error; en t = 0 la derivada del escalón da un pico enorme (recortado en el dibujo). Azul: la D actúa solo sobre la medida y la P con peso b = 0,5; arranca suave.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<ol class="steps"><li><b>Patada derivativa:</b> la derivada de un escalón es un impulso, así que u da un pico muy grande que puede saturar o dañar el actuador.</li>
+<li><b>Salto proporcional:</b> la P también salta K<sub>p</sub>·Δr de golpe y produce un sobrepico grande.</li>
+<li><b>Solución:</b> PID de dos grados de libertad. La D sobre la medida (c = 0, esquema PI-D), la P sobre b·r − y con 0 ≤ b ≤ 1 (con b = 0, esquema I-PD), y la integral sobre el error completo para seguir teniendo error permanente nulo.</li>
+<li>Otra opción: no meter escalones, sino una rampa o una consigna filtrada.</li></ol></div>
+
+<!-- 12 -->
+<h3 id="q12">12 · PI por asignación de polos con Mp y ts</h3>
+<p class="note">Sept 2017 C2: «Calcular un PI mediante asignación de polos, sabiendo que las condiciones a cumplir son M<sub>p</sub> &lt; 5 % y t<sub>s</sub> &lt; 20 s.»</p>
+<figure class="fig"><p class="ft">Diagrama · las condiciones son una región del plano s</p><div class="plot" id="pq12"></div>
+<figcaption><b>M<sub>p</sub> &lt; 5 % exige ζ &gt; 0,69:</b> los polos tienen que estar dentro del cono que forman las rectas grises. <b>t<sub>s</sub> &lt; 20 s exige ζω<sub>n</sub> &gt; 0,2:</b> a la izquierda de la recta vertical naranja. Los polos elegidos (ζ = 0,7, ω<sub>n</sub> = 0,3) están en la zona válida, sombreada.</figcaption></figure>
+<div class="box key"><h4>Respuesta</h4>
+<ol class="steps"><li>Traduce cada especificación a ζ y ω<sub>n</sub>: \(M_p=e^{-\zeta\pi/\sqrt{1-\zeta^2}}\) y \(t_s\approx\frac{4}{\zeta\omega_n}\).</li>
+<li>Elige ζ y ω<sub>n</sub> dentro de la región: ecuación deseada \(s^2+2\zeta\omega_ns+\omega_n^2\).</li>
+<li>Iguala con la del lazo cerrado con el PI: \(s^2+\frac{1+KK_p}{\tau}s+\frac{KK_p}{\tau T_i}\) y despeja K<sub>p</sub> y T<sub>i</sub>.</li>
+<li>Resuelto con números en <a href="#examenes">Exámenes anteriores</a> (planta 3/(10s + 1): K<sub>p</sub> = 1,067, T<sub>i</sub> = 3,56 s).</li></ol></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="diseno.html" style="--tc:var(--c3)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>T6</i>Diseño de compensadores</span></a><a class="pg-card next" href="simulacro.html" style="--tc:var(--c4)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>2 h</i>Simulacro de examen</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

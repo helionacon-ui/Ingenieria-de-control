@@ -4,13 +4,12 @@ Guía interactiva de Ingeniería de Control (UPCT): Bode, Nyquist, márgenes de 
 
 Es una sola página estática (`index.html`), sin compilación ni dependencias locales. MathJax y las fuentes se cargan desde CDN.
 
-## Publicar con GitHub Pages
+## Estructura
 
-1. Crea un repositorio nuevo en GitHub (por ejemplo `ingenieria-de-control`).
-2. Sube `index.html`, `.nojekyll` y este `README.md` a la rama `main`.
-3. En el repositorio: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, rama `main`, carpeta `/ (root)` y **Save**.
-4. En uno o dos minutos la guía estará en `https://<tu-usuario>.github.io/ingenieria-de-control/`.
+- `index.html`: portada con el mapa de las 15 páginas.
+- `empezar.html`, `pid.html`, `frecuencia.html`, `bode.html`, `nyquist.html`, `margenes.html`, `diseno.html`, `examenes.html`, `simulacro.html`, `entrena.html`, `problemas.html`, `maqueta.html`, `calculadora.html`, `consultar.html`, `recursos.html`: una página por bloque, con anterior/siguiente.
+- `assets/`: estilos (`guia.css`), código de los simuladores (`guia.js`) e índice de búsqueda (`datos.js`), compartidos por todas las páginas.
+- `guia-completa.html`: la guía entera en una sola página.
+- `Ingenieria-de-Control-Guia.pdf`: versión en PDF.
 
-## Verla en local
-
-Abre `index.html` con doble clic en el navegador. Hace falta conexión a internet para las fórmulas (MathJax) y las fuentes.
+Se publica con GitHub Pages desde la rama `gh-pages`.

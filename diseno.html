@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Diseño de compensadores · Ingeniería de Control</title>
+<meta name="description" content="Tema 6: compensadores de adelanto y de atraso con el método del Ogata, paso a paso.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-diseno single">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn on" style="--tc:var(--c3)" aria-current="page"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c3);--tcs:var(--c3s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">T6</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Bloque 2 · Frecuencia · página 7 de 15</p>
+      <h1>Diseño de compensadores</h1>
+      <p class="phero-desc">Tema 6: compensadores de adelanto y de atraso con el método del Ogata, paso a paso.</p>
+      
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:46.7%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#t6" style="--tc:var(--c3)">Diseño en frecuencia</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other here" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c3);--tcs:var(--c3s)">
+  <div class="sh"><span class="badge" aria-hidden="true">T6</span><div class="shx"><p class="kick">Bloque 2 · Frecuencia</p><h2 id="t6">Diseño en frecuencia</h2><p class="sub2">Compensadores de adelanto, atraso y adelanto-atraso. Ogata 7-10 a 7-13.</p></div></div>
+
+  <div class="cero">
+    <div class="label">Desde cero</div>
+    <p>El Tema 5 te dice si al sistema le falta margen de fase. Este tema te dice cómo dárselo, añadiendo un bloque llamado <b>compensador</b>. Hay dos formas. El <b>adelanto</b> le «presta» fase justo en la frecuencia de cruce: el sistema queda más rápido. El <b>atraso</b> baja la ganancia en alta frecuencia para que el cruce ocurra antes, donde la planta ya tenía fase de sobra: el sistema queda más lento, pero más tranquilo y menos ruidoso.</p>
+  </div>
+
+  <div class="chuleta">
+    <div class="label">Chuleta · notación del Ogata</div>
+    <div class="rows">
+      <div class="row"><span class="label">Adelanto (0 &lt; α &lt; 1)</span><div class="eq">\[G_c=K_c\alpha\frac{Ts+1}{\alpha Ts+1},\;\; \sin\phi_m=\frac{1-\alpha}{1+\alpha},\;\; \omega_m=\frac{1}{T\sqrt\alpha}\]</div></div>
+      <div class="row"><span class="label">Atraso (β &gt; 1)</span><div class="eq">\[G_c=K_c\beta\frac{Ts+1}{\beta Ts+1},\;\; \beta=10^{|G_1(j\omega_c)|_{dB}/20},\;\; \frac1T\approx\frac{\omega_c}{10}\]</div></div>
+      <div class="row"><span class="label">Paso 1 en los dos</span><div class="eq">\[K=K_c\alpha\;(\text{o }K_c\beta)\text{ para el error},\quad G_1=K\,G\]</div></div>
+      <div class="row"><span class="label">Nueva ω<sub>c</sub> en el adelanto</span><div class="eq">\[|G_1(j\omega_c)|_{dB}=-20\log\frac{1}{\sqrt\alpha}\]</div></div>
+    </div>
+  </div>
+
+  <h3>Diseña tu adelanto</h3>
+  <div class="prose"><p>Mueve α (cuánta fase aporta) y ω<sub>m</sub> (dónde la aporta). La fase máxima φ<sub>m</sub> se coloca en ω<sub>m</sub>. El truco del procedimiento es poner ω<sub>m</sub> justo en la nueva frecuencia de cruce, que no es la antigua: el compensador sube la ganancia y el cruce se desplaza a la derecha.</p></div>
+  <figure class="fig">
+    <div class="ctrl">
+      <label for="la">α = <span id="laV" class="mono">0.24</span><input id="la" type="range" min="0.05" max="1" step="0.01" value="0.24"></label>
+      <label for="lw">ωm = <span id="lwV" class="mono">9.0</span> rad/s<input id="lw" type="range" min="0" max="1.6" step="0.01" value="0.954"></label>
+      <button class="btn" id="laOg">Valores del Ogata</button>
+    </div>
+    <div class="readout" id="rla"></div>
+    <div class="plot" id="pLead"></div>
+    <figcaption><b>Adelanto sobre G₁ = 40/(s(s+2))</b> (ejemplo 7-26: K<sub>v</sub> = 20, MF ≥ 50°). Rojo discontinuo: sin compensar. Azul: compensado. El objetivo de 50° está marcado en verde en la gráfica de fase.</figcaption>
+    <p class="try">deja α = 0,24 y mueve ω<sub>m</sub> a 6 rad/s, el cruce antiguo: el MF se queda corto. Ponlo en 9 rad/s y llega a 50°.</p>
+  </figure>
+
+  <h3>Diseña tu atraso</h3>
+  <div class="prose"><p>Mueve β (cuánto baja la ganancia en alta frecuencia: 20·log β dB) y la posición del cero 1/T. La regla del Ogata pone el cero una década por debajo del nuevo cruce, para que el retardo de fase del compensador no estropee el margen.</p></div>
+  <figure class="fig">
+    <div class="ctrl">
+      <label for="gb">β = <span id="gbV" class="mono">10.0</span><input id="gb" type="range" min="1" max="20" step="0.1" value="10"></label>
+      <label for="gz">cero 1/T = <span id="gzV" class="mono">0.100</span><input id="gz" type="range" min="-2" max="0" step="0.01" value="-1"></label>
+      <button class="btn" id="gbOg">Valores del Ogata</button>
+    </div>
+    <div class="readout" id="rgb"></div>
+    <div class="plot" id="pLag"></div>
+    <figcaption><b>Atraso sobre G₁ = 5/(s(s+1)(0,5s+1))</b> (ejemplo 7-27: K<sub>v</sub> = 5, MF ≥ 40°, MG ≥ 10 dB). Sin compensar es inestable. Objetivo de 40° marcado en verde.</figcaption>
+    <p class="try">sube el cero a 0,5: queda demasiado cerca del cruce y el retardo de fase del compensador se come el margen.</p>
+  </figure>
+
+  <h3>El procedimiento, como en el Ogata</h3>
+  <div class="figs2">
+    <div class="fig">
+      <span class="label" style="color:var(--signal)">Adelanto · ej. 7-26, p. 496</span>
+      <ol class="prose" style="padding-left:1.2em;margin:0">
+        <li>K para el error: K<sub>v</sub> = 2K = 20 → K = 10, G₁ = 40/(s(s+2)).</li>
+        <li>MF de G₁: ω<sub>c</sub> = 6,2 rad/s, MF ≈ 18°.</li>
+        <li>φ<sub>m</sub> = 50° − 18° + 5° = 37°.</li>
+        <li>α = (1 − sen 37°)/(1 + sen 37°) ≈ 0,24.</li>
+        <li>|G₁| = −6,2 dB en ω<sub>c</sub> ≈ 9 rad/s.</li>
+        <li>Cero en 1/T = 4,41; polo en 1/(αT) = 18,4.</li>
+        <li>K<sub>c</sub> = 10/0,24 = 41,7 → G<sub>c</sub> = 41,7(s+4,41)/(s+18,4).</li>
+      </ol>
+    </div>
+    <div class="fig">
+      <span class="label" style="color:var(--phase)">Atraso · ej. 7-27, p. 505</span>
+      <ol class="prose" style="padding-left:1.2em;margin:0">
+        <li>K para el error: K<sub>v</sub> = K = 5, G₁ = 5/(s(s+1)(0,5s+1)).</li>
+        <li>G₁ es inestable: MF ≈ −13° y MG ≈ −4,4 dB (Ogata lee −20° en el asintótico).</li>
+        <li>Fase objetivo: −180° + 40° + 12° = −128°, en ω ≈ 0,46 (Ogata toma 0,5).</li>
+        <li>Allí |G₁| ≈ 20 dB → β = 10.</li>
+        <li>Cero en 0,1 (una década bajo ω<sub>c</sub>), polo en 0,01.</li>
+        <li>K<sub>c</sub> = 5/10 = 0,5 → G<sub>c</sub> = 0,5(s+0,1)/(s+0,01).</li>
+        <li>Resultado exacto: MF ≈ 42° y MG ≈ 14 dB. Ogata, leyendo el Bode asintótico, da unos 40° y 11 dB.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><b>¿Cuál elegir?</b> Si piden más velocidad o ancho de banda, adelanto. Si piden atenuar el ruido de alta frecuencia o la planta ya es rápida de sobra, atraso. Si la fase cae muy deprisa cerca del cruce, o falta más de unos 55–60°, un solo adelanto no llega: pon dos en serie, un atraso o un adelanto-atraso (sección 7-13). Lo verás en el examen de junio de 2013. Y si el enunciado pide «el mínimo compensador», prueba antes con una simple ganancia o con un PD que cancele un polo.</p>
+  </div>
+  <div class="examen"><span class="label">Cómo cae en el examen</span><p>En todos los exámenes, con 3–4 puntos: «compensador de adelanto (o de atraso) para un MF de 50° y qué MG tiene» (2015), «qué compensador pondrías para MF = 40° y atenuación en ω = 100 rad/s» (2017), «mínimo compensador para MF &gt; 90° y MG &gt; 70 dB» (2024).</p></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="margenes.html" style="--tc:var(--c6)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>MF</i>Margen de fase y de ganancia</span></a><a class="pg-card next" href="examenes.html" style="--tc:var(--c8)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>EX</i>Exámenes y teoría</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

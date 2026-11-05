@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Respuesta en frecuencia · Ingeniería de Control</title>
+<meta name="description" content="Tema 5: qué hace un sistema con una senoide, el Bode, el Nyquist y los márgenes en una sola idea.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-frecuencia single">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn on" style="--tc:var(--c5)" aria-current="page"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c5);--tcs:var(--c5s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">T5</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Bloque 2 · Frecuencia · página 3 de 15</p>
+      <h1>Respuesta en frecuencia</h1>
+      <p class="phero-desc">Tema 5: qué hace un sistema con una senoide, el Bode, el Nyquist y los márgenes en una sola idea.</p>
+      
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:20.0%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#t5" style="--tc:var(--c5)">Respuesta en frecuencia</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other here" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c5);--tcs:var(--c5s)">
+  <div class="sh"><span class="badge" aria-hidden="true">T5</span><div class="shx"><p class="kick">Bloque 2 · Frecuencia</p><h2 id="t5">Respuesta en frecuencia</h2><p class="sub2">Bode, Nyquist, márgenes y ancho de banda. Ogata 7-1 a 7-8.</p></div></div>
+
+  <div class="cero">
+    <div class="label">Desde cero · el columpio</div>
+    <p>Empuja un columpio despacio y apenas se mueve; empújalo a su ritmo y sube muchísimo; empújalo muy rápido y casi no lo mueve. Cada sistema responde distinto según la frecuencia con que lo excitas. La <b>respuesta en frecuencia</b> mide eso: si metes una senoide, cuánto la amplifica y cuánto la retrasa, para cada frecuencia. El diagrama de Bode lo dibuja, y en él se lee lo cerca que está el lazo de volverse inestable.</p>
+  </div>
+
+  <div class="chuleta">
+    <div class="label">Chuleta</div>
+    <div class="rows">
+      <div class="row"><span class="label">Salida ante una senoide</span><div class="eq">\[y_{ss}=A\,|G(j\omega)|\sin\!\big(\omega t+\angle G(j\omega)\big)\]</div></div>
+      <div class="row"><span class="label">Margen de fase</span><div class="eq">\[|L(j\omega_c)|=1\;\Rightarrow\;MF=180^\circ+\angle L(j\omega_c)\]</div></div>
+      <div class="row"><span class="label">Margen de ganancia</span><div class="eq">\[\angle L(j\omega_{180})=-180^\circ\;\Rightarrow\;MG=-20\log|L(j\omega_{180})|\]</div></div>
+      <div class="row"><span class="label">Nyquist</span><div class="eq">\[Z=N+P\]</div><p>Z polos inestables en lazo cerrado, N vueltas horarias a −1, P polos inestables en lazo abierto.</p></div>
+    </div>
+  </div>
+
+  <h3>La senoide de entrada y la de salida</h3>
+  <div class="prose"><p>Un sistema lineal estable devuelve una senoide de la <b>misma frecuencia</b>. Solo cambian la amplitud, multiplicada por |G(jω)|, y la fase, desplazada ∠G(jω). Para calcularlo: sustituye s = jω, calcula el módulo (raíz de real² + imaginaria²) y el argumento (arcotangente, atento al cuadrante).</p></div>
+  <figure class="fig">
+    <div class="ctrl"><label for="ws">ω = <span id="wsV" class="mono">1.00</span> rad/s<input id="ws" type="range" min="-1" max="1.3" step="0.01" value="0"></label><div class="readout" id="rws"></div></div>
+    <div class="figs2"><div class="plot" id="pSine"></div><div class="plot" id="pSineB"></div></div>
+    <figcaption><b>G(s) = 1/(s+1)² ante sen(ωt).</b> Izquierda: entrada (gris) y salida en régimen permanente (azul). Derecha: el punto de esa frecuencia sobre el Bode.</figcaption>
+    <p class="try">sube ω: la salida se hace más pequeña y se va retrasando hasta casi media vuelta (−180°).</p>
+  </figure>
+
+  <h3>Bode y márgenes</h3>
+  <div class="prose">
+    <p>El Bode dibuja |G(jω)| en dB y ∠G(jω) en grados, con ω en escala logarítmica. Cada polo resta 20 dB/década y 90°; cada cero los suma; un integrador 1/s es una recta de −20 dB/década con fase constante −90°.</p>
+    <p>Los márgenes miden lo lejos que está el lazo de la inestabilidad. El <b>margen de fase</b> es lo que le falta a la fase para llegar a −180° en la frecuencia donde la ganancia vale 0 dB (ω<sub>c</sub>). El <b>margen de ganancia</b> es cuántos dB podrías subir la ganancia antes de que, en la frecuencia de −180°, llegue a 0 dB. Valores de diseño típicos: MF entre 40° y 60°, MG por encima de 6 a 10 dB.</p>
+  </div>
+  <figure class="fig">
+    <div class="ctrl"><label for="kB">K = <span id="kBV" class="mono">10.0</span><input id="kB" type="range" min="0" max="1.6" step="0.01" value="1"></label><div class="readout" id="kBR"></div></div>
+    <div class="plot" id="pBodeK"></div>
+    <figcaption><b>L(s) = K·4/(s(s+2))</b>, la planta del ejemplo 7-26 del Ogata. Con K = 10 se cumple K<sub>v</sub> = 20 y el MF cae a unos 18°: hace falta un compensador (Tema 6). Al ser de orden 2, la fase nunca cruza −180° y el MG es infinito.</figcaption>
+    <p class="try">sube K: la curva de magnitud sube, el cruce ω<sub>c</sub> se va a la derecha, donde la fase es peor, y el MF baja.</p>
+  </figure>
+
+  <h3>Nyquist</h3>
+  <div class="prose"><p>Nyquist dibuja L(jω) en el plano complejo (la flecha del T0, para todas las frecuencias) y cuenta las vueltas alrededor del punto −1. Si el lazo abierto es estable, el cerrado es estable cuando la curva <b>no rodea</b> −1. El MG es la inversa de lo que mide el corte con el eje real negativo; el MF, el ángulo donde la curva corta la circunferencia unidad.</p></div>
+  <figure class="fig">
+    <div class="ctrl"><label for="kN">K = <span id="kNV" class="mono">1.0</span><input id="kN" type="range" min="0.2" max="6" step="0.1" value="1"></label><div class="readout" id="rN"></div></div>
+    <div class="plot" id="pNyq"></div>
+    <figcaption><b>Nyquist de K/(s(s+1)(0,5s+1))</b> (la planta del ejemplo 7-27). La curva corta el eje real en −K/3: con K = 3 pasa justo por −1 (ganancia crítica). El punto azul es −1.</figcaption>
+    <p class="try">pon K = 5 (el valor del ejemplo 7-27): la curva rodea −1 y el lazo cerrado es inestable.</p>
+  </figure>
+
+  <div class="prose"><p><b>Ancho de banda.</b> Es la frecuencia ω<sub>b</sub> a la que el lazo <i>cerrado</i> cae 3 dB respecto a su valor en baja frecuencia: |T(jω<sub>b</sub>)| = |T(0)|/√2. Se suele cumplir ω<sub>c</sub> &lt; ω<sub>b</sub> &lt; 2ω<sub>c</sub>. Cuanto mayor es, más rápida es la respuesta, y más ruido deja pasar.</p></div>
+  <div class="examen"><span class="label">Cómo cae en el examen</span><p>Los dos primeros apartados del problema grande: «¿cuál es el MF actual?» y «¿y el ancho de banda?» (2015, 2017). Además, una cuestión de senoide: «entra una senoide de amplitud 2 y 10 rad/s; calcula amplitud y frecuencia de la salida».</p></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="pid.html" style="--tc:var(--c2)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>PID</i>Sistemas controlados y PID</span></a><a class="pg-card next" href="bode.html" style="--tc:var(--c5)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>B</i>Bode a mano</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

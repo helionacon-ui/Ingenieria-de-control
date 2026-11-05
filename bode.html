@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bode a mano · Ingeniería de Control</title>
+<meta name="description" content="Las seis piezas del diagrama de Bode, la receta paso a paso, ejemplos resueltos y la resonancia.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-bode single">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn on" style="--tc:var(--c5)" aria-current="page"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c5);--tcs:var(--c5s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">B</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Bloque 2 · Frecuencia · página 4 de 15</p>
+      <h1>Bode a mano</h1>
+      <p class="phero-desc">Las seis piezas del diagrama de Bode, la receta paso a paso, ejemplos resueltos y la resonancia.</p>
+      
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:26.7%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#bode" style="--tc:var(--c5)">Diagrama de Bode a mano, paso a paso</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other here" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c5);--tcs:var(--c5s)">
+<div class="sh"><span class="badge" aria-hidden="true">B</span><div class="shx"><p class="kick">Bloque 2 · a fondo</p><h2 id="bode">Diagrama de Bode a mano, paso a paso</h2><div class="tags"><span class="tag">Ing_Control_3 pp. 9–20</span><span class="tag">Ogata 7-2</span><span class="tag">Práctica 7</span></div></div></div>
+<div class="zero">
+<p class="ft">Desde cero</p>
+<p>El Bode son <b>dos gráficas</b> que comparten el eje horizontal, la frecuencia ω en escala logarítmica (cada marca es ×10, una <b>década</b>). Arriba, cuánto amplifica el sistema, en decibelios: 20·log|G(jω)|. Abajo, cuánto retrasa, en grados: ∠G(jω).</p>
+<p>El truco que lo hace dibujable a mano: con logaritmos, <b>multiplicar factores es sumar sus gráficas</b>. Así que se descompone G(s) en piezas sencillas (una ganancia, integradores, polos y ceros), se dibuja cada pieza con rectas (sus <b>asíntotas</b>) y se suman. Hay solo seis piezas posibles y cada una tiene una forma fija que te aprendes una vez.</p>
+</div>
+
+<h3>Las seis piezas</h3>
+<div class="tw"><table>
+<tr><th>Factor</th><th>Módulo (asíntota)</th><th>Fase</th><th>Corrección de la curva real</th></tr>
+<tr><td>Ganancia \(K\)</td><td>Recta horizontal a \(20\log K\) dB</td><td>0° (−180° si K &lt; 0)</td><td>Ninguna</td></tr>
+<tr><td>Integrador \(\frac{1}{(j\omega)^N}\)</td><td>Recta de \(-20N\) dB/déc que pasa por 0 dB en ω = 1</td><td>Constante \(-90N\)°</td><td>Ninguna: es exacta</td></tr>
+<tr><td>Cero en el origen \((j\omega)^N\)</td><td>\(+20N\) dB/déc, 0 dB en ω = 1</td><td>Constante \(+90N\)°</td><td>Ninguna</td></tr>
+<tr><td>Polo \(\frac{1}{1+j\omega T}\)</td><td>0 dB hasta la esquina \(1/T\); después \(-20\) dB/déc</td><td>0° hasta \(\frac{1}{10T}\), −45°/déc, −90° desde \(\frac{10}{T}\)</td><td>−3 dB y −45° justo en la esquina; −1 dB una octava antes y después</td></tr>
+<tr><td>Cero \(1+j\omega T\)</td><td>0 dB hasta \(1/T\); después \(+20\) dB/déc</td><td>De 0° a +90°, +45°/déc</td><td>+3 dB y +45° en la esquina</td></tr>
+<tr><td>Par complejo \(\frac{1}{1+2\zeta\frac{j\omega}{\omega_n}+\left(\frac{j\omega}{\omega_n}\right)^2}\)</td><td>0 dB hasta \(\omega_n\); después \(-40\) dB/déc</td><td>0° hasta \(0{,}1\omega_n\), −90° en \(\omega_n\), −180° desde \(10\omega_n\)</td><td>En \(\omega_n\) vale \(-20\log(2\zeta)\): pico si ζ &lt; 0,5. Resonancia en \(\omega_r=\omega_n\sqrt{1-2\zeta^2}\)</td></tr>
+</table></div>
+
+<h3>La receta</h3>
+<ol class="steps">
+<li><b>Pon G(jω) en forma de Bode.</b> Saca factor común en cada paréntesis para que quede \((1+j\omega/\text{esquina})\). Lo que sale fuera es la ganancia de Bode \(K_B\). Ejemplo: \(\frac{40}{s(s+2)}=\frac{20}{s(1+s/2)}\), así que \(K_B=20\) (26 dB).</li>
+<li><b>Ordena las esquinas</b> (los \(1/T\) y los \(\omega_n\)) de menor a mayor y márcalas en el eje.</li>
+<li><b>Recta de baja frecuencia:</b> \(20\log K_B-20N\log\omega\). Con N integradores tiene pendiente \(-20N\) dB/déc y vale \(20\log K_B\) en ω = 1 (prolóngala si ω = 1 cae después de alguna esquina).</li>
+<li><b>En cada esquina cambia la pendiente:</b> −20 dB/déc por cada polo, +20 por cada cero, −40 por cada par complejo.</li>
+<li><b>Fase:</b> empieza en \(-90N\)°. Cada polo resta 90° repartidos entre una década antes y una después de su esquina; cada cero los suma; cada par complejo resta 180° entre \(0{,}1\omega_n\) y \(10\omega_n\). Suma las rampas.</li>
+<li><b>Corrige</b> la curva real: 3 dB por debajo de la asíntota en cada esquina de polo simple, y el pico \(-20\log 2\zeta\) en los pares complejos.</li>
+<li><b>Comprueba el final:</b> a alta frecuencia la pendiente es \(-20(n-m)\) dB/déc y la fase \(-90(n-m)\)°, con n polos y m ceros.</li>
+</ol>
+
+<figure class="fig">
+<p class="ft">Simulador · constructor de Bode por factores</p>
+<div class="ctrl">
+  <label for="bbSel">Función <select id="bbSel"></select></label>
+  <label for="bbF"><input type="checkbox" id="bbF" checked> asíntota de cada factor</label>
+  <label for="bbA"><input type="checkbox" id="bbA" checked> asíntota total</label>
+  <label for="bbR"><input type="checkbox" id="bbR" checked> curva real</label>
+</div>
+<div class="out" id="bbTxt"></div>
+<div class="plot" id="bbPlot"></div>
+<div class="tw" id="bbTab"></div>
+<figcaption><b>Cada color fino es un factor; el trazo negro discontinuo es su suma (lo que dibujas a mano); el azul, la curva exacta.</b> La tabla lista las esquinas en orden con la pendiente que queda después de cada una. Las funciones son las de tus transparencias, apuntes, prácticas y ejercicios complementarios.</figcaption>
+<p class="try">elige «Transparencias: 20s(1+s)/…». Fíjate en que la asíntota total empieza subiendo (+20, por el cero en el origen), se aplana en ω = 1 por el cero, cae −40 en ω = 2 por el par complejo con su pico, y vuelve a −20 en ω = 10. Es el ejemplo que el profesor resuelve en las transparencias 18–23.</p>
+</figure>
+
+<h3>Ejemplo resuelto de las transparencias</h3>
+<details><summary>\(G(s)=\dfrac{20s(1+s)}{(2+0{,}6s+0{,}5s^2)(10+s)}\) <span class="src">Ing_Control_3, pp. 18–23</span></summary><div class="inner">
+<ol class="steps">
+<li><b>Forma de Bode.</b> Saca el 2 del primer paréntesis y el 10 del segundo: \(G=\frac{20}{2\cdot10}\cdot\frac{j\omega(1+j\omega)}{(1+0{,}3j\omega+0{,}25(j\omega)^2)(1+j\omega/10)}\). Así \(K_B=1\) (0 dB).</li>
+<li><b>Identifica los factores.</b> Cero en el origen; cero en ω = 1; par complejo con \(1/\omega_n^2=0{,}25\Rightarrow\omega_n=2\) y \(2\zeta/\omega_n=0{,}3\Rightarrow\zeta=0{,}3\); polo en ω = 10.</li>
+<li><b>Módulo.</b> Empieza con +20 dB/déc (cero en el origen) pasando por 0 dB en ω = 1. En ω = 1 el cero suma +20: la pendiente pasa a +40. En ω = 2 el par complejo resta 40: pendiente 0 (plana, en unos 12 dB). En ω = 10 el polo resta 20: pendiente −20 hasta el final.</li>
+<li><b>Pico de resonancia.</b> Con ζ = 0,3, en ω<sub>n</sub> = 2 la curva real sube \(-20\log(0{,}6)=4{,}4\) dB por encima de la asíntota.</li>
+<li><b>Fase.</b> Empieza en +90° (cero en el origen). El cero en 1 suma 90° entre 0,1 y 10; el par complejo resta 180° entre 0,2 y 20; el polo en 10 resta 90° entre 1 y 100. Al final: +90 + 90 − 180 − 90 = <b>−90°</b>, que cuadra con n − m = 3 − 2 = 1.</li>
+</ol>
+<p>Cárgala en el constructor de arriba para ver cada paso.</p>
+</div></details>
+
+<h3>Resonancia del factor de segundo orden</h3>
+<p>Es lo que más se olvida al dibujar a mano. Si ζ es pequeño, la curva real sube muy por encima de la asíntota justo antes de \(\omega_n\). El pico vale \(M_r=\frac{1}{2\zeta\sqrt{1-\zeta^2}}\) (en veces, no en dB) y aparece en \(\omega_r=\omega_n\sqrt{1-2\zeta^2}\), solo si ζ &lt; 0,707.</p>
+<figure class="fig">
+<p class="ft">Simulador · pico de resonancia</p>
+<div class="ctrl"><label for="rzz">ζ = <span id="rzzV" class="mono">0.30</span><input id="rzz" type="range" min="0.05" max="1" step="0.01" value="0.3"></label><div class="readout" id="rzR"></div></div>
+<div class="plot" id="rzPlot"></div>
+<figcaption><b>\(\frac{1}{1+2\zeta s+s^2}\) con ω<sub>n</sub> = 1.</b> Discontinuo: la asíntota (0 dB y luego −40 dB/déc). La línea horizontal marca −3 dB: donde la curva la corta está el ancho de banda.</figcaption>
+<p class="try">baja ζ a 0,1: el pico pasa de 14 dB. Súbelo por encima de 0,707: el pico desaparece y la curva queda siempre por debajo de la asíntota.</p>
+</figure>
+
+<div class="box trap"><h4>Errores típicos al dibujar el Bode</h4>
+<ul>
+<li><b>No normalizar.</b> El polo \(\frac{1}{s+2}\) no empieza en 0 dB: es \(\frac{0{,}5}{1+s/2}\), así que aporta −6 dB a la ganancia.</li>
+<li><b>Situar mal la recta del integrador.</b> Pasa por \(20\log K_B\) en ω = 1, no en la primera esquina.</li>
+<li><b>Fase de un cero en el semiplano derecho</b> (s − 1, sistemas de fase no mínima): el módulo es igual que el de s + 1, pero la fase <b>resta</b> en lugar de sumar.</li>
+<li><b>Olvidar el pico</b> del par complejo cuando ζ es pequeño. Puede cambiar el MG.</li>
+</ul></div>
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="frecuencia.html" style="--tc:var(--c5)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>T5</i>Respuesta en frecuencia</span></a><a class="pg-card next" href="nyquist.html" style="--tc:var(--c7)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>N</i>Nyquist a mano</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Simulacro de examen · Ingeniería de Control</title>
+<meta name="description" content="Exámenes aleatorios con el formato real, cronómetro, solución completa y baremo para corregirte.">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+</head>
+<body class="pg-simulacro single">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn on" style="--tc:var(--c4)" aria-current="page"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c4);--tcs:var(--c4s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">2 h</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Practicar · página 9 de 15</p>
+      <h1>Simulacro de examen</h1>
+      <p class="phero-desc">Exámenes aleatorios con el formato real, cronómetro, solución completa y baremo para corregirte.</p>
+      
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:60.0%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#simulacro" style="--tc:var(--c4)">Simulacro de examen</a>
+  <div class="grp toc-others">Toda la guía</div>
+  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other here" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+</nav>
+<main>
+<section class="sec" style="--tc:var(--c4);--tcs:var(--c4s)">
+<div class="sh"><span class="badge" aria-hidden="true">2 h</span><div class="shx"><p class="kick">Practicar</p><h2 id="simulacro">Simulacro de examen</h2><p class="sub2">Un examen nuevo con el formato real: un problema de frecuencia de 4 puntos y tres cuestiones de 1 punto. Con temporizador y baremo de corrección.</p></div></div>
+<div class="cero"><span class="label">Cómo hacerlo</span><p>Papel, lápiz y calculadora; sin mirar la guía. Pulsa «Empezar» y no abras las soluciones hasta que acabe el tiempo o termines. Después corrígete con el baremo, que reparte los puntos como lo hace el profesor: por pasos, no por el número final.</p></div>
+<div class="box key" style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center">
+  <span class="label">Tiempo restante</span><span id="tmO" class="mono" style="font-family:var(--display);font-size:42px;font-weight:800;font-variant-numeric:tabular-nums">2:00:00</span>
+  <span class="ctrl"><button type="button" class="btn pri" id="tmGo">Empezar</button><button type="button" class="btn" id="tmPause">Pausa</button><button type="button" class="btn" id="tmReset">Reiniciar</button></span>
+</div>
+
+<div class="box" style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center">
+  <span class="label" id="smNum">Simulacro</span>
+  <span class="ctrl" style="margin:0"><button type="button" class="btn pri" id="smNew">Nuevo simulacro aleatorio</button>
+  <label for="smSeed">Repetir el n.º <input type="number" id="smSeed" min="1" style="width:8ch"></label><button type="button" class="btn" id="smGo">Cargar</button></span>
+</div>
+<p class="muted" style="font-size:14px">Cada simulacro es distinto: la planta, la especificación de error, el MF pedido y las tres cuestiones salen al azar, con el mismo formato que los exámenes reales. Todas las soluciones se calculan para tus números. Apunta el número si quieres repetirlo.</p>
+<h3>Enunciado</h3>
+<div class="box" id="smEnun"></div>
+<h3>Solución y baremo</h3>
+<p><button type="button" class="btn" id="smReveal">Ver solución y baremo</button></p>
+<div id="smSolWrap" hidden>
+<p class="muted" style="font-size:14px">Marca cada punto del baremo que hayas hecho bien y la guía te suma la nota.</p>
+<div id="smSol"></div>
+<p class="box key" id="smScore" style="font-size:17px"></p>
+</div>
+
+<!-- ===================== ENTRENADOR ===================== -->
+</section>
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="examenes.html" style="--tc:var(--c8)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>EX</i>Exámenes y teoría</span></a><a class="pg-card next" href="entrena.html" style="--tc:var(--c1)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>✎</i>Entrena y autoevalúate</span></a></nav>
+<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>
