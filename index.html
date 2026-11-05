@@ -310,6 +310,11 @@ dl.glos dd{margin:2px 0 0;font-size:14.5px}
 .totop.show{opacity:1;pointer-events:auto}
 footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:16px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i,.totop{transition:none}.flash{animation:none}}
+.rbg{display:flex;flex-wrap:wrap;gap:6px 8px;margin:8px 0 4px}
+.rbk{display:inline-flex;gap:6px;align-items:center;font-size:13px;padding:3px 10px;border-radius:999px;background:var(--tcs,var(--accent-soft));color:var(--fg);cursor:pointer}
+.rbk b{font-family:var(--mono);font-size:12px;color:var(--tc,var(--accent))}
+.rbk input{accent-color:var(--tc,var(--accent));margin:0}
+#smSol .steps li{margin:10px 0}
 </style>
 <style>
 body{font-size:17px;line-height:1.6}
@@ -1305,43 +1310,21 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
   <span class="ctrl"><button type="button" class="btn pri" id="tmGo">Empezar</button><button type="button" class="btn" id="tmPause">Pausa</button><button type="button" class="btn" id="tmReset">Reiniciar</button></span>
 </div>
 
-<h3>Enunciado</h3>
-<div class="box">
-<h4>Problema (4 puntos)</h4>
-<p>Un sistema con realimentación unitaria tiene la función de transferencia en lazo abierto \(G(s)=\dfrac{K}{s(s+2)(s+4)}\).</p>
-<ol class="ap" style="list-style:lower-alpha;padding-left:1.4em">
-<li>(0,5 p) Calcula K para que el error ante una rampa unitaria sea 0,2.</li>
-<li>(1 p) Con ese K, dibuja el diagrama de Bode asintótico de módulo y fase.</li>
-<li>(1 p) Calcula el margen de fase y el margen de ganancia. Dibuja el Nyquist aproximado indicando dónde corta al eje real. ¿Es estable el lazo cerrado?</li>
-<li>(1,5 p) Diseña el compensador más adecuado para conseguir MF ≥ 45° sin cambiar el error del apartado a). ¿Qué MG tiene el sistema compensado? ¿Qué ocurre con la velocidad de respuesta?</li>
-</ol>
-<h4>Cuestión 1 (1 punto)</h4>
-<p>Explica qué son el margen de fase y el margen de ganancia y cómo se leen en un diagrama de Nyquist. Haz un dibujo.</p>
-<h4>Cuestión 2 (1 punto)</h4>
-<p>Al sistema \(G(s)=\dfrac{5}{(s+2)^2}\) se le aplica la entrada \(x(t)=3\,\sin(2t)\). Calcula la salida en régimen permanente.</p>
-<h4>Cuestión 3 (1 punto)</h4>
-<p>Explica el método de sintonía de Ziegler–Nichols basado en la respuesta a escalón y aplícalo a una planta cuya curva de reacción da K = 2, L = 1 s y T = 5 s (PID).</p>
+<div class="box" style="display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center">
+  <span class="label" id="smNum">Simulacro</span>
+  <span class="ctrl" style="margin:0"><button type="button" class="btn pri" id="smNew">Nuevo simulacro aleatorio</button>
+  <label for="smSeed">Repetir el n.º <input type="number" id="smSeed" min="1" style="width:8ch"></label><button type="button" class="btn" id="smGo">Cargar</button></span>
 </div>
-
+<p class="muted" style="font-size:14px">Cada simulacro es distinto: la planta, la especificación de error, el MF pedido y las tres cuestiones salen al azar, con el mismo formato que los exámenes reales. Todas las soluciones se calculan para tus números. Apunta el número si quieres repetirlo.</p>
+<h3>Enunciado</h3>
+<div class="box" id="smEnun"></div>
 <h3>Solución y baremo</h3>
-<details><summary>Problema · solución completa <span class="src">4 puntos</span></summary><div class="inner">
-<ol class="steps">
-<li><b>a)</b> Tipo 1: \(K_v=\lim_{s\to0}sG=\frac{K}{8}\). \(e=\frac1{K_v}=0{,}2\Rightarrow K_v=5\Rightarrow\) <b>K = 40</b>. <span class="tag">0,25 K<sub>v</sub> bien planteada · 0,25 K</span></li>
-<li><b>b)</b> Forma de Bode: \(G=\frac{5}{s(1+s/2)(1+s/4)}\), K<sub>B</sub> = 5 (14 dB). Recta inicial −20 dB/déc con 14 dB en ω = 1. En ω = 2 vale 8 dB y pasa a −40; en ω = 4 vale −4 dB y pasa a −60. Fase: de −90° a −270°, −180° hacia ω ≈ 2,8. <span class="tag">0,5 módulo · 0,5 fase</span></li>
-<li><b>c)</b> \(\frac{40}{\omega\sqrt{\omega^2+4}\sqrt{\omega^2+16}}=1\Rightarrow\) <b>ω<sub>c</sub> = 2,58 rad/s</b>; fase −90° − 52,2° − 32,8° = −175° → <b>MF = 5,0°</b>. Im del denominador: \(8\omega-\omega^3=0\Rightarrow\) <b>ω<sub>180</sub> = √8 = 2,83</b>; \(|G|=\frac{40}{48}=0{,}833\Rightarrow\) <b>MG = 1,58 dB</b>. Nyquist: viene de −j∞ con asíntota en Re = −3,75, corta el eje real en −0,833 (a la derecha de −1) y llega al origen con −270°. <b>Estable, pero al límite.</b> <span class="tag">0,3 MF · 0,3 MG · 0,4 Nyquist y estabilidad</span></li>
-<li><b>d)</b> Un adelanto no sirve: faltan 40° y la fase cae deprisa (tres polos). Se elige <b>atraso</b>. Fase objetivo −180° + 45° + 5° = −130° → <b>ω<sub>c</sub> = 0,98 rad/s</b>; allí |G| = 12,9 dB → <b>β = 4,43</b>; cero una década abajo: T = 10/0,98 = 10,2 s → \(G_c=\frac{1+10{,}2s}{1+45{,}0s}\). <span class="tag">0,3 elección justificada · 0,6 cálculo de ω<sub>c</sub>, β, T · 0,3 compensador</span></li>
-<li>Comprobación: <b>MF = 45,5°</b>, <b>MG = 14,0 dB</b>, K<sub>v</sub> sigue en 5 (el atraso tiene ganancia 1 en continua). El ancho de banda en lazo cerrado baja de 3,9 a 1,8 rad/s: <b>la respuesta es más lenta</b>, pero mucho menos oscilante. <span class="tag">0,3 comprobación y comentario</span></li></ol>
-<p><button type="button" class="btn" data-chk='["40","s(s+2)(s+4)",1,2.58,1]'>Comprobar en la calculadora</button></p>
-</div></details>
-<details><summary>Cuestión 1 · márgenes en el Nyquist <span class="src">1 punto</span></summary><div class="inner">
-<p><b>MF:</b> en la frecuencia ω<sub>c</sub> donde |GH| = 1, lo que le falta a la fase para llegar a −180°. En el Nyquist, el ángulo entre el punto donde la curva corta la circunferencia unidad y el semieje real negativo. <b>MG:</b> en ω<sub>180</sub>, donde la curva corta el eje real negativo en un punto −a, MG = 1/a (o −20·log a dB): lo que se puede multiplicar la ganancia hasta que el corte llegue a −1. Dibujo: la circunferencia unidad, el −1, la curva, el ángulo del MF y el segmento entre −a y −1 (el simulador de <a href="#margenes">márgenes</a> lo dibuja así). <span class="tag">0,4 definiciones · 0,4 dibujo · 0,2 relación con la estabilidad</span></p>
-</div></details>
-<details><summary>Cuestión 2 · senoide <span class="src">1 punto</span></summary><div class="inner">
-<p>Misma frecuencia, ω = 2 rad/s. \(|G(j2)|=\frac{5}{|2+2j|^2}=\frac58=0{,}625\), así que la amplitud es 3·0,625 = <b>1,875</b>. Fase: \(-2\arctan\frac22=-90^\circ\). <b>y(t) = 1,875·sen(2t − 90°)</b>. <span class="tag">0,2 misma ω · 0,4 módulo · 0,4 fase</span></p>
-</div></details>
-<details><summary>Cuestión 3 · Ziegler–Nichols de lazo abierto <span class="src">1 punto</span></summary><div class="inner">
-<p>Se aplica un escalón a la planta en lazo abierto y se dibuja la tangente en el punto de inflexión de la curva en S: corta el eje de tiempos en L (retardo aparente) y el valor final en L + T. Con la ganancia K, la tabla 8-1 da para el PID: \(K_p=1{,}2\frac{T}{KL}=1{,}2\cdot\frac{5}{2\cdot1}=\mathbf{3}\), \(T_i=2L=\mathbf{2}\) s, \(T_d=0{,}5L=\mathbf{0{,}5}\) s. Busca un sobrepico del 25 %; es un punto de partida que luego se afina. <span class="tag">0,4 explicación con dibujo · 0,6 cálculo</span></p>
-</div></details>
+<p><button type="button" class="btn" id="smReveal">Ver solución y baremo</button></p>
+<div id="smSolWrap" hidden>
+<p class="muted" style="font-size:14px">Marca cada punto del baremo que hayas hecho bien y la guía te suma la nota.</p>
+<div id="smSol"></div>
+<p class="box key" id="smScore" style="font-size:17px"></p>
+</div>
 
 <!-- ===================== ENTRENADOR ===================== -->
 </section>
@@ -2686,6 +2669,205 @@ seg(['tkA','tkB','tkC','tkD','tkE'],id=>{tkMode=id;if(id==='tkB'){$('tkKp').valu
 ['tkKp','tkKi'].forEach(id=>$(id).addEventListener('input',tkSim));$('tkAW').addEventListener('change',tkSim);tkSim();
 
 })();
+</script>
+<script>
+/* ====================================================================
+   Simulacro aleatorio: genera un examen nuevo con solución y baremo
+   ==================================================================== */
+(function(){
+const $=id=>document.getElementById(id);
+if(!$('smEnun'))return;
+/* RNG con semilla para poder repetir un examen por su número */
+function rng(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+let R=Math.random;const pk=a=>a[Math.floor(R()*a.length)];
+const D=180/Math.PI;
+const fx=(v,d=2)=>{if(!isFinite(v))return '∞';let s=(Math.round(v*10**d)/10**d).toFixed(d);if(d>0)s=s.replace(/\.?0+$/,'');if(s==='-0')s='0';return s.replace('.',',').replace(/^-/,'−')};
+const fg=v=>{const a=Math.abs(v);return fx(v,a>=100?0:a>=10?1:a>=1?2:3)};
+/* planta K / (s^N · Π(s+p)) con compensador (1+T1 s)/(1+T2 s) opcional */
+const mk=(K,N,ps,c)=>({K,N,ps,c});
+function mag(G,w){let m=G.K/Math.pow(w,G.N);for(const p of G.ps)m/=Math.hypot(w,p);if(G.c)m*=Math.hypot(1,w*G.c[0])/Math.hypot(1,w*G.c[1]);return m}
+function ph(G,w){let f=-90*G.N;for(const p of G.ps)f-=Math.atan(w/p)*D;if(G.c)f+=(Math.atan(w*G.c[0])-Math.atan(w*G.c[1]))*D;return f}
+const LW=[];for(let i=0;i<=1600;i++)LW.push(10**(-3+i*6/1600));
+function bis(f,a,b){let fa=f(a);for(let i=0;i<80;i++){const m=Math.sqrt(a*b),fm=f(m);if((fm>0)===(fa>0)){a=m;fa=fm}else b=m}return Math.sqrt(a*b)}
+function wc(G){let k=-1;for(let i=0;i<LW.length;i++)if(mag(G,LW[i])>=1)k=i;if(k<0||k===LW.length-1)return NaN;return bis(w=>mag(G,w)-1,LW[k],LW[k+1])}
+function w180(G){for(let i=1;i<LW.length;i++){if(ph(G,LW[i])<=-180&&ph(G,LW[i-1])>-180)return bis(w=>ph(G,w)+180,LW[i-1],LW[i])}return Infinity}
+function marg(G){const c=wc(G),p=w180(G);return{wc:c,MF:180+ph(G,c),w180:p,MG:isFinite(p)?-20*Math.log10(mag(G,p)):Infinity}}
+/* ancho de banda en lazo cerrado (realimentación unitaria) */
+function Lc(G,w){/* complejo L(jw) */const m=mag(G,w),f=ph(G,w)/D;return[m*Math.cos(f),m*Math.sin(f)]}
+function bw(G){const T0=G.N>0?1:(()=>{const k=mag(G,1e-6);return k/(1+k)})();const tg=T0/Math.SQRT2;const T=w=>{const[x,y]=Lc(G,w);return Math.hypot(x,y)/Math.hypot(1+x,y)};let k=-1;for(let i=0;i<LW.length;i++)if(T(LW[i])>=tg)k=i;return k<0||k===LW.length-1?NaN:bis(w=>T(w)-tg,LW[k],LW[k+1])}
+const dB=v=>20*Math.log10(v);
+const pstr=(N,ps)=>(N?'s':'')+ps.map(p=>`(s+${fx(p)})`).join('');
+const pTex=(N,ps)=>(N?'s':'')+ps.map(p=>`(s+${fx(p)})`).join('');
+const tag=t=>`<span class="tag">${t}</span>`;
+/* ---- baremo autoevaluable ---- */
+let RB=[];
+function rb(pts,txt){const i=RB.length;RB.push(pts);return `<label class="rbk"><input type="checkbox" data-rb="${i}"> <span>${txt}</span> <b>${fx(pts,2)} p</b></label>`}
+
+/* ================= PROBLEMA DE FRECUENCIA ================= */
+function genProblem(){
+  for(let tries=0;tries<400;tries++){
+    const fam=pk(['t1p3','t1p3','t0p3','t1p2']);
+    const obj=pk([40,45,50]);
+    let N,ps,K,spec,specTxt,aSol;
+    if(fam==='t1p3'){N=1;ps=pk([[1,2],[1,4],[1,5],[2,4],[2,5],[2,8],[1,10],[4,8],[5,10],[2,10]]);const e=pk([0.05,0.1,0.2,0.25,0.5]);const Kv=1/e;K=Kv*ps[0]*ps[1];
+      specTxt=`el error en régimen permanente ante una rampa unitaria sea ${fx(e)}`;
+      aSol=`Tipo 1: \\(K_v=\\lim_{s\\to0}sG(s)=\\frac{K}{${fx(ps[0]*ps[1])}}\\). \\(e_v=\\frac1{K_v}=${fx(e)}\\Rightarrow K_v=${fx(Kv)}\\Rightarrow\\) <b>K = ${fg(K)}</b>.`}
+    else if(fam==='t1p2'){N=1;ps=[pk([1,2,4,5,10])];const e=pk([0.02,0.05,0.1,0.2]);const Kv=1/e;K=Kv*ps[0];
+      specTxt=`el error en régimen permanente ante una rampa unitaria sea ${fx(e)}`;
+      aSol=`Tipo 1: \\(K_v=\\lim_{s\\to0}sG(s)=\\frac{K}{${fx(ps[0])}}\\). \\(e_v=\\frac1{K_v}=${fx(e)}\\Rightarrow K_v=${fx(Kv)}\\Rightarrow\\) <b>K = ${fg(K)}</b>.`}
+    else{N=0;ps=pk([[1,2,3],[1,2,4],[1,2,5],[1,3,5],[2,3,4],[1,1,2],[1,2,2],[2,4,5],[1,4,5]]);const e=pk([0.05,0.1,0.2]);const Kp=1/e-1;const P=ps.reduce((a,b)=>a*b,1);K=Kp*P;
+      specTxt=`el error en régimen permanente ante un escalón unitario sea ${fx(e)}`;
+      aSol=`Tipo 0: \\(K_p=\\lim_{s\\to0}G(s)=\\frac{K}{${fx(P)}}\\). \\(e_p=\\frac1{1+K_p}=${fx(e)}\\Rightarrow K_p=${fx(Kp)}\\Rightarrow\\) <b>K = ${fg(K)}</b>.`}
+    ps=ps.slice().sort((a,b)=>a-b);
+    const G=mk(K,N,ps);const m=marg(G);
+    if(!(m.MF>3&&m.MF<obj-8))continue;           // tiene que hacer falta compensar
+    if(isFinite(m.MG)&&m.MG<1)continue;           // lazo cerrado estable sin compensar
+    const d=design(G,m,obj);if(!d)continue;
+    return {fam,obj,N,ps,K,G,m,d,specTxt,aSol};
+  }
+  return null}
+function design(G,m,obj){
+  /* adelanto (Ogata 7-...) */
+  let lead=null;
+  for(let eps=5;eps<=15;eps+=1){const phm=obj-m.MF+eps;if(phm>62)break;const s=Math.sin(phm/D),a=(1-s)/(1+s);
+    let k=-1;for(let i=0;i<LW.length;i++)if(mag(G,LW[i])>=Math.sqrt(a))k=i;if(k<0)break;const wm=bis(w=>mag(G,w)-Math.sqrt(a),LW[k],LW[k+1]);
+    const T=1/(Math.sqrt(a)*wm);const Gc={...G,c:[T,a*T]};const mm=marg(Gc);
+    if(mm.MF>=obj-0.5){lead={type:'lead',eps,phm,a,wm,T,G:Gc,m:mm,bw:bw(Gc)};break}}
+  /* atraso */
+  let lag=null;
+  for(let eps=5;eps<=15;eps+=1){const tgt=-180+obj+eps;let w=NaN;for(let i=1;i<LW.length;i++){if(ph(G,LW[i])<=tgt&&ph(G,LW[i-1])>tgt){w=bis(x=>ph(G,x)-tgt,LW[i-1],LW[i]);break}}
+    if(!isFinite(w))break;const b=mag(G,w);if(b<=1)break;const T=10/w;const Gc={...G,c:[T,b*T]};const mm=marg(Gc);
+    if(mm.MF>=obj-0.5){lag={type:'lag',eps,tgt,wn:w,b,T,G:Gc,m:mm,bw:bw(Gc)};break}}
+  if(!lead&&!lag)return null;
+  return {best:lead&&lead.phm<=55?lead:(lag||lead),lead,lag,bw0:bw(G)}}
+
+function problemHTML(P){
+  const {N,ps,K,G,m,d,obj}=P;const KB=K/ps.reduce((a,b)=>a*b,1);
+  const Gtex=`G(s)=\\dfrac{K}{${pTex(N,ps)}}`;
+  const enun=`<h4>Problema (4 puntos)</h4>
+  <p>Un sistema con realimentación unitaria tiene la función de transferencia en lazo abierto \\(${Gtex}\\).</p>
+  <ol class="ap" style="list-style:lower-alpha;padding-left:1.4em">
+  <li>(0,5 p) Calcula K para que ${P.specTxt}.</li>
+  <li>(1 p) Con ese K, dibuja el diagrama de Bode asintótico de módulo y fase.</li>
+  <li>(1 p) Calcula el margen de fase y el margen de ganancia. Dibuja el Nyquist aproximado${isFinite(m.w180)?' indicando dónde corta al eje real':''}. ¿Es estable el lazo cerrado?</li>
+  <li>(1,5 p) Diseña el compensador más adecuado para conseguir MF ≥ ${obj}° sin cambiar el error del apartado a). ¿Qué MG tiene el sistema compensado? ¿Qué ocurre con la velocidad de respuesta?</li></ol>`;
+  /* b) Bode */
+  const bform=`G(s)=\\dfrac{${fg(KB)}}{${N?'s':''}${ps.map(p=>`\\left(1+\\frac{s}{${fx(p)}}\\right)`).join('')}}`;
+  let slope=-20*N,bt;
+  if(N){bt=`Recta inicial de pendiente −20 dB/déc que en ω = 1 vale 20·log ${fg(KB)} = <b>${fx(dB(KB),1)} dB</b> (prolongada).`}
+  else{bt=`A baja frecuencia, recta horizontal a 20·log ${fg(KB)} = <b>${fx(dB(KB),1)} dB</b>.`}
+  // valores en esquinas siguiendo la asíntota
+  const uniq=[...new Set(ps)];let asym=w=>{let v=dB(KB)-20*N*Math.log10(w);for(const p of ps)if(w>p)v-=20*Math.log10(w/p);return v};
+  const corners=uniq.map(p=>{const mult=ps.filter(x=>x===p).length;slope-=20*mult;return `en ω = ${fx(p)} la asíntota vale ${fx(asym(p),1)} dB y la pendiente pasa a ${fx(slope,0)} dB/déc${mult>1?' (polo doble)':''}`});
+  const phEnd=-90*(N+ps.length);
+  const bSol=`Forma de Bode: \\(${bform}\\), K<sub>B</sub> = ${fg(KB)}. ${bt} Esquinas: ${corners.join('; ')}. Fase: empieza en ${fx(-90*N,0)}° y tiende a ${fx(phEnd,0)}°; cada polo resta 45° en su esquina (ω = ${uniq.map(p=>fx(p)).join(', ')})${isFinite(m.w180)?`; cruza −180° en ω ≈ ${fx(m.w180,2)} rad/s`:'; no llega a −180° (solo dos polos)'}.`;
+  /* c) márgenes */
+  const magEq=`\\frac{${fg(K)}}{${N?'\\omega':''}${ps.map(p=>`\\sqrt{\\omega^2+${fx(p*p)}}`).join('')}}=1`;
+  const phTerms=(N?['90°']:[]).concat(ps.map(p=>`${fx(Math.atan(m.wc/p)*D,1)}°`)).map(t=>'−'+t).join(' ');
+  let cSol=`\\(${magEq}\\Rightarrow\\) <b>ω<sub>c</sub> = ${fx(m.wc,2)} rad/s</b>; fase ${phTerms} = ${fx(ph(G,m.wc),1)}° → <b>MF = ${fx(m.MF,1)}°</b>. `;
+  let nyq;
+  if(isFinite(m.w180)){
+    let imTxt;
+    if(N===1){imTxt=`la parte imaginaria de \\(j\\omega(j\\omega+${fx(ps[0])})(j\\omega+${fx(ps[1])})\\) se anula en \\(\\omega^2=${fx(ps[0]*ps[1])}\\)`}
+    else{const s2=ps[0]*ps[1]+ps[0]*ps[2]+ps[1]*ps[2];imTxt=`la parte imaginaria de \\((j\\omega+${fx(ps[0])})(j\\omega+${fx(ps[1])})(j\\omega+${fx(ps[2])})\\) se anula en \\(\\omega^2=${fx(s2)}\\)`}
+    const cr=mag(G,m.w180);
+    cSol+=`Fase −180°: ${imTxt} → <b>ω<sub>180</sub> = ${fx(m.w180,2)} rad/s</b>; |G| = ${fx(cr,3)} → <b>MG = ${fx(m.MG,2)} dB</b>. `;
+    nyq=N?`Nyquist: viene de −j∞ (tipo 1) con asíntota vertical en Re = ${fx(-K*(ps[0]+ps[1])/(ps[0]*ps[1])**2,3)}, corta el eje real en <b>−${fx(cr,3)}</b> y llega al origen con ${fx(phEnd,0)}°.`
+      :`Nyquist: empieza en el eje real en ${fg(KB)} (tipo 0), cruza el eje imaginario negativo, corta el eje real negativo en <b>−${fx(cr,3)}</b> y llega al origen con ${fx(phEnd,0)}°.`;
+    nyq+=` El corte queda a la derecha de −1 y no hay polos inestables en lazo abierto: N = 0, P = 0 → Z = 0. <b>Estable</b>${m.MF<15?', pero muy cerca del límite':''}.`;
+  }else{
+    cSol+=`La fase solo tiende a −180° cuando ω → ∞: <b>MG = ∞</b>. `;
+    nyq=`Nyquist: viene de −j∞ con asíntota vertical en Re = ${fx(-K/(ps[0]*ps[0]),3)} y llega al origen tangente al eje real negativo (−180°) sin cortarlo. No rodea al −1: <b>estable</b> para cualquier K, pero con MF = ${fx(m.MF,1)}° muy oscilante.`}
+  cSol+=nyq;
+  /* d) diseño */
+  const b=d.best;let dSol,why;
+  const leadPhm=d.lead?d.lead.phm:obj-m.MF+5;
+  if(b.type==='lead'){
+    why=`Faltan ${fx(obj-m.MF,1)}° y la fase cae despacio cerca de ω<sub>c</sub>: un <b>adelanto</b> basta (φ<sub>m</sub> ≤ 55°) y además hace el sistema más rápido.`;
+    dSol=`φ<sub>m</sub> = ${obj} − ${fx(m.MF,1)} + ${b.eps} (margen ε) = <b>${fx(b.phm,1)}°</b> → \\(\\alpha=\\frac{1-\\sin\\varphi_m}{1+\\sin\\varphi_m}=${fx(b.a,4)}\\). El adelanto sube ${fx(-10*Math.log10(b.a),2)} dB en ω<sub>m</sub>, así que se coloca donde |G| = −${fx(-10*Math.log10(b.a),2)} dB: <b>ω<sub>m</sub> = ${fx(b.wm,3)} rad/s</b> (nueva ω<sub>c</sub>). \\(T=\\frac1{\\sqrt\\alpha\\,\\omega_m}=${fx(b.T,4)}\\) s. \\(G_c(s)=\\dfrac{1+${fx(b.T,4)}s}{1+${fx(b.a*b.T,4)}s}\\) (ganancia 1 en continua: el error no cambia).`;
+  }else{
+    why=d.lead?`El adelanto necesitaría φ<sub>m</sub> = ${fx(leadPhm,1)}°, demasiado (más de 55°): se elige <b>atraso</b>.`:`Un adelanto no sirve: faltan ${fx(obj-m.MF,1)}° y la fase cae muy deprisa (la ω<sub>c</sub> se desplaza y se pierde lo ganado). Se elige <b>atraso</b>.`;
+    dSol=`Fase objetivo −180° + ${obj}° + ${b.eps}° (margen ε) = ${fx(b.tgt,0)}° → <b>ω'<sub>c</sub> = ${fx(b.wn,3)} rad/s</b>. Allí |G| = ${fx(dB(b.b),2)} dB → <b>β = ${fx(b.b,3)}</b>. Cero una década por debajo: T = 10/ω'<sub>c</sub> = ${fx(b.T,3)} s → \\(G_c(s)=\\dfrac{1+${fx(b.T,3)}s}{1+${fx(b.b*b.T,2)}s}\\) (ganancia 1 en continua: el error no cambia).`}
+  const spd=b.bw>d.bw0?'aumenta: <b>la respuesta es más rápida</b> y menos oscilante':'baja: <b>la respuesta es más lenta</b>, pero mucho menos oscilante';
+  const chkC=`<b>Comprobación</b>: MF = <b>${fx(b.m.MF,1)}°</b>, MG = <b>${isFinite(b.m.MG)?fx(b.m.MG,2)+' dB':'∞'}</b>. El ancho de banda en lazo cerrado pasa de ${fx(d.bw0,2)} a ${fx(b.bw,2)} rad/s: ${spd}.`;
+  RB=[];
+  const sol=`<details open><summary>Problema · solución completa <span class="src">4 puntos</span></summary><div class="inner"><ol class="steps">
+  <li><b>a)</b> ${P.aSol}<div class="rbg">${rb(0.25,'K<sub>v</sub>/K<sub>p</sub> bien planteada')}${rb(0.25,'valor de K')}</div></li>
+  <li><b>b)</b> ${bSol}<div class="rbg">${rb(0.5,'módulo')}${rb(0.5,'fase')}</div></li>
+  <li><b>c)</b> ${cSol}<div class="rbg">${rb(0.3,'MF')}${rb(0.3,'MG')}${rb(0.4,'Nyquist y estabilidad')}</div></li>
+  <li><b>d)</b> ${why} ${dSol}<div class="rbg">${rb(0.3,'elección justificada')}${rb(0.6,'cálculo del compensador')}${rb(0.3,'G<sub>c</sub>(s) final')}</div></li>
+  <li>${chkC}<div class="rbg">${rb(0.3,'comprobación y comentario')}</div></li></ol>
+  <p><button type="button" class="btn" data-smchk='${JSON.stringify([fg(K).replace(',','.'),pstr(N,ps),1])}'>Comprobar en la calculadora</button></p></div></details>`;
+  return {enun,sol}}
+
+/* ================= CUESTIONES ================= */
+const TEO=[
+ {q:'Explica qué son el margen de fase y el margen de ganancia y cómo se leen en un diagrama de Nyquist. Haz un dibujo.',a:'<b>MF:</b> en ω<sub>c</sub> (donde |GH| = 1), lo que le falta a la fase para llegar a −180°; en el Nyquist, el ángulo entre el corte con la circunferencia unidad y el semieje real negativo. <b>MG:</b> en ω<sub>180</sub>, si la curva corta el eje real en −a, MG = 1/a (−20·log a dB): cuánto puede crecer la ganancia antes de llegar a −1. Dibujo con circunferencia unidad, −1, la curva, el ángulo y el segmento entre −a y −1.',l:'#margenes',r:[[0.4,'definiciones'],[0.4,'dibujo'],[0.2,'relación con la estabilidad']]},
+ {q:'Enuncia el criterio de estabilidad de Nyquist y explica qué significan N, P y Z.',a:'Z = N + P. <b>P</b>: polos de GH en el semiplano derecho (lazo abierto). <b>N</b>: vueltas de la curva de Nyquist alrededor de −1 en sentido horario. <b>Z</b>: polos del lazo cerrado en el semiplano derecho; estable si Z = 0. Si GH es estable (P = 0), el lazo cerrado es estable si la curva no rodea a −1. Los polos en el eje imaginario se rodean con un semicírculo infinitesimal.',l:'#nyquist',r:[[0.4,'enunciado Z = N + P'],[0.4,'significado de N, P, Z'],[0.2,'caso P = 0 y polos en el eje']]},
+ {q:'Saturación de la señal de control con un controlador con parte integral: ¿qué problema aparece y cómo se soluciona?',a:'<b>Windup</b>: el actuador satura, el error no baja y la integral sigue creciendo; cuando el error cambia de signo, la integral tarda en «descargarse» y aparece un sobrepico grande y lento. Solución (<b>antiwindup</b>): realimentar (u<sub>sat</sub> − u)/T<sub>t</sub> al integrador (back-calculation) o congelar la integral mientras haya saturación (integración condicional).',l:'#q3',r:[[0.5,'explicación del windup'],[0.5,'antiwindup con esquema']]},
+ {q:'Explica un método de discretización de un PID.',a:'Con periodo T: la integral por suma de rectángulos (o trapecios, Tustin) y la derivada por diferencia hacia atrás: \\(u(k)=K_p\\big[e(k)+\\frac{T}{T_i}\\sum e(j)+\\frac{T_d}{T}(e(k)-e(k-1))\\big]\\). La forma incremental \\(\\Delta u(k)=u(k)-u(k-1)\\) evita el windup y el salto al cambiar de manual a automático. T debe ser pequeño frente a la dinámica del sistema.',l:'#q2',r:[[0.5,'aproximación de I y D'],[0.3,'ecuación en diferencias'],[0.2,'elección de T o forma incremental']]},
+ {q:'¿Qué problemas presenta un PID cuando la consigna cambia en escalón y cómo se resuelven?',a:'La derivada de un escalón es un impulso: <b>patada derivativa</b> (pico en u). El término P también da un salto. Solución: derivar solo la salida (c = 0) y ponderar la referencia en la P (b < 1): \\(u=K_p\\big[(br-y)+\\frac1{T_i}\\int e+T_d\\frac{d(cr-y)}{dt}\\big]\\). El rechazo de perturbaciones no cambia. También se puede filtrar la consigna con una rampa.',l:'#q11',r:[[0.5,'patada derivativa'],[0.5,'ponderación b, c']]},
+ {q:'Feedforward y feedback juntos: dibuja el esquema y explica cuándo conviene.',a:'Si la perturbación d es <b>medible</b>, se añade G<sub>ff</sub> = −G<sub>d</sub>/G<sub>p</sub> que actúa antes de que d afecte a la salida. El feedback sigue corrigiendo errores de modelo y perturbaciones no medidas. G<sub>ff</sub> tiene que ser realizable (sin adelantos puros); si no, se usa su parte estática.',l:'#q5',r:[[0.4,'esquema'],[0.4,'G<sub>ff</sub> = −G<sub>d</sub>/G<sub>p</sub>'],[0.2,'por qué hace falta también el feedback']]},
+ {q:'Control en cascada: esquema, para qué sirve y cómo se sintoniza.',a:'Dos lazos: el <b>interno</b> (rápido) controla una variable secundaria y rechaza las perturbaciones que entran en ella antes de que lleguen a la salida; el <b>externo</b> da la consigna al interno. Requisito: el lazo interno bastante más rápido (3–5 veces). Se sintoniza primero el interno y luego el externo con el interno cerrado.',l:'#q8',r:[[0.4,'esquema'],[0.3,'ventaja'],[0.3,'orden de sintonía']]},
+ {q:'Explica el método de sintonía por relé.',a:'Se sustituye el controlador por un relé de amplitud d: el lazo entra en un ciclo límite de amplitud a y periodo P<sub>u</sub>. Por la función descriptiva, \\(K_u\\approx\\frac{4d}{\\pi a}\\). Con K<sub>u</sub> y P<sub>u</sub> se aplican las tablas de Ziegler–Nichols en lazo cerrado. Ventajas: automático, la oscilación es controlada y no se lleva al sistema al límite de la estabilidad.',l:'#q10',r:[[0.4,'experimento'],[0.4,'K<sub>u</sub> = 4d/(πa)'],[0.2,'uso de las tablas']]},
+ {q:'Dibuja el esquema de un PID con todas las mejoras que conozcas.',a:'Ponderación de la referencia (b en P, c = 0 en D), filtro derivativo \\(\\frac{T_ds}{1+T_ds/N}\\) con N ≈ 8–20, antiwindup por back-calculation con T<sub>t</sub>, saturación del actuador y, si la perturbación es medible, feedforward.',l:'#q7',r:[[0.25,'ponderación'],[0.25,'filtro D'],[0.25,'antiwindup'],[0.25,'esquema coherente']]},
+ {q:'¿Qué efecto tienen las acciones P, I y D sobre la respuesta del lazo cerrado?',a:'<b>P</b>: más rápido y menos error, pero más sobrepico; no anula el error en tipo 0. <b>I</b>: anula el error ante escalón (sube el tipo), pero añade fase negativa: más oscilación. <b>D</b>: anticipa, amortigua y mejora el MF, pero amplifica el ruido (por eso se filtra).',l:'#t2',r:[[0.35,'P'],[0.35,'I'],[0.3,'D']]}];
+
+function genSeno(){
+  const v=pk(['p1','p2','pp']);const A=pk([1,2,3,5]);const w=pk([0.5,1,2,3,4,5]);let k,ps,Gt;
+  if(v==='p1'){const p=pk([1,2,4,5]);k=pk([2,5,10]);ps=[p];Gt=`\\dfrac{${k}}{s+${p}}`}
+  else if(v==='p2'){const p=pk([1,2,3]);k=pk([4,5,10]);ps=[p,p];Gt=`\\dfrac{${k}}{(s+${p})^2}`}
+  else{const a=pk([1,2]),b=pk([3,4,5]);k=pk([6,10,20]);ps=[a,b];Gt=`\\dfrac{${k}}{(s+${a})(s+${b})}`}
+  const G=mk(k,0,ps);const M=mag(G,w),F=ph(G,w);
+  const q=`Al sistema \\(G(s)=${Gt}\\) se le aplica la entrada \\(x(t)=${A}\\,\\sin(${fx(w)}t)\\). Calcula la salida en régimen permanente.`;
+  const a=`Misma frecuencia, ω = ${fx(w)} rad/s. \\(|G(j${fx(w)})|=\\frac{${k}}{${ps.map(p=>`\\sqrt{${fx(w*w)}+${fx(p*p)}}`).join('\\,')}}=${fx(M,4)}\\), amplitud ${A}·${fx(M,4)} = <b>${fx(A*M,3)}</b>. Fase: ${ps.map(p=>`−arctan(${fx(w)}/${fx(p)})`).join(' ')} = <b>${fx(F,1)}°</b>. <b>y(t) = ${fx(A*M,3)}·sen(${fx(w)}t ${F<0?'−':'+'} ${fx(Math.abs(F),1)}°)</b>.`;
+  return{q,a,l:'#q4',r:[[0.2,'misma ω'],[0.4,'módulo'],[0.4,'fase']]}}
+function genSegundo(){
+  for(let t=0;t<100;t++){const a=pk([1,2,3,4,5,6,8]);const K=pk([1,2,4,5,8,10,16,20,25]);const wn=Math.sqrt(K),z=a/(2*wn);if(z<0.15||z>0.85)continue;
+    const Mp=Math.exp(-z*Math.PI/Math.sqrt(1-z*z)),wd=wn*Math.sqrt(1-z*z),tp=Math.PI/wd,ts=4/(z*wn);
+    const q=`El sistema \\(G(s)=\\dfrac{${K}}{s(s+${a})}\\) se realimenta con H(s) = 1. Calcula ζ, ω<sub>n</sub>, la sobreoscilación, el tiempo de pico, el tiempo de establecimiento (2 %) y el error ante una rampa unitaria.`;
+    const ans=`Lazo cerrado \\(\\frac{${K}}{s^2+${a}s+${K}}\\): ω<sub>n</sub> = √${K} = <b>${fx(wn,3)} rad/s</b>, 2ζω<sub>n</sub> = ${a} → <b>ζ = ${fx(z,3)}</b>. \\(M_p=e^{-\\zeta\\pi/\\sqrt{1-\\zeta^2}}\\) = <b>${fx(Mp*100,1)} %</b>. ω<sub>d</sub> = ${fx(wd,3)}, t<sub>p</sub> = π/ω<sub>d</sub> = <b>${fx(tp,3)} s</b>, t<sub>s</sub> ≈ 4/(ζω<sub>n</sub>) = <b>${fx(ts,2)} s</b>. Tipo 1: K<sub>v</sub> = ${K}/${a} → <b>e<sub>v</sub> = ${fx(a/K,3)}</b>; ante escalón el error es 0.`;
+    return{q,a:ans,l:'#t1',r:[[0.3,'ζ y ω<sub>n</sub>'],[0.4,'M<sub>p</sub>, t<sub>p</sub>, t<sub>s</sub>'],[0.3,'error ante rampa']]}}}
+const ZNA={P:[1,Infinity,0],PI:[0.9,1/0.3,0],PID:[1.2,2,0.5]};
+const ZNC={P:[0.5,Infinity,0],PI:[0.45,1/1.2,0],PID:[0.6,0.5,0.125]};
+function znRow(type,Kp,Ti,Td){return `<b>K<sub>p</sub> = ${fx(Kp,3)}</b>${isFinite(Ti)?`, <b>T<sub>i</sub> = ${fx(Ti,3)} s</b>`:''}${Td?`, <b>T<sub>d</sub> = ${fx(Td,3)} s</b>`:''}`}
+function genZN(){
+  const v=pk(['abierto','cerrado','rele']);const type=pk(['P','PI','PID']);
+  if(v==='abierto'){const K=pk([1,2,4,0.5]),L=pk([0.5,1,2]),T=pk([3,4,5,8,10]);const c=ZNA[type];const Kp=c[0]*T/(K*L),Ti=c[1]*L,Td=c[2]*L;
+    return{q:`Explica el método de Ziegler–Nichols basado en la respuesta a escalón y aplícalo a una planta cuya curva de reacción da K = ${fx(K)}, L = ${fx(L)} s y T = ${fx(T)} s (controlador ${type}).`,
+     a:`Escalón a la planta en lazo abierto; tangente en el punto de inflexión de la curva en S: corta el eje de tiempos en L y el valor final en L + T. Tabla 8-1 (${type}): ${type==='P'?'K<sub>p</sub> = T/(KL)':type==='PI'?'K<sub>p</sub> = 0,9·T/(KL), T<sub>i</sub> = L/0,3':'K<sub>p</sub> = 1,2·T/(KL), T<sub>i</sub> = 2L, T<sub>d</sub> = 0,5L'} → ${znRow(type,Kp,Ti,Td)}. Busca un sobrepico del 25 %; es un punto de partida.`,l:'#t3',r:[[0.4,'explicación con dibujo'],[0.6,'cálculo']]}}
+  if(v==='cerrado'){const ps=pk([[1,2,3],[1,1,1],[1,2,4],[2,3,4],[1,3,5],[1,2,5]]);const s1=ps[0]+ps[1]+ps[2],s2=ps[0]*ps[1]+ps[0]*ps[2]+ps[1]*ps[2],s3=ps[0]*ps[1]*ps[2];const Kcr=s1*s2-s3,wcr=Math.sqrt(s2),Pcr=2*Math.PI/wcr;const c=ZNC[type];const Kp=c[0]*Kcr,Ti=c[1]*Pcr,Td=c[2]*Pcr;
+    return{q:`Explica el método de Ziegler–Nichols de la ganancia crítica y calcula un controlador ${type} para la planta \\(G(s)=\\dfrac{1}{${pTex(0,ps)}}\\).`,
+     a:`Solo acción P, se sube K<sub>p</sub> hasta oscilación mantenida: K<sub>cr</sub> y P<sub>cr</sub>. Ecuación característica \\(s^3+${s1}s^2+${s2}s+${s3}+K=0\\). Routh: fila de s¹ nula si ${s1}·${s2} = ${s3} + K → <b>K<sub>cr</sub> = ${fx(Kcr)}</b>; auxiliar ${s1}s² + ${fx(s3+Kcr)} = 0 → ω<sub>cr</sub> = √${s2} = ${fx(wcr,3)} rad/s → <b>P<sub>cr</sub> = ${fx(Pcr,3)} s</b>. Tabla 8-2 (${type}): ${znRow(type,Kp,Ti,Td)}.`,l:'#t3',r:[[0.3,'explicación'],[0.4,'K<sub>cr</sub> y P<sub>cr</sub> por Routh'],[0.3,'parámetros']]}}
+  const d=pk([1,2,5,10]),a=pk([0.2,0.5,1,2]),Pu=pk([2,4,6,10]);const Ku=4*d/(Math.PI*a);const c=ZNC[type];const Kp=c[0]*Ku,Ti=c[1]*Pu,Td=c[2]*Pu;
+  return{q:`En un ensayo con un relé de amplitud d = ${d} se mide un ciclo límite de amplitud a = ${fx(a)} y periodo ${Pu} s. Calcula un controlador ${type} y explica el método.`,
+   a:`Relé en lugar del controlador → ciclo límite. Función descriptiva: \\(K_u\\approx\\frac{4d}{\\pi a}=\\frac{4\\cdot${d}}{\\pi\\cdot${fx(a)}}\\) = <b>${fx(Ku,3)}</b>, P<sub>u</sub> = ${Pu} s. Tabla de ZN en lazo cerrado (${type}): ${znRow(type,Kp,Ti,Td)}.`,l:'#q10',r:[[0.3,'explicación'],[0.3,'K<sub>u</sub>'],[0.4,'parámetros']]}}
+
+/* ================= MONTAJE ================= */
+function render(seed){
+  R=rng(seed);let P=null;for(let k=0;k<20&&!P;k++)P=genProblem();
+  const PH=problemHTML(P);
+  const C=[pk(TEO),R()<0.5?genSeno():genSegundo(),genZN()];
+  const order=[0,1,2];
+  let enun=PH.enun+order.map((i,j)=>`<h4>Cuestión ${j+1} (1 punto)</h4><p>${C[i].q}</p>`).join('');
+  let sol=PH.sol+order.map((i,j)=>`<details><summary>Cuestión ${j+1} <span class="src">1 punto</span></summary><div class="inner"><p>${C[i].a} <a href="${C[i].l}">Repasar el tema</a>.</p><div class="rbg">${C[i].r.map(([p,t])=>rb(p,t)).join('')}</div></div></details>`).join('');
+  const tx=h=>h.replace(/\\\((.*?)\\\)/gs,(m0,b)=>'\\('+b.replace(/(\d),(\d)/g,'$1{,}$2')+'\\)');
+  $('smEnun').innerHTML=tx(enun);$('smSol').innerHTML=tx(sol);$('smNum').textContent='Simulacro n.º '+seed;
+  $('smSol').querySelectorAll('[data-smchk]').forEach(b=>b.addEventListener('click',()=>{if(typeof load==='function')load(...JSON.parse(b.getAttribute('data-smchk')))}));
+  $('smSol').querySelectorAll('input[data-rb]').forEach(c=>c.addEventListener('change',score));score();
+  try{localStorage.setItem('ic-sim-seed',String(seed))}catch(_){}
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([$('smEnun'),$('smSol')]).catch(()=>{});
+  return P}
+function score(){let s=0;$('smSol').querySelectorAll('input[data-rb]:checked').forEach(c=>s+=RB[+c.dataset.rb]);$('smScore').innerHTML=`Tu nota: <b>${fx(s,2)} / 7</b> · sobre 10: <b>${fx(s/7*10,1)}</b>`}
+const newSeed=()=>1+Math.floor(Math.random()*99999);
+$('smNew').addEventListener('click',()=>{render(newSeed());$('smSolWrap').hidden=true;$('smReveal').textContent='Ver solución y baremo';const r=$('tmReset');if(r)r.click();$('smEnun').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+$('smReveal').addEventListener('click',()=>{const w=$('smSolWrap');w.hidden=!w.hidden;$('smReveal').textContent=w.hidden?'Ver solución y baremo':'Ocultar la solución'});
+$('smGo').addEventListener('click',()=>{const v=parseInt($('smSeed').value,10);if(v>0)render(v)});
+let s0=0;try{s0=parseInt(localStorage.getItem('ic-sim-seed')||'0',10)}catch(_){}
+render(s0>0?s0:newSeed());
+window.__simgen={render,marg,mk,mag,ph,design,bw};
+})();
+
 </script>
 </body>
 </html>
