@@ -1,102 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Tu carpeta y plan de estudio · Ingeniería de Control</title>
-<meta name="description" content="Qué contiene cada PDF de tu carpeta y un plan de estudio para llegar al examen.">
-<meta name="theme-color" content="#1f4fd1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<title>Plan de estudio · Ingeniería de Control</title>
+<meta content="Un plan de estudio para llegar al examen." name="description"/>
+<meta content="#1f4fd1" name="theme-color"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <script>
 window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
-<link rel="stylesheet" href="assets/guia.css">
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link href="assets/guia.css" rel="stylesheet"/>
 </head>
 <body class="pg-recursos">
 <div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
 <header class="topbar">
-  <div class="tb-in">
-    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
-    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
-    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
-  </div>
-  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn on" style="--tc:var(--c0)" aria-current="page"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
-  <div class="srch-panel" id="srchPanel" hidden>
-    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
-    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
-    <div id="srch-out" class="srch-out" hidden></div>
-  </div>
+<div class="tb-in">
+<a class="brand" href="index.html"><span aria-hidden="true" class="brand-dot"></span><span>Ingeniería de <b>Control</b></span></a>
+<button aria-controls="siteNav" aria-expanded="false" class="tb-btn" id="menuBtn" type="button">Temas</button>
+<button aria-controls="srchPanel" aria-expanded="false" class="tb-btn" id="srchBtn" type="button">Buscar</button>
+</div>
+<nav aria-label="Páginas de la guía" class="site-nav" hidden="" id="siteNav"><div class="tng"><span class="tngl">Empezar</span><a class="tn" href="empezar.html" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a class="tn" href="pid.html" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a class="tn" href="frecuencia.html" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a class="tn" href="bode.html" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a class="tn" href="nyquist.html" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a class="tn" href="margenes.html" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a class="tn" href="diseno.html" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a class="tn" href="examenes.html" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a class="tn" href="simulacro.html" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a class="tn" href="entrena.html" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a class="tn" href="problemas.html" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a class="tn" href="maqueta.html" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a class="tn" href="calculadora.html" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a class="tn" href="consultar.html" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a aria-current="page" class="tn on" href="recursos.html" style="--tc:var(--c0)"><i>Plan</i>Plan de estudio</a></div></nav>
+<div class="srch-panel" hidden="" id="srchPanel">
+<label class="srch-lab" for="srch">Buscar en toda la guía</label>
+<input autocomplete="off" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" spellcheck="false" type="search"/>
+<div class="srch-out" hidden="" id="srch-out"></div>
+</div>
 </header>
 <header class="phero" style="--tc:var(--c0);--tcs:var(--c0s)">
-  <div class="phero-in">
-    <span class="phero-badge" aria-hidden="true">Plan</span>
-    <div class="phero-txt">
-      <p class="phero-kick">Consultar · página 15 de 15</p>
-      <h1>Tu carpeta y plan de estudio</h1>
-      <p class="phero-desc">Qué contiene cada PDF de tu carpeta y un plan de estudio para llegar al examen.</p>
-      <div class="phero-chips"><a href="#fuentes">Tu carpeta, PDF a PDF</a><a href="#plan">Plan de estudio</a></div>
-    </div>
-  </div>
-  <div class="phero-prog" aria-hidden="true"><i style="width:100.0%"></i></div>
+<div class="phero-in">
+<span aria-hidden="true" class="phero-badge">Plan</span>
+<div class="phero-txt">
+<p class="phero-kick">Consultar · página 15 de 15</p>
+<h1>Plan de estudio</h1>
+<p class="phero-desc">Un plan de estudio para llegar al examen.</p>
+<div class="phero-chips"><a href="#plan">Plan de estudio</a></div>
+</div>
+</div>
+<div aria-hidden="true" class="phero-prog"><i style="width:100.0%"></i></div>
 </header>
 <div class="wrap" id="top">
-<nav class="toc" aria-label="Índice">
-  <div class="grp">En esta página</div>
-  <a href="#fuentes" style="--tc:var(--c0)">Tu carpeta, PDF a PDF</a><a href="#plan" style="--tc:var(--c0)">Plan de estudio</a>
-  <div class="grp toc-others">Toda la guía</div>
-  <div class="toc-others"><a href="empezar.html" class="other" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other here" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+<nav aria-label="Índice" class="toc">
+<div class="grp">En esta página</div>
+<a href="#plan" style="--tc:var(--c0)">Plan de estudio</a>
+<div class="grp toc-others">Toda la guía</div>
+<div class="toc-others"><a class="other" href="empezar.html" style="--tc:var(--c0)">Empieza aquí</a><a class="other" href="pid.html" style="--tc:var(--c2)">Sistemas controlados y PID</a><a class="other" href="frecuencia.html" style="--tc:var(--c5)">Respuesta en frecuencia</a><a class="other" href="bode.html" style="--tc:var(--c5)">Bode a mano</a><a class="other" href="nyquist.html" style="--tc:var(--c7)">Nyquist a mano</a><a class="other" href="margenes.html" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a class="other" href="diseno.html" style="--tc:var(--c3)">Diseño de compensadores</a><a class="other" href="examenes.html" style="--tc:var(--c8)">Exámenes y teoría</a><a class="other" href="simulacro.html" style="--tc:var(--c4)">Simulacro de examen</a><a class="other" href="entrena.html" style="--tc:var(--c1)">Entrena y autoevalúate</a><a class="other" href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a><a class="other" href="maqueta.html" style="--tc:var(--c2)">Maqueta de tanques</a><a class="other" href="calculadora.html" style="--tc:var(--c8)">Calculadora</a><a class="other" href="consultar.html" style="--tc:var(--c0)">Formulario y glosario</a><a class="other here" href="recursos.html" style="--tc:var(--c0)">Plan de estudio</a></div>
 </nav>
 <main>
-<section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-<div class="sh"><span class="badge" aria-hidden="true">PDF</span><div class="shx"><p class="kick">Consultar</p><h2 id="fuentes">Tu carpeta, PDF a PDF</h2></div></div>
-<p>Qué hay en cada archivo de <code>ing ctrl</code>, para qué te sirve y dónde se usa en esta guía. Los duplicados («(1)», «(2)»…) son copias del mismo archivo.</p>
-<div class="tw"><table>
-<tr><th>Archivo</th><th>Qué es</th><th>Para qué te sirve</th></tr>
-<tr><td>FIRMADO_GDOC_521103002_2026-27</td><td>Guía docente oficial</td><td>Temario, evaluación (70/20/10) y bibliografía → <a href="empezar.html#examen">Cómo es el examen</a></td></tr>
-<tr><td>Ingenieria de control FUEN LATEX</td><td>Tu transcripción de los apuntes manuscritos (ing control fuen)</td><td>8 preguntas de teoría, prácticas y 8 problemas → <a href="problemas.html#profesor">Problemas del profesor</a></td></tr>
-<tr><td>Guia_Ingenieria de control FUEN LATEX_ogata</td><td>Guía ampliada de los apuntes con el Ogata</td><td>Repaso de teoría, prácticas 1–7 y referencias al libro</td></tr>
-<tr><td>ing control fuen (×4)</td><td>Apuntes manuscritos originales (escaneados)</td><td>El original de la transcripción</td></tr>
-<tr><td>Ing_Control_3_2015_3</td><td>Transparencias: respuesta en frecuencia</td><td>Bode por factores, resonancia, Nyquist, márgenes y compensadores → <a href="bode.html#bode">Bode</a>, <a href="nyquist.html#nyquist">Nyquist</a></td></tr>
-<tr><td>Ing_Control_4_2</td><td>Transparencias: acciones básicas, PID</td><td>→ <a href="pid.html#t2">T2</a></td></tr>
-<tr><td>Ing_Control_5_5</td><td>Transparencias: sintonía de PID</td><td>→ <a href="pid.html#t3">T3</a></td></tr>
-<tr><td>Ing_Control_Repaso_Tot_2</td><td>Repaso de control clásico (respuesta temporal, Routh, error)</td><td>Base de los temas 1 y 5 → <a href="pid.html#t1">T1</a></td></tr>
-<tr><td>examen ing control 2024 · Examen IC sept 2015 · Examen sept 2017 · P1 sept2020</td><td>Exámenes</td><td>→ <a href="examenes.html#examenes">Exámenes anteriores</a></td></tr>
-<tr><td>TEORÍA EXAMENES RESUELTA · PROBLEMAS EXAMENES RESUELTOS</td><td>Recopilación manuscrita de cuestiones y problemas de examen</td><td>Cuestiones de los temas 2–5 y problemas de frecuencia</td></tr>
-<tr><td>Documento sin nombre (×2)</td><td>Hojas manuscritas sueltas (escaneadas)</td><td>Cálculos de margen y compensador; sin enunciado legible</td></tr>
-<tr><td>Práctica 2, 3, 4, 6, 7</td><td>Enunciados de prácticas</td><td>Windup y referencia ponderada (2), ZN y asignación de polos (3), maqueta (4), identificación en frecuencia (6), Bode y compensación (7) → <a href="problemas.html#practicas">Prácticas</a></td></tr>
-<tr><td>Explicación trabajos con la maqueta de tanques</td><td>Trabajo de laboratorio con tanques acoplados</td><td>Vale 1 punto sobre 10; tareas y software (Arduino + MATLAB)</td></tr>
-<tr><td>Ingeniería de control I y II</td><td>Apuntes manuscritos de otro alumno (J. Garrido, curso 2019-20, 82 págs.)</td><td>Problemas de compensadores resueltos a mano; incluye el de 20/((s+40)(s²+2s+4)) del problema 6</td></tr>
-<tr><td>Ingenieria_de_Control_Moderna_Ogata_5ed</td><td>Libro de referencia del profesor</td><td>→ <a href="empezar.html#ogata">Qué leer del Ogata</a></td></tr>
-<tr><td>Sistemas de medida y regulación (Rodríguez Mata)</td><td>Libro de instrumentación y regulación</td><td>Sensores, transductores y actuadores: los bloques físicos del lazo del T1</td></tr>
-<tr><td>2019 PID Basics</td><td>Transparencias en inglés (Universidad de Kaunas)</td><td>Introducción visual al PID y sus acciones</td></tr>
-</table></div>
-</section>
 
 <section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-<div class="sh"><span class="badge" aria-hidden="true">Plan</span><div class="shx"><p class="kick">Organizarte</p><h2 id="plan">Plan de estudio</h2></div></div>
+<div class="sh"><span aria-hidden="true" class="badge">Plan</span><div class="shx"><p class="kick">Organizarte</p><h2 id="plan">Plan de estudio</h2></div></div>
 <p>Ordenado por lo que más puntúa. Si tienes menos días, junta bloques y prioriza los marcados.</p>
 <div class="tw"><table>
-<tr><th>Bloque</th><th>Qué hacer</th><th>De tu carpeta</th></tr>
-<tr><td>1</td><td>Bode a mano: las seis piezas y la receta. Dibujar 4 funciones y comprobarlas en el constructor <span class="tag w">clave</span></td><td>Ing_Control_3 pp. 9–23 · Complementarios: Bode asintótico · Práctica 7 ej. 1–3</td></tr>
-<tr><td>2</td><td>MF, MG y ancho de banda analíticos: 10 ejercicios con el generador <span class="tag w">clave</span></td><td>Apuntes problemas 1, 3 y 8 · Complementarios: márgenes</td></tr>
-<tr><td>3</td><td>Nyquist a mano: inicio, final, cortes, Z = N + P. Rehacer el ejemplo de K/(s(s+1)(0,5s+1)) sin mirar <span class="tag w">clave</span></td><td>Ing_Control_3 pp. 24–28 · Ogata 7-3, 7-5, 7-6</td></tr>
-<tr><td>4</td><td>Adelanto y atraso: Ogata 7-26 y 7-27, después los problemas 2, 4, 7 y 8 de los apuntes <span class="tag w">clave</span></td><td>Apuntes pp. 11–22 · Ogata 7-11 a 7-13</td></tr>
+<tr><th>Bloque</th><th>Qué hacer</th><th>Dónde practicar</th></tr>
+<tr><td>1</td><td>Bode a mano: las seis piezas y la receta. Dibujar 4 funciones y comprobarlas en el constructor <span class="tag w">clave</span></td><td>Bode asintótico · Práctica 7 ej. 1–3</td></tr>
+<tr><td>2</td><td>MF, MG y ancho de banda analíticos: 10 ejercicios con el generador <span class="tag w">clave</span></td><td>Problemas resueltos 1, 3 y 8 · márgenes</td></tr>
+<tr><td>3</td><td>Nyquist a mano: inicio, final, cortes, Z = N + P. Rehacer el ejemplo de K/(s(s+1)(0,5s+1)) sin mirar <span class="tag w">clave</span></td><td>Ogata 7-3, 7-5, 7-6</td></tr>
+<tr><td>4</td><td>Adelanto y atraso: Ogata 7-26 y 7-27, después los problemas resueltos 2, 4, 7 y 8 <span class="tag w">clave</span></td><td>Problemas resueltos · Ogata 7-11 a 7-13</td></tr>
 <tr><td>5</td><td>Exámenes completos: sept 2015, junio 2013, sept 2017 y dic 2024, cronometrados (2 h)</td><td>Sección «Exámenes anteriores»</td></tr>
-<tr><td>6</td><td>Cuestiones del PID: windup, setpoint, filtro, discretización. Escribir cada respuesta en 10 líneas</td><td>Apuntes preguntas 2, 3, 6 y 7 · Práctica 2</td></tr>
-<tr><td>7</td><td>Feedforward y cascada: dibujos de memoria con todas las letras</td><td>Apuntes preguntas 1 y 5 · Práctica 5</td></tr>
-<tr><td>8</td><td>Sintonía: ZN (dos métodos), relé y PI por asignación de polos</td><td>Ing_Control_5 · Práctica 3 · P1 sept 2020</td></tr>
+<tr><td>6</td><td>Cuestiones del PID: windup, setpoint, filtro, discretización. Escribir cada respuesta en 10 líneas</td><td>Cuestiones de teoría 2, 3, 6 y 7 · Práctica 2</td></tr>
+<tr><td>7</td><td>Feedforward y cascada: dibujos de memoria con todas las letras</td><td>Cuestiones de teoría 1 y 5 · Práctica 5</td></tr>
+<tr><td>8</td><td>Sintonía: ZN (dos métodos), relé y PI por asignación de polos</td><td>Práctica 3 · P1 sept 2020</td></tr>
 <tr><td>9</td><td>Repaso diario de 15 minutos: test, fichas y generador</td><td>Sección «Autoevaluación»</td></tr>
 </table></div>
 </section>
-<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="consultar.html" style="--tc:var(--c0)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>Σ</i>Formulario y glosario</span></a><a class="pg-card next" href="index.html" style="--tc:var(--c0)"><span class="pg-lab">Siguiente →</span><span class="pg-t">Portada</span></a></nav>
-<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+<nav aria-label="Páginas" class="pager"><a class="pg-card prev" href="consultar.html" style="--tc:var(--c0)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>Σ</i>Formulario y glosario</span></a><a class="pg-card next" href="index.html" style="--tc:var(--c0)"><span class="pg-lab">Siguiente →</span><span class="pg-t">Portada</span></a></nav>
+<footer>Guía no oficial de Ingeniería de Control (UPCT). Bibliografía: K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
 </main>
 </div>
-<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<a aria-label="Volver arriba" class="totop" href="#top" id="totop">↑</a>
 <script src="assets/datos.js"></script>
 <script src="assets/guia.js"></script>
 </body>

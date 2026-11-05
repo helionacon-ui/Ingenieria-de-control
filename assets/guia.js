@@ -403,7 +403,7 @@ const EX=[
 <li>Ecuación característica con el PI: s² + (1 + 3K<sub>p</sub>)/10·s + 3K<sub>p</sub>/(10T<sub>i</sub>) = s² + 2·0,7·0,3·s + 0,3².</li>
 <li>Primer coeficiente: (1 + 3K<sub>p</sub>)/10 = 0,42 → <b>K<sub>p</sub> = 1,067</b>. Segundo: 3·1,067/(10T<sub>i</sub>) = 0,09 → <b>T<sub>i</sub> = 3,56 s</b>.</li></ol>
 <p class="res">C(s) = 1,067·(1 + 1/(3,56s)). Matiz: el PI añade un cero, así que el sobrepico real sale algo mayor que el de la fórmula; por eso se elige ζ con margen.</p>`},
-{t:'Concentración en un reactor ante una entrada senoidal',src:'Feb 2020 · cuestión',tema:'T5',q:'<p>La función de transferencia entre la concentración de compuesto A a la entrada y a la salida es G(s) = K<sub>p</sub>/(τs + 1)², con K<sub>p</sub> = 0,448 y τ = 8,25 min. La concentración de alimentación varía de forma senoidal con ω = 0,2 rad/min.</p><p class="note">Amplitud de entrada 0,1 mol/m³ y límite de 0,05 a la salida, como en los apuntes.</p>',
+{t:'Concentración en un reactor ante una entrada senoidal',src:'Feb 2020 · cuestión',tema:'T5',q:'<p>La función de transferencia entre la concentración de compuesto A a la entrada y a la salida es G(s) = K<sub>p</sub>/(τs + 1)², con K<sub>p</sub> = 0,448 y τ = 8,25 min. La concentración de alimentación varía de forma senoidal con ω = 0,2 rad/min.</p><p class="note">Amplitud de entrada 0,1 mol/m³ y límite de 0,05 a la salida.</p>',
  s:`<ol><li>Régimen senoidal: amplitud de salida = A·|G(jω)|.</li>
 <li>|G(j0,2)| = 0,448/|1 + j·8,25·0,2|² = 0,448/(1 + 1,65²) = 0,448/3,72 = <b>0,120</b>.</li>
 <li>Amplitud de salida = 0,1·0,120 = <b>0,012</b>, menor que 0,05: el proceso amortigua la perturbación lo suficiente y no hace falta controlador.</li>
@@ -544,12 +544,12 @@ const rhp=p=>roots(p).filter(r=>r.re>1e-7).length;
 const BB=[
  {n:'Complementario: 2/(s(1+s)(1+3s))',f:[{k:2},{o:-1},{p:1/3},{p:1}]},
  {n:'Complementario: 2(s+3)/(s²(1+5s))',f:[{k:6},{o:-2},{p:0.2},{z:3}]},
- {n:'Transparencias: 20s(1+s)/((2+0,6s+0,5s²)(10+s))',f:[{k:1},{o:1},{z:1},{pp:[2,0.3]},{p:10}]},
+ {n:'Ejemplo clásico: 20s(1+s)/((2+0,6s+0,5s²)(10+s))',f:[{k:1},{o:1},{z:1},{pp:[2,0.3]},{p:10}]},
  {n:'Práctica 7 ej. 3: 50/((s+0,1)(s+3)(s+5))',f:[{k:50/1.5},{p:0.1},{p:3},{p:5}]},
  {n:'Ogata 7-26: 40/(s(s+2))',f:[{k:20},{o:-1},{p:2}]},
  {n:'Ogata 7-27: 5/(s(s+1)(0,5s+1))',f:[{k:5},{o:-1},{p:1},{p:2}]},
  {n:'Sept 2015: 30/(s+1)²',f:[{k:30},{p:1},{p:1}]},
- {n:'Apuntes P6: 20/((s+40)(s²+2s+4))',f:[{k:0.125},{pp:[2,0.5]},{p:40}]},
+ {n:'Problema 6: 20/((s+40)(s²+2s+4))',f:[{k:0.125},{pp:[2,0.5]},{p:40}]},
  {n:'Práctica 7 ej. 1b: 1/(1+2s)',f:[{k:1},{p:0.5}]},
  {n:'Práctica 6: 2/(1+5s)',f:[{k:2},{p:0.2}]}
 ];
@@ -613,7 +613,7 @@ const NX=[
  {n:'30/(s+1)² · sept 2015',num:[30],den:[1,2,1]},
  {n:'40/(s(s+2)) · Ogata 7-26',num:[40],den:[1,2,0]},
  {n:'(s+3)/(s(s+1)(s+5))',num:[1,3],den:pm([1,0],[1,1],[1,5])},
- {n:'20/((s+40)(s²+2s+4)) · apuntes P6',num:[20],den:pm([1,40],[1,2,4])},
+ {n:'20/((s+40)(s²+2s+4)) · problema 6',num:[20],den:pm([1,40],[1,2,4])},
  {n:'2/(s−1) · polo inestable, P = 1',num:[2],den:[1,-1]}
 ];
 function typeOf(den){let n0=0;for(let k=den.length-1;k>=0&&Math.abs(den[k])<1e-14;k--)n0++;return n0}
@@ -754,74 +754,74 @@ try{$('idGo').addEventListener('click',idMeas);
 }catch(__e){if(window.__DBG)console.warn(__e)}
 
 /* ====================================================================
-   6. Problemas del profesor y ejercicios de prácticas
+   6. Problemas resueltos y ejercicios de prácticas
    ==================================================================== */
 const PROF=[
-{t:'P1 · G(s) = 30/(s²+2s+1): MF, ancho de banda, adelanto y atraso',src:'Apuntes p. 11 · = sept 2015',tema:'MF · BW · T6',
+{t:'P1 · G(s) = 30/(s²+2s+1): MF, ancho de banda, adelanto y atraso',src:'Problema clásico · = sept 2015',tema:'MF · BW · T6',
  q:'<p>Dada G(s) = 30/(s² + 2s + 1), con H = 1: a) margen de fase; b) ancho de banda; c) compensador para MF = 50° y su MG; d) compensador de atraso para MF = 50°.</p>',
  s:`<ol><li><b>a)</b> 30/√((1−ω²)² + (2ω)²) = 1 → <b>ω<sub>c</sub> = 5,39 rad/s</b>; ∠G = −159° → <b>MF = 21°</b>.</li>
-<li><b>b)</b> Lazo cerrado 30/(s² + 2s + 31), ganancia 30/31 ≈ 1. Los apuntes buscan 20·log|T| = −3 dB y obtienen 8,36 rad/s. Bajando 3 dB desde 20·log(30/31) = −0,28 dB, como dice la definición, sale <b>8,45 rad/s</b>. Las dos lecturas valen en el examen si explicas cuál usas.</li>
+<li><b>b)</b> Lazo cerrado 30/(s² + 2s + 31), ganancia 30/31 ≈ 1. El método habitual busca 20·log|T| = −3 dB y obtienen 8,36 rad/s. Bajando 3 dB desde 20·log(30/31) = −0,28 dB, como dice la definición, sale <b>8,45 rad/s</b>. Las dos lecturas valen en el examen si explicas cuál usas.</li>
 <li><b>c) Adelanto</b> con 10° de colchón: φ<sub>max</sub> = 50 − 21 + 10 = 39° → α = 0,227. Se coloca donde |G| = −20·log(1/√α) = −6,43 dB → ω = 7,87 rad/s → T = 1/(7,87·√0,227) = 0,267.</li>
 <li>G<sub>c</sub> = (1 + 0,267s)/(1 + 0,0606s). Comprobado: <b>MF = 53,5°</b>, <b>MG = ∞</b> (la fase no llega a −180°).</li>
-<li><b>d) Atraso.</b> Los apuntes buscan la fase −130° sin colchón: −2·arctan ω = −130° → ω = 2,14 rad/s, donde |G| = 14,61 dB → β = 5,38; cero una década abajo: T = 10/2,14 = 4,67 → G<sub>c</sub> = (1 + 4,67s)/(1 + 25,1s). Comprobado: <b>MF = 45,3°</b>.</li></ol>
-<p class="fix">sin colchón, el atraso de los apuntes se queda en 45°: el propio compensador resta unos 5° en ω<sub>c</sub>. Con 5° de colchón (fase objetivo −125°) sale ω<sub>c</sub> = 1,92, β = 6,40 y MF = 50,1°, que es la solución de la sección de exámenes.</p>`,chk:['30','s^2+2s+1',1,5.39,1]},
-{t:'P2 · G(s) = 4/(s(s+2)): Kv = 20 y MF = 50°',src:'Apuntes p. 12 · = Ogata 7-26',tema:'T6',
+<li><b>d) Atraso.</b> El método habitual busca la fase −130° sin colchón: −2·arctan ω = −130° → ω = 2,14 rad/s, donde |G| = 14,61 dB → β = 5,38; cero una década abajo: T = 10/2,14 = 4,67 → G<sub>c</sub> = (1 + 4,67s)/(1 + 25,1s). Comprobado: <b>MF = 45,3°</b>.</li></ol>
+<p class="fix">sin colchón, el atraso de la solución clásica se queda en 45°: el propio compensador resta unos 5° en ω<sub>c</sub>. Con 5° de colchón (fase objetivo −125°) sale ω<sub>c</sub> = 1,92, β = 6,40 y MF = 50,1°, que es la solución de la sección de exámenes.</p>`,chk:['30','s^2+2s+1',1,5.39,1]},
+{t:'P2 · G(s) = 4/(s(s+2)): Kv = 20 y MF = 50°',src:'= Ogata 7-26',tema:'T6',
  q:'<p>Realimentación unitaria con G(s) = 4/(s(s + 2)). Calcular un compensador para conseguir K<sub>v</sub> = 20 y MF = 50°.</p>',
  s:`<ol><li>K<sub>v</sub> = lím s·G = 2 → hace falta K<sub>c</sub> = 10. Se trabaja con G = 40/(s(s + 2)).</li>
 <li>40/√(ω⁴ + 4ω²) = 1 → <b>ω<sub>c</sub> = 6,16 rad/s</b>; ∠G = −162° → <b>MF = 18°</b>.</li>
 <li>φ<sub>max</sub> = 50 − 18 + 5 = 37° → α = 0,249 → 20·log(1/√α) = 6,045 dB.</li>
 <li>Donde |G| = −6,045 dB: ω = 8,84 rad/s → T = 1/(8,84·√0,249) = 0,226.</li>
 <li>G<sub>c</sub> = 10·(1 + 0,226s)/(1 + 0,0563s). Comprobado: <b>MF = 49,7°</b> (≈ 50°), MG = ∞.</li></ol>`,chk:['40(0.226s+1)','s(s+2)(0.0563s+1)',1,8.84,1]},
-{t:'P3 · Lazo de segundo orden con ζ y ωn',src:'Apuntes p. 13 · problemas de examen',tema:'MF · BW',
+{t:'P3 · Lazo de segundo orden con ζ y ωn',src:'problemas de examen',tema:'MF · BW',
  q:'<p>G(s) = ω<sub>n</sub>²/(s(s + 2ζω<sub>n</sub>)), H = 1. a) MF actual; b) ancho de banda; c) para ζ = 0,1 y ω<sub>n</sub> = 1, el mínimo compensador para MF = 50° y su MG.</p>',
  s:`<ol><li><b>a)</b> Con t = ω²: t² + 4ζ²ω<sub>n</sub>²t − ω<sub>n</sub>⁴ = 0 → ω<sub>c</sub> = ω<sub>n</sub>√(√(4ζ⁴+1) − 2ζ²). MF = 180° + fase en ω<sub>c</sub> (expresión en función solo de ζ).</li>
 <li><b>b)</b> Lazo cerrado de ganancia 1: |T| = 1/√2 da ω<sub>b</sub> = ω<sub>n</sub>√(1 − 2ζ² + √(4ζ⁴ − 4ζ² + 2)).</li>
-<li><b>c)</b> Con ζ = 0,1: ω<sub>c</sub> = 0,99 rad/s y <b>MF = 11,42°</b>. Los apuntes ponen un adelanto con 10° de colchón: φ<sub>max</sub> = 48,58° → α = 0,143 → se coloca en |G| = −8,45 dB → ω = 1,62 → T = 1,63.</li>
+<li><b>c)</b> Con ζ = 0,1: ω<sub>c</sub> = 0,99 rad/s y <b>MF = 11,42°</b>. La solución clásica pone un adelanto con 10° de colchón: φ<sub>max</sub> = 48,58° → α = 0,143 → se coloca en |G| = −8,45 dB → ω = 1,62 → T = 1,63.</li>
 <li>G<sub>c</sub> = (1 + 1,63s)/(1 + 0,233s). Comprobado: <b>MF = 55,6°</b>, MG = ∞.</li></ol>
-<p class="note">«Mínimo compensador» también admite la lectura de una simple ganancia: con K = 0,0438 el MF es exactamente 50° (lo tienes en Exámenes anteriores). El adelanto de los apuntes es más rápido (ω<sub>c</sub> = 1,6 frente a 0,17 rad/s).</p>`,chk:['1.63s+1','s(s+0.2)(0.233s+1)',1,1.62,1]},
-{t:'P4 · G(s) = 1/(s(s+1)(0,5s+1)): Kv = 5, MF = 40°, MG = 10 dB',src:'Apuntes p. 15 · = Ogata 7-27',tema:'T6',
+<p class="note">«Mínimo compensador» también admite la lectura de una simple ganancia: con K = 0,0438 el MF es exactamente 50° (lo tienes en Exámenes anteriores). El adelanto de la solución clásica es más rápido (ω<sub>c</sub> = 1,6 frente a 0,17 rad/s).</p>`,chk:['1.63s+1','s(s+0.2)(0.233s+1)',1,1.62,1]},
+{t:'P4 · G(s) = 1/(s(s+1)(0,5s+1)): Kv = 5, MF = 40°, MG = 10 dB',src:'= Ogata 7-27',tema:'T6',
  q:'<p>Realimentación unitaria. Calcular un compensador para K<sub>v</sub> = 5, MF = 40° y MG = 10 dB.</p>',
- s:`<ol><li>K<sub>v</sub> = 1 → K<sub>c</sub> = 5. G = 5/(s(s + 1)(0,5s + 1)): ω<sub>c</sub> = 1,80 rad/s y fase −193°, así que <b>MF = −13°</b> (los apuntes escriben 348,62° − 360° = −11,38°; es el mismo valor redondeado). <b>Inestable.</b></li>
-<li>Los apuntes prueban primero un adelanto: φ<sub>max</sub> = 40 + 11,38 + 5 = 56,38° → α = 0,091 → ω = 2,96 → T = 1,12 → G<sub>c</sub> = (1 + 1,12s)/(1 + 0,102s).</li>
+ s:`<ol><li>K<sub>v</sub> = 1 → K<sub>c</sub> = 5. G = 5/(s(s + 1)(0,5s + 1)): ω<sub>c</sub> = 1,80 rad/s y fase −193°, así que <b>MF = −13°</b> (la solución clásica escribe 348,62° − 360° = −11,38°; es el mismo valor redondeado). <b>Inestable.</b></li>
+<li>La solución clásica prueba primero un adelanto: φ<sub>max</sub> = 40 + 11,38 + 5 = 56,38° → α = 0,091 → ω = 2,96 → T = 1,12 → G<sub>c</sub> = (1 + 1,12s)/(1 + 0,102s).</li>
 <li>Comprobación real de ese adelanto: <b>MF = 19,0°</b> y MG = 7,0 dB. No cumple.</li>
 <li>La solución correcta es un <b>atraso</b> (Ogata): fase objetivo −128° en ω ≈ 0,46, β = 10, cero en 0,1 → G<sub>c</sub> = 5(10s + 1)/(100s + 1) → <b>MF = 41,6°</b>, <b>MG = 14,3 dB</b>.</li></ol>
-<p class="fix">los apuntes calculan para su adelanto un MF de 42,67° y siguen añadiendo un atraso encima. Al comprobarlo, ese adelanto solo da 19°: la fase de esta planta cae tan deprisa que el adelanto, al subir ω<sub>c</sub>, pierde más de lo que aporta. Basta con el atraso.</p>`,chk:['5','s(s+1)(0.5s+1)',1,1.8,1]},
-{t:'P5 · K/(s(s+1)) con H = 100/(s+10): K para MF = 40°, atenuación y ancho de banda',src:'Apuntes p. 17 · = sept 2017',tema:'MF · T6',
+<p class="fix">la solución clásica calcula para su adelanto un MF de 42,67° y siguen añadiendo un atraso encima. Al comprobarlo, ese adelanto solo da 19°: la fase de esta planta cae tan deprisa que el adelanto, al subir ω<sub>c</sub>, pierde más de lo que aporta. Basta con el atraso.</p>`,chk:['5','s(s+1)(0.5s+1)',1,1.8,1]},
+{t:'P5 · K/(s(s+1)) con H = 100/(s+10): K para MF = 40°, atenuación y ancho de banda',src:'= sept 2017',tema:'MF · T6',
  q:'<p>Lazo cerrado con G(s) = K/(s(s + 1)) y H(s) = 100/(s + 10). a) K para MF = 40°. b) Compensador para MF = 40° y atenuación menor que 0,00001 (−100 dB) para ω ≥ 100 rad/s. c) Plantear el ancho de banda del sistema compensado.</p>',
  s:`<ol><li><b>a)</b> Fase −140°: −90° − arctan ω − arctan(ω/10) = −140° → <b>ω = 0,979 rad/s</b>. Módulo 1 ahí: 100K/(ω√(ω²+1)√(ω²+100)) = 1 → <b>K = 0,138</b>. (MG = 18,0 dB.)</li>
 <li><b>b)</b> Con K = 0,138, en ω = 100 el lazo ya atenúa −97,3 dB: faltan unos 2,7 dB. Hace falta un atraso que baje la alta frecuencia sin estropear el MF.</li>
 <li>Fase objetivo −135° (40° + 5°): ω = 0,844 rad/s. Cero una década abajo: T = 10/0,844 = 11,8 s. Se elige β ≥ 10<sup>2,74/20</sup> ≈ 1,37; con <b>β = 1,4</b>: G<sub>c</sub> = (1 + 11,8s)/(1 + 16,6s).</li>
 <li>Comprobado: <b>MF = 45,9°</b>, MG = 20,7 dB y <b>−100,2 dB en ω = 100</b>. Cumple.</li>
 <li><b>c)</b> Lazo cerrado y/r = G<sub>c</sub>G/(1 + G<sub>c</sub>GH). Su ganancia a baja frecuencia es 1/H(0) = 0,1 (−20 dB); el ancho de banda está donde cae a −23 dB: <b>ω<sub>b</sub> ≈ 1,31 rad/s</b>.</li></ol>
-<p class="fix">los apuntes toman T = 0,1 (pensando en el cero una década por debajo de ω = 100) y β = 1,24. Con esos valores el compensador apenas actúa y no se alcanzan los −100 dB. El cero del atraso va una década por debajo del cruce ω<sub>c</sub>, no de la frecuencia del ruido.</p>`,chk:['13.8','s(s+1)(s+10)',1,0.979,1]},
-{t:'P6 · G(s) = 20/((s+40)(s²+2s+4)): cuatro especificaciones',src:'Apuntes p. 18 · Práctica 7 ej. 4',tema:'MF · T6',
+<p class="fix">la solución clásica toma T = 0,1 (pensando en el cero una década por debajo de ω = 100) y β = 1,24. Con esos valores el compensador apenas actúa y no se alcanzan los −100 dB. El cero del atraso va una década por debajo del cruce ω<sub>c</sub>, no de la frecuencia del ruido.</p>`,chk:['13.8','s(s+1)(s+10)',1,0.979,1]},
+{t:'P6 · G(s) = 20/((s+40)(s²+2s+4)): cuatro especificaciones',src:'Práctica 7 ej. 4',tema:'MF · T6',
  q:'<p>H = 1. Diseñar un compensador para: a) MF ≥ 45° (compensador mínimo); b) MF ≥ 45° y e<sub>p</sub> ≤ 7,5 %; c) MF ≥ 45° y ω<sub>c</sub> = 5 rad/s; d) MF ≥ 45°, e<sub>p</sub> &lt; 7,5 % y ω<sub>c</sub> = 5 rad/s.</p>',
  s:`<ol><li><b>a)</b> La ganancia en continua es 20/(40·4) = 0,125 y el máximo de |G|, cerca de la resonancia, es 0,144. <b>|G| nunca llega a 1: no hay ω<sub>c</sub> y el MF no está definido.</b> El lazo es estable con mucho margen (MG = 44,5 dB en ω = 9,16). Compensador mínimo: ninguno.</li>
 <li><b>b)</b> e<sub>p</sub> = 1/(1 + 20K<sub>c</sub>/160) = 0,075 → <b>K<sub>c</sub> = 98,67</b>. Ahora ω<sub>c</sub> = 7,10 y <b>MF = 6,9°</b> (MG = 4,6 dB).</li>
 <li>Un adelanto con 5° de colchón (α = 0,19) solo llega a 39°: la fase cae rápido por el par complejo. Con 15° de colchón: φ<sub>max</sub> = 53° → <b>α = 0,112</b>, ω<sub>m</sub> = 11,98 → T = 0,250 → G<sub>c</sub> = 98,67·(1 + 0,250s)/(1 + 0,0279s) → <b>MF = 46,1°</b>, MG = 14,8 dB.</li>
 <li><b>c)</b> En ω = 5 la fase es −161,66°: faltan 45 − 18,34 = 26,7°. α = (1 − sen 26,7°)/(1 + sen 26,7°) = 0,381 y T = 1/(5√α) = 0,324. Además hay que <b>elegir K</b> para que el módulo valga 1 en ω = 5: K = 28,9. Resultado: G<sub>c</sub> = 28,9·(1 + 0,324s)/(1 + 0,123s) → ω<sub>c</sub> = 5, <b>MF = 45,0°</b>, MG = 18,6 dB.</li>
 <li><b>d)</b> Con K<sub>c</sub> = 98,67, en ω = 5 el módulo ya es +6,46 dB y el adelanto lo subiría más. Hay que bajar la ganancia en ω = 5 sin tocar la de continua: un <b>adelanto-atraso</b>. Con el adelanto de c) y un atraso de β = 3,41 (cero en 0,1 rad/s) queda ω<sub>c</sub> = 5 y MF = 44,2°; dos grados más de colchón en el adelanto dan los 45°.</li></ol>
-<p class="fix">los apuntes calculan en a) un ω<sub>c</sub> = 2,75 y un MF de 53°, pero |G| no llega a 1 en ninguna frecuencia. En c) y d) sitúan ω<sub>m</sub> en 5 rad/s pero no ajustan la ganancia, así que el cruce real no queda en 5.</p>`,chk:['1973.3','(s+40)(s^2+2s+4)',1,5,1]},
-{t:'P7 · G(s) = 1/(s(s+1)(s+2)): Kv = 10, MF = 50°, MG = 10 dB',src:'Apuntes p. 20',tema:'T6',
+<p class="fix">la solución clásica calcula en a) un ω<sub>c</sub> = 2,75 y un MF de 53°, pero |G| no llega a 1 en ninguna frecuencia. En c) y d) sitúan ω<sub>m</sub> en 5 rad/s pero no ajustan la ganancia, así que el cruce real no queda en 5.</p>`,chk:['1973.3','(s+40)(s^2+2s+4)',1,5,1]},
+{t:'P7 · G(s) = 1/(s(s+1)(s+2)): Kv = 10, MF = 50°, MG = 10 dB',src:'Problema clásico',tema:'T6',
  q:'<p>Conseguir K<sub>v</sub> = 10, MF = 50° y MG = 10 dB.</p>',
  s:`<ol><li>K<sub>v</sub> = 1/2 → K<sub>c</sub> = 20. G = 20/(s(s + 1)(s + 2)): ω<sub>c</sub> = 2,43 rad/s, fase −208° → <b>MF = −28°</b>; ω<sub>180</sub> = √2, MG = −10,5 dB. Inestable.</li>
 <li>Faltan 78° más colchón: un solo adelanto necesitaría φ<sub>max</sub> = 83°, es decir, α = 0,0037. <b>No es realizable</b> (en la práctica α ≥ 0,05, φ ≤ 65°).</li>
 <li><b>Atraso:</b> fase objetivo −180 + 50 + 6 = −124° → ω<sub>c</sub> = 0,412 rad/s; ahí |G| = 26,8 dB → <b>β = 22,0</b>. Cero una década abajo: T = 24,3 s → G<sub>c</sub> = 20·(1 + 24,3s)/(1 + 535s).</li>
 <li>Comprobado: <b>MF = 50,4°</b>, <b>MG = 15,9 dB</b>, K<sub>v</sub> = 10. Cumple todo.</li></ol>
-<p class="fix">los apuntes siguen con el adelanto de α = 0,0037 (un polo 270 veces más rápido que el cero). Cuando falta tanta fase, la herramienta es el atraso o el adelanto-atraso.</p>`,chk:['20','s(s+1)(s+2)',1,2.43,1]},
-{t:'P8 · G(s) = 10/((s+1)(s+4)): MF, ancho de banda y adelanto',src:'Apuntes p. 21',tema:'MF · BW · T6',
+<p class="fix">la solución clásica sigue con el adelanto de α = 0,0037 (un polo 270 veces más rápido que el cero). Cuando falta tanta fase, la herramienta es el atraso o el adelanto-atraso.</p>`,chk:['20','s(s+1)(s+2)',1,2.43,1]},
+{t:'P8 · G(s) = 10/((s+1)(s+4)): MF, ancho de banda y adelanto',src:'Problema clásico',tema:'MF · BW · T6',
  q:'<p>H = 1. a) Margen de fase; b) ancho de banda; c) compensador más sencillo para e<sub>p</sub> = 10 % y MF ≥ 65°; d) MG del sistema compensado.</p>',
  s:`<ol><li><b>a)</b> (ω² + 1)(ω² + 16) = 100 → con t = ω²: t² + 17t − 84 = 0 → t = 4 → <b>ω<sub>c</sub> = 2 rad/s</b>. Fase −arctan 2 − arctan 0,5 = −90° → <b>MF = 90°</b>.</li>
 <li><b>b)</b> Lazo cerrado 10/(s² + 5s + 14), ganancia 10/14 (−2,92 dB). Se busca −5,92 dB: <b>ω<sub>b</sub> = 3,95 rad/s</b>.</li>
 <li><b>c)</b> e<sub>p</sub> = 0,1 → K<sub>c</sub> = 3,6 → G = 36/((s+1)(s+4)): ω<sub>c</sub> = 5,32 rad/s y <b>MF = 47,6°</b>.</li>
 <li>Adelanto con 12° de colchón: φ<sub>max</sub> = 29,4° → α = 0,342; |G| = −4,66 dB en ω<sub>m</sub> = 7,32 → T = 0,234 → G<sub>c</sub> = 3,6·(1 + 0,234s)/(1 + 0,080s) → <b>MF = 65,8°</b>.</li>
 <li><b>d)</b> Orden 2 más un adelanto: la fase nunca llega a −180° → <b>MG = ∞</b>.</li></ol>
-<p class="fix">los apuntes sacan ω<sub>c</sub> = 9,58 y MF = 28,63° en a), y ω<sub>c</sub> = 5,79 con MF = 44,58° en c): en la raíz escriben ω² + 4 donde va ω² + 16. Con 5° de colchón el adelanto se queda en 61°; hacen falta unos 12°.</p>`,chk:['36','(s+1)(s+4)',1,2,1]}
+<p class="fix">la solución clásica saca ω<sub>c</sub> = 9,58 y MF = 28,63° en a), y ω<sub>c</sub> = 5,79 con MF = 44,58° en c): en la raíz escriben ω² + 4 donde va ω² + 16. Con 5° de colchón el adelanto se queda en 61°; hacen falta unos 12°.</p>`,chk:['36','(s+1)(s+4)',1,2,1]}
 ];
 const PRAC=[
 {t:'Ej. 1a · Integrador K/(jω) con K = 1 y K = 10',src:'Práctica 7',tema:'Bode · Nyquist',q:'<p>Obtener el Bode y el diagrama polar. Pendiente del módulo, fase, e influencia de K. Comprobar que en ω = 1 el módulo vale 20·log K.</p>',
  s:`<ol><li>Módulo: 20·log K − 20·log ω → recta de <b>−20 dB/déc</b>. En ω = 1 vale 20·log K: 0 dB con K = 1 y 20 dB con K = 10. K solo desplaza la recta hacia arriba.</li><li>Fase constante <b>−90°</b>, sea cual sea K.</li><li>Polar: todo el semieje imaginario negativo, de −j∞ (ω → 0) al origen (ω → ∞).</li></ol>`,chk:['1','s',1,1,1]},
-{t:'Ej. 1b · Primer orden 1/(1 + jωT) con T = 2',src:'Práctica 7 · apuntes',tema:'Bode',q:'<p>Determinar la frecuencia de corte, el módulo y la fase en ella, y los valores a baja y alta frecuencia.</p>',
+{t:'Ej. 1b · Primer orden 1/(1 + jωT) con T = 2',src:'Práctica 7',tema:'Bode',q:'<p>Determinar la frecuencia de corte, el módulo y la fase en ella, y los valores a baja y alta frecuencia.</p>',
  s:`<ol><li>Esquina (frecuencia de corte): <b>ω = 1/T = 0,5 rad/s</b>. Allí el módulo vale −3 dB (|G| = 0,707) y la fase <b>−45°</b>.</li><li>Baja frecuencia: 0 dB (|G| → 1) y 0°. Alta frecuencia: −20 dB/déc hacia −∞ y fase −90°.</li><li>|G| ≤ 1 siempre y la fase no pasa de −90°: MG = ∞ y no hay cruce de 0 dB salvo en ω = 0.</li></ol>`,chk:['1','2s+1',1,0.5,1]},
 {t:'Ej. 2 · Márgenes y resonancia según ζ',src:'Práctica 7',tema:'MF · resonancia',q:'<p>Para un lazo de segundo orden con ω<sub>n</sub> = 1, obtener MF, frecuencia de resonancia y ancho de banda para ζ = 0,1, 0,3, 0,5, 0,7 y 1.</p><p class="note">El PDF no muestra la función; se toma el lazo abierto G = 1/(s(s + 2ζ)), que da en lazo cerrado el segundo orden con ω<sub>n</sub> = 1.</p>',
  s:`<div class="tw"><table><tr><th>ζ</th><th>ω<sub>c</sub></th><th>MF</th><th>M<sub>r</sub></th><th>ω<sub>r</sub></th><th>ω<sub>b</sub></th></tr>
@@ -831,7 +831,7 @@ const PRAC=[
 <tr><td>0,7</td><td class="num">0,648</td><td class="num">65,2°</td><td class="num">1,00</td><td class="num">0,141</td><td class="num">1,01</td></tr>
 <tr><td>1</td><td class="num">0,486</td><td class="num">76,3°</td><td class="num">—</td><td class="num">—</td><td class="num">0,64</td></tr></table></div>
 <p>Lo que hay que ver: el MF crece con ζ (aproximadamente MF ≈ 100ζ hasta ζ = 0,7), el pico de resonancia desaparece con ζ ≥ 0,707, y el ancho de banda baja al aumentar ζ: más amortiguado es más lento. MG = ∞ en todos (orden 2).</p>`,chk:['1','s(s+0.6)',1,1,1]},
-{t:'Ej. 3 · 50/((s+0,1)(s+3)) con H = 1/(s+5)',src:'Práctica 7 · apuntes',tema:'Bode · MF · MG',q:'<p>Obtener el Bode y los márgenes de fase y de ganancia (D(s) = 1).</p>',
+{t:'Ej. 3 · 50/((s+0,1)(s+3)) con H = 1/(s+5)',src:'Práctica 7',tema:'Bode · MF · MG',q:'<p>Obtener el Bode y los márgenes de fase y de ganancia (D(s) = 1).</p>',
  s:`<ol><li>La ecuación característica es 1 + D·G·H, así que se dibuja el lazo abierto L = 50/((s + 0,1)(s + 3)(s + 5)) = 33,3/((1 + 10s)(1 + s/3)(1 + s/5)).</li>
 <li>Bode: 30,5 dB hasta ω = 0,1; −20 dB/déc hasta 3; −40 hasta 5; −60 después. Fase de 0° a −270°.</li>
 <li>ω<sub>c</sub>: |L| = 1 → <b>ω<sub>c</sub> = 2,36 rad/s</b>; fase −151,1° → <b>MF = 28,9°</b>.</li>

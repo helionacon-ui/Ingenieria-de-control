@@ -1,145 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <title>Empieza aquí · Ingeniería de Control</title>
-<meta name="description" content="Qué es la asignatura, cómo es el examen, qué hay en tus apuntes, qué leer del Ogata y tu lista de progreso.">
-<meta name="theme-color" content="#1f4fd1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<meta content="Qué es la asignatura, cómo es el examen, qué entra y cuánto pesa, qué leer del Ogata y tu lista de progreso." name="description"/>
+<meta content="#1f4fd1" name="theme-color"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <script>
 window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
-<link rel="stylesheet" href="assets/guia.css">
+<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<link href="assets/guia.css" rel="stylesheet"/>
 </head>
 <body class="pg-empezar">
 <div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a></div>
 <header class="topbar">
-  <div class="tb-in">
-    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
-    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
-    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
-  </div>
-  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn on" style="--tc:var(--c0)" aria-current="page"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Tu carpeta y plan de estudio</a></div></nav>
-  <div class="srch-panel" id="srchPanel" hidden>
-    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
-    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
-    <div id="srch-out" class="srch-out" hidden></div>
-  </div>
+<div class="tb-in">
+<a class="brand" href="index.html"><span aria-hidden="true" class="brand-dot"></span><span>Ingeniería de <b>Control</b></span></a>
+<button aria-controls="siteNav" aria-expanded="false" class="tb-btn" id="menuBtn" type="button">Temas</button>
+<button aria-controls="srchPanel" aria-expanded="false" class="tb-btn" id="srchBtn" type="button">Buscar</button>
+</div>
+<nav aria-label="Páginas de la guía" class="site-nav" hidden="" id="siteNav"><div class="tng"><span class="tngl">Empezar</span><a aria-current="page" class="tn on" href="empezar.html" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a class="tn" href="pid.html" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a class="tn" href="frecuencia.html" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a class="tn" href="bode.html" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a class="tn" href="nyquist.html" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a class="tn" href="margenes.html" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a class="tn" href="diseno.html" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a class="tn" href="examenes.html" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a class="tn" href="simulacro.html" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a class="tn" href="entrena.html" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a class="tn" href="problemas.html" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a class="tn" href="maqueta.html" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a class="tn" href="calculadora.html" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a class="tn" href="consultar.html" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a class="tn" href="recursos.html" style="--tc:var(--c0)"><i>Plan</i>Plan de estudio</a></div></nav>
+<div class="srch-panel" hidden="" id="srchPanel">
+<label class="srch-lab" for="srch">Buscar en toda la guía</label>
+<input autocomplete="off" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" spellcheck="false" type="search"/>
+<div class="srch-out" hidden="" id="srch-out"></div>
+</div>
 </header>
 <header class="phero" style="--tc:var(--c0);--tcs:var(--c0s)">
-  <div class="phero-in">
-    <span class="phero-badge" aria-hidden="true">0</span>
-    <div class="phero-txt">
-      <p class="phero-kick">Empezar · página 1 de 15</p>
-      <h1>Empieza aquí</h1>
-      <p class="phero-desc">Qué es la asignatura, cómo es el examen, qué hay en tus apuntes, qué leer del Ogata y tu lista de progreso.</p>
-      <div class="phero-chips"><a href="#t0">Empieza aquí</a><a href="#examen">Cómo es el examen</a><a href="#apuntes">Lo que hay en tus apuntes</a><a href="#ogata">Qué leer del Ogata</a><a href="#progreso">Tu progreso</a></div>
-    </div>
-  </div>
-  <div class="phero-prog" aria-hidden="true"><i style="width:6.7%"></i></div>
+<div class="phero-in">
+<span aria-hidden="true" class="phero-badge">0</span>
+<div class="phero-txt">
+<p class="phero-kick">Empezar · página 1 de 15</p>
+<h1>Empieza aquí</h1>
+<p class="phero-desc">Qué es la asignatura, cómo es el examen, qué entra y cuánto pesa, qué leer del Ogata y tu lista de progreso.</p>
+<div class="phero-chips"><a href="#t0">Empieza aquí</a><a href="#examen">Cómo es el examen</a><a href="#apuntes">Qué entra y cuánto pesa</a><a href="#ogata">Qué leer del Ogata</a><a href="#progreso">Tu progreso</a></div>
+</div>
+</div>
+<div aria-hidden="true" class="phero-prog"><i style="width:6.7%"></i></div>
 </header>
 <div class="wrap" id="top">
-<nav class="toc" aria-label="Índice">
-  <div class="grp">En esta página</div>
-  <a href="#t0" style="--tc:var(--c0)">Empieza aquí</a><a href="#examen" style="--tc:var(--c0)">Cómo es el examen</a><a href="#apuntes" style="--tc:var(--c0)">Lo que hay en tus apuntes</a><a href="#ogata" style="--tc:var(--c0)">Qué leer del Ogata</a><a href="#progreso" style="--tc:var(--c0)">Tu progreso</a>
-  <div class="grp toc-others">Toda la guía</div>
-  <div class="toc-others"><a href="empezar.html" class="other here" style="--tc:var(--c0)">Empieza aquí</a><a href="pid.html" class="other" style="--tc:var(--c2)">Sistemas controlados y PID</a><a href="frecuencia.html" class="other" style="--tc:var(--c5)">Respuesta en frecuencia</a><a href="bode.html" class="other" style="--tc:var(--c5)">Bode a mano</a><a href="nyquist.html" class="other" style="--tc:var(--c7)">Nyquist a mano</a><a href="margenes.html" class="other" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a href="diseno.html" class="other" style="--tc:var(--c3)">Diseño de compensadores</a><a href="examenes.html" class="other" style="--tc:var(--c8)">Exámenes y teoría</a><a href="simulacro.html" class="other" style="--tc:var(--c4)">Simulacro de examen</a><a href="entrena.html" class="other" style="--tc:var(--c1)">Entrena y autoevalúate</a><a href="problemas.html" class="other" style="--tc:var(--c8)">Problemas resueltos</a><a href="maqueta.html" class="other" style="--tc:var(--c2)">Maqueta de tanques</a><a href="calculadora.html" class="other" style="--tc:var(--c8)">Calculadora</a><a href="consultar.html" class="other" style="--tc:var(--c0)">Formulario y glosario</a><a href="recursos.html" class="other" style="--tc:var(--c0)">Tu carpeta y plan de estudio</a></div>
+<nav aria-label="Índice" class="toc">
+<div class="grp">En esta página</div>
+<a href="#t0" style="--tc:var(--c0)">Empieza aquí</a><a href="#examen" style="--tc:var(--c0)">Cómo es el examen</a><a href="#apuntes" style="--tc:var(--c0)">Qué entra y cuánto pesa</a><a href="#ogata" style="--tc:var(--c0)">Qué leer del Ogata</a><a href="#progreso" style="--tc:var(--c0)">Tu progreso</a>
+<div class="grp toc-others">Toda la guía</div>
+<div class="toc-others"><a class="other here" href="empezar.html" style="--tc:var(--c0)">Empieza aquí</a><a class="other" href="pid.html" style="--tc:var(--c2)">Sistemas controlados y PID</a><a class="other" href="frecuencia.html" style="--tc:var(--c5)">Respuesta en frecuencia</a><a class="other" href="bode.html" style="--tc:var(--c5)">Bode a mano</a><a class="other" href="nyquist.html" style="--tc:var(--c7)">Nyquist a mano</a><a class="other" href="margenes.html" style="--tc:var(--c6)">Margen de fase y de ganancia</a><a class="other" href="diseno.html" style="--tc:var(--c3)">Diseño de compensadores</a><a class="other" href="examenes.html" style="--tc:var(--c8)">Exámenes y teoría</a><a class="other" href="simulacro.html" style="--tc:var(--c4)">Simulacro de examen</a><a class="other" href="entrena.html" style="--tc:var(--c1)">Entrena y autoevalúate</a><a class="other" href="problemas.html" style="--tc:var(--c8)">Problemas resueltos</a><a class="other" href="maqueta.html" style="--tc:var(--c2)">Maqueta de tanques</a><a class="other" href="calculadora.html" style="--tc:var(--c8)">Calculadora</a><a class="other" href="consultar.html" style="--tc:var(--c0)">Formulario y glosario</a><a class="other" href="recursos.html" style="--tc:var(--c0)">Plan de estudio</a></div>
 </nav>
 <main>
 <section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-  <div class="sh"><span class="badge" aria-hidden="true">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="t0">Empieza aquí</h2><p class="sub2">Qué es controlar algo y las cuatro herramientas matemáticas que usa toda la asignatura.</p></div></div>
-
-  <div class="cero">
-    <div class="label">Desde cero · la ducha</div>
-    <p>Abres la ducha y quieres el agua a 38 °C. Tocas el agua con la mano (eso es un <b>sensor</b>), notas que está fría, piensas «le falta» (eso es el <b>controlador</b>) y giras el grifo (el <b>actuador</b>). Repites hasta que está bien. Si alguien abre otro grifo de la casa, el agua se enfría de golpe: es una <b>perturbación</b>, y tú la corriges sin pensarlo.</p>
-    <p>Eso es un <b>lazo cerrado</b>: medir, comparar con lo que quieres y corregir. Si girases el grifo a una posición fija y te metieras sin tocar el agua, sería <b>lazo abierto</b>: funciona solo mientras nada cambie. Toda la asignatura trata de diseñar bien ese «cerebro» que decide cuánto girar el grifo.</p>
-  </div>
-
-  <figure class="fig">
-    <div class="ctrl">
-      <div class="seg" role="group" aria-label="Modo">
-        <button id="m0open" aria-pressed="false">Lazo abierto</button>
-        <button id="m0p" aria-pressed="true">Cerrado con P</button>
-        <button id="m0pi" aria-pressed="false">Cerrado con PI</button>
-      </div>
-      <label for="k0">Kp = <span id="k0V" class="mono">3.0</span><input id="k0" type="range" min="0.2" max="10" step="0.1" value="3"></label>
-      <div class="readout" id="r0"></div>
-    </div>
-    <div class="plot" id="p0"></div>
-    <figcaption><b>Un horno que quiere estar en 1 (consigna).</b> Planta G(s) = 1/(5s+1). En t = 20 s entra una perturbación que le quita calor. En lazo abierto nadie la corrige. Con P el lazo la corrige solo en parte y deja un error permanente. Con PI la elimina del todo.</figcaption>
-    <p class="try">sube Kp con el modo P: el error baja pero nunca llega a cero. Después cambia a PI y mira cómo desaparece.</p>
-  </figure>
-
-  <h3>Las cuatro herramientas</h3>
-  <div class="prose">
-    <p><b>1. La transformada de Laplace convierte derivadas en multiplicaciones.</b> Un sistema físico se describe con ecuaciones diferenciales, que son difíciles de manejar. Laplace cambia la variable tiempo t por una variable s, y derivar pasa a ser multiplicar por s. Con eso, la ecuación diferencial se convierte en una división de polinomios.</p>
-    <p><b>2. La función de transferencia G(s) es salida entre entrada.</b> Por ejemplo, G(s) = 1/(5s+1) dice: «este sistema reacciona con un retraso de unos 5 segundos». Es todo lo que necesitas saber del sistema para controlarlo. Las raíces del denominador son los <b>polos</b>; deciden lo rápido que responde y si es estable. Polos con parte real negativa: estable. Positiva: la salida se dispara.</p>
-    <p><b>3. Los decibelios miden «cuántas veces» en una escala cómoda.</b> dB = 20·log₁₀(ganancia). Multiplicar por 10 son +20 dB; por 2, unos +6 dB; dividir por 2, −6 dB; 1/√2 son −3 dB, y 1 son 0 dB. Así las multiplicaciones de bloques en serie pasan a ser sumas.</p>
-    <p><b>4. Un número complejo es una flecha.</b> Si sustituyes s por jω (ω es la frecuencia de una senoide), G(jω) es un número complejo. Su <b>módulo</b> (lo larga que es la flecha) dice cuánto se amplifica la senoide, y su <b>argumento</b> (el ángulo de la flecha) dice cuánto se retrasa. Mueve ω abajo para verlo.</p>
-  </div>
-
-  <figure class="fig">
-    <div class="ctrl">
-      <label for="w0">ω = <span id="w0V" class="mono">1.00</span> rad/s<input id="w0" type="range" min="-2" max="2" step="0.01" value="0"></label>
-      <div class="readout" id="rw0"></div>
-    </div>
-    <div class="figs2">
-      <div class="plot" id="pVec"></div>
-      <div class="plot" id="pVecBode"></div>
-    </div>
-    <figcaption><b>G(jω) = 1/(1 + jω) como flecha.</b> A la izquierda, la punta de la flecha recorre una semicircunferencia al subir ω: se acorta (atenúa más) y gira hacia −90° (retrasa más). A la derecha, el mismo punto sobre el diagrama de Bode: el módulo en dB y la fase en grados. El diagrama de Bode no es más que esto, dibujado para todas las frecuencias.</figcaption>
-  </figure>
-
-  <div class="prose">
-    <p><b>Cómo encajan los temas.</b> El Tema 1 explica cómo se comporta un sistema (rapidez, oscilación, error). Los Temas 2–4 enseñan el controlador más usado en la industria, el PID, cómo ajustarlo y cómo combinar varios lazos. Los Temas 5–6 enseñan a mirar el sistema en frecuencia y a diseñar el controlador con el diagrama de Bode, que es el problema grande del examen.</p>
-  </div>
+<div class="sh"><span aria-hidden="true" class="badge">0</span><div class="shx"><p class="kick">Empezar</p><h2 id="t0">Empieza aquí</h2><p class="sub2">Qué es controlar algo y las cuatro herramientas matemáticas que usa toda la asignatura.</p></div></div>
+<div class="cero">
+<div class="label">Desde cero · la ducha</div>
+<p>Abres la ducha y quieres el agua a 38 °C. Tocas el agua con la mano (eso es un <b>sensor</b>), notas que está fría, piensas «le falta» (eso es el <b>controlador</b>) y giras el grifo (el <b>actuador</b>). Repites hasta que está bien. Si alguien abre otro grifo de la casa, el agua se enfría de golpe: es una <b>perturbación</b>, y tú la corriges sin pensarlo.</p>
+<p>Eso es un <b>lazo cerrado</b>: medir, comparar con lo que quieres y corregir. Si girases el grifo a una posición fija y te metieras sin tocar el agua, sería <b>lazo abierto</b>: funciona solo mientras nada cambie. Toda la asignatura trata de diseñar bien ese «cerebro» que decide cuánto girar el grifo.</p>
+</div>
+<figure class="fig">
+<div class="ctrl">
+<div aria-label="Modo" class="seg" role="group">
+<button aria-pressed="false" id="m0open">Lazo abierto</button>
+<button aria-pressed="true" id="m0p">Cerrado con P</button>
+<button aria-pressed="false" id="m0pi">Cerrado con PI</button>
+</div>
+<label for="k0">Kp = <span class="mono" id="k0V">3.0</span><input id="k0" max="10" min="0.2" step="0.1" type="range" value="3"/></label>
+<div class="readout" id="r0"></div>
+</div>
+<div class="plot" id="p0"></div>
+<figcaption><b>Un horno que quiere estar en 1 (consigna).</b> Planta G(s) = 1/(5s+1). En t = 20 s entra una perturbación que le quita calor. En lazo abierto nadie la corrige. Con P el lazo la corrige solo en parte y deja un error permanente. Con PI la elimina del todo.</figcaption>
+<p class="try">sube Kp con el modo P: el error baja pero nunca llega a cero. Después cambia a PI y mira cómo desaparece.</p>
+</figure>
+<h3>Las cuatro herramientas</h3>
+<div class="prose">
+<p><b>1. La transformada de Laplace convierte derivadas en multiplicaciones.</b> Un sistema físico se describe con ecuaciones diferenciales, que son difíciles de manejar. Laplace cambia la variable tiempo t por una variable s, y derivar pasa a ser multiplicar por s. Con eso, la ecuación diferencial se convierte en una división de polinomios.</p>
+<p><b>2. La función de transferencia G(s) es salida entre entrada.</b> Por ejemplo, G(s) = 1/(5s+1) dice: «este sistema reacciona con un retraso de unos 5 segundos». Es todo lo que necesitas saber del sistema para controlarlo. Las raíces del denominador son los <b>polos</b>; deciden lo rápido que responde y si es estable. Polos con parte real negativa: estable. Positiva: la salida se dispara.</p>
+<p><b>3. Los decibelios miden «cuántas veces» en una escala cómoda.</b> dB = 20·log₁₀(ganancia). Multiplicar por 10 son +20 dB; por 2, unos +6 dB; dividir por 2, −6 dB; 1/√2 son −3 dB, y 1 son 0 dB. Así las multiplicaciones de bloques en serie pasan a ser sumas.</p>
+<p><b>4. Un número complejo es una flecha.</b> Si sustituyes s por jω (ω es la frecuencia de una senoide), G(jω) es un número complejo. Su <b>módulo</b> (lo larga que es la flecha) dice cuánto se amplifica la senoide, y su <b>argumento</b> (el ángulo de la flecha) dice cuánto se retrasa. Mueve ω abajo para verlo.</p>
+</div>
+<figure class="fig">
+<div class="ctrl">
+<label for="w0">ω = <span class="mono" id="w0V">1.00</span> rad/s<input id="w0" max="2" min="-2" step="0.01" type="range" value="0"/></label>
+<div class="readout" id="rw0"></div>
+</div>
+<div class="figs2">
+<div class="plot" id="pVec"></div>
+<div class="plot" id="pVecBode"></div>
+</div>
+<figcaption><b>G(jω) = 1/(1 + jω) como flecha.</b> A la izquierda, la punta de la flecha recorre una semicircunferencia al subir ω: se acorta (atenúa más) y gira hacia −90° (retrasa más). A la derecha, el mismo punto sobre el diagrama de Bode: el módulo en dB y la fase en grados. El diagrama de Bode no es más que esto, dibujado para todas las frecuencias.</figcaption>
+</figure>
+<div class="prose">
+<p><b>Cómo encajan los temas.</b> El Tema 1 explica cómo se comporta un sistema (rapidez, oscilación, error). Los Temas 2–4 enseñan el controlador más usado en la industria, el PID, cómo ajustarlo y cómo combinar varios lazos. Los Temas 5–6 enseñan a mirar el sistema en frecuencia y a diseñar el controlador con el diagrama de Bode, que es el problema grande del examen.</p>
+</div>
 </section>
-
 <section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-<div class="sh"><span class="badge" aria-hidden="true">i</span><div class="shx"><p class="kick">Empezar</p><h2 id="examen">Cómo es el examen</h2></div></div>
-<p>Los exámenes de tu carpeta (junio 2013, septiembre 2015, 2017 y 2020, febrero 2020 y diciembre 2024) siguen siempre el mismo molde:</p>
+<div class="sh"><span aria-hidden="true" class="badge">i</span><div class="shx"><p class="kick">Empezar</p><h2 id="examen">Cómo es el examen</h2></div></div>
+<p>Los exámenes de otros años (junio 2013, septiembre 2015, 2017 y 2020, febrero 2020 y diciembre 2024) siguen siempre el mismo molde:</p>
 <div class="grid2">
-  <div class="box key"><h4>Problema de frecuencia · 3–4 puntos</h4><p>Siempre está. Pide el <b>MF</b> actual, el <b>MG</b>, el <b>ancho de banda</b> y diseñar un compensador de <b>adelanto o atraso</b> que cumpla un MF (y a veces un MG, un error o una atenuación). Para resolverlo tienes que saber leer o dibujar el Bode.</p></div>
-  <div class="box key"><h4>Cuestiones · 1 punto cada una</h4><p>Tres o cuatro: un problema del PID y su solución (windup, setpoint en escalón, discretización), dibujar un diagrama (feedforward, cascada), un método de sintonía (Ziegler–Nichols, relé) o la salida ante una senoide.</p></div>
+<div class="box key"><h4>Problema de frecuencia · 3–4 puntos</h4><p>Siempre está. Pide el <b>MF</b> actual, el <b>MG</b>, el <b>ancho de banda</b> y diseñar un compensador de <b>adelanto o atraso</b> que cumpla un MF (y a veces un MG, un error o una atenuación). Para resolverlo tienes que saber leer o dibujar el Bode.</p></div>
+<div class="box key"><h4>Cuestiones · 1 punto cada una</h4><p>Tres o cuatro: un problema del PID y su solución (windup, setpoint en escalón, discretización), dibujar un diagrama (feedforward, cascada), un método de sintonía (Ziegler–Nichols, relé) o la salida ante una senoide.</p></div>
 </div>
 <div class="box key">
-<h4>Evaluación según la guía docente 2026-27</h4>
+<h4>Evaluación (curso 2026-27)</h4>
 <ul>
 <li><b>Examen escrito, 70 %.</b> Un único examen final; necesitas al menos un <b>4 sobre 10</b> en él para aprobar la asignatura.</li>
 <li><b>Prácticas, 20 %.</b> Informe de cada práctica por grupos y discusión oral de uno de ellos (o examen de prácticas).</li>
 <li><b>Actividades de clase, 10 %.</b> Seminarios, problemas en grupo y trabajos.</li>
 <li>El <b>trabajo con la maqueta de tanques acoplados</b> del laboratorio vale <b>1 punto sobre 10 para el examen</b>: exposición del estudio de la planta, identificación, lazos propuestos, simulación y control real.</li>
 </ul>
-<p class="muted" style="margin:8px 0 0;font-size:14px">Profesor: Julio José Ibarrola Lacalle (juliojose.ibarrola@upct.es) · Área de Ingeniería de Sistemas y Automática · 4,5 ECTS.</p>
+<p class="muted" style="margin:8px 0 0;font-size:14px">Área de Ingeniería de Sistemas y Automática · 4,5 ECTS.</p>
 </div>
-<p>El profesor corrige el <b>método</b> más que el número final: escribe siempre la frecuencia de cruce, la fase en ese punto y la fórmula que aplicas. Sus apuntes resuelven los problemas siempre con el mismo esquema, y es el que sigue esta guía.</p>
+<p>En la corrección cuenta más el <b>método</b> que el número final: escribe siempre la frecuencia de cruce, la fase en ese punto y la fórmula que aplicas. Los problemas se resuelven siempre con el mismo esquema, y es el que sigue esta guía.</p>
 </section>
-
 <section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-<div class="sh"><span class="badge" aria-hidden="true">Clase</span><div class="shx"><p class="kick">Empezar</p><h2 id="apuntes">Lo que hay en tus apuntes</h2></div></div>
-<p>He contrastado la guía con tu transcripción a LaTeX de los apuntes manuscritos (<code>Ingenieria de control FUEN LATEX.pdf</code>, 24 págs.), con las transparencias del profesor (<code>Ing_Control_3, 4 y 5</code>) y con las prácticas. Esto es lo que se vio y cuánto pesa:</p>
+<div class="sh"><span aria-hidden="true" class="badge">Clase</span><div class="shx"><p class="kick">Empezar</p><h2 id="apuntes">Qué entra y cuánto pesa</h2></div></div>
+<p>Esto es lo que entra y cuánto pesa:</p>
 <div class="tw"><table>
-<tr><th>Apartado</th><th>Dónde está en tu carpeta</th><th>Prioridad</th></tr>
-<tr><td>MF, MG, ancho de banda, compensadores de adelanto y atraso</td><td>Apuntes: problemas 1–8 · Ing_Control_3 · Práctica 7</td><td><span class="tag w">máxima</span></td></tr>
-<tr><td>Diagrama de Bode por factores (asíntotas, resonancia)</td><td>Ing_Control_3 pp. 9–20 · Práctica 7 ej. 1–4</td><td><span class="tag w">máxima</span></td></tr>
-<tr><td>Nyquist, criterio Z = N + P, diagramas polares</td><td>Ing_Control_3 pp. 24–28 · Práctica 7 </td><td><span class="tag w">alta</span></td></tr>
-<tr><td>Salida ante una senoide</td><td>Apuntes: preguntas 4 y 8 · Ing_Control_3 pp. 1–5</td><td><span class="tag w">alta</span></td></tr>
-<tr><td>Windup, referencia ponderada, filtro derivativo, discretización</td><td>Apuntes: preguntas 2, 3 y 7 · Práctica 2 · Ing_Control_4</td><td><span class="tag w">alta</span></td></tr>
-<tr><td>Feedforward y cascada</td><td>Apuntes: preguntas 1, 5 y 7 · Práctica 5</td><td><span class="tag w">alta</span></td></tr>
-<tr><td>Ziegler–Nichols, relé, asignación de polos</td><td>Apuntes: práctica 3 · Ing_Control_5 · Práctica 3 y 4</td><td><span class="tag">media</span></td></tr>
-<tr><td>Identificación experimental del Bode</td><td>Práctica 6 (motor DC, G = 2/(1+5s))</td><td><span class="tag">media</span></td></tr>
+<tr><th>Apartado</th><th>Prioridad</th></tr>
+<tr><td>MF, MG, ancho de banda, compensadores de adelanto y atraso</td><td><span class="tag w">máxima</span></td></tr>
+<tr><td>Diagrama de Bode por factores (asíntotas, resonancia)</td><td><span class="tag w">máxima</span></td></tr>
+<tr><td>Nyquist, criterio Z = N + P, diagramas polares</td><td><span class="tag w">alta</span></td></tr>
+<tr><td>Salida ante una senoide</td><td><span class="tag w">alta</span></td></tr>
+<tr><td>Windup, referencia ponderada, filtro derivativo, discretización</td><td><span class="tag w">alta</span></td></tr>
+<tr><td>Feedforward y cascada</td><td><span class="tag w">alta</span></td></tr>
+<tr><td>Ziegler–Nichols, relé, asignación de polos</td><td><span class="tag">media</span></td></tr>
+<tr><td>Identificación experimental del Bode</td><td><span class="tag">media</span></td></tr>
 </table></div>
-<div class="box trap"><h4>Ojo: tus apuntes tienen errores de cálculo</h4><p>Al recalcular los 8 problemas de los apuntes he encontrado cuatro resultados equivocados: el MF del problema 8 (es 90°, no 28,6°), el del problema 6 (no existe: |G| nunca llega a 0 dB), el adelanto del problema 7 (α = 0,0037 no es realizable) y la comprobación del adelanto del problema 4 (el MF se queda en 19°, no 42°). Los tienes corregidos en <a href="problemas.html#profesor">Problemas de los apuntes del profesor</a>. El método de los apuntes es el correcto; fallan las cuentas.</p></div>
+<div class="box trap"><h4>Ojo: algunos resultados que circulan están mal</h4><p>Al recalcular los 8 problemas clásicos de la asignatura salen cuatro resultados equivocados: el MF del problema 8 (es 90°, no 28,6°), el del problema 6 (no existe: |G| nunca llega a 0 dB), el adelanto del problema 7 (α = 0,0037 no es realizable) y la comprobación del adelanto del problema 4 (el MF se queda en 19°, no 42°). Los tienes corregidos en <a href="problemas.html#profesor">Problemas resueltos</a>. El método es el correcto; fallan las cuentas.</p></div>
 </section>
-
 <section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-<div class="sh"><span class="badge" aria-hidden="true">Bib</span><div class="shx"><p class="kick">Empezar</p><h2 id="ogata">Qué leer del Ogata</h2></div></div>
-<p>El profesor sigue mucho el <i>Ingeniería de control moderna</i> de Ogata (5.ª ed.), que tienes en la carpeta. Las páginas son las impresas en el libro. Los ejemplos de la última columna son los que conviene rehacer a mano; los «Ejemplos de problemas y soluciones» del final de cada capítulo (pp. 521–561 y 614–641) son el mejor banco de ejercicios extra.</p>
+<div class="sh"><span aria-hidden="true" class="badge">Bib</span><div class="shx"><p class="kick">Empezar</p><h2 id="ogata">Qué leer del Ogata</h2></div></div>
+<p>La asignatura sigue mucho el <i>Ingeniería de control moderna</i> de Ogata (5.ª ed.). Las páginas son las impresas en el libro. Los ejemplos de la última columna son los que conviene rehacer a mano; los «Ejemplos de problemas y soluciones» del final de cada capítulo (pp. 521–561 y 614–641) son el mejor banco de ejercicios extra.</p>
 <div class="tw"><table>
 <tr><th>Tema del examen</th><th>Sección</th><th>Páginas</th><th>Ejemplo para rehacer</th></tr>
 <tr><td>Segundo orden: ζ, ωn, Mp, ts</td><td>5-3</td><td>164–179</td><td>—</td></tr>
@@ -156,32 +149,31 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg
 <tr><td>Ziegler–Nichols (tablas 8-1 y 8-2)</td><td>8-2</td><td>568–577</td><td>Ejemplo 8-1, p. 572</td></tr>
 <tr><td>PI-D, I-PD, dos grados de libertad</td><td>8-5, 8-6</td><td>590–595</td><td>—</td></tr>
 </table></div>
-<p class="muted" style="font-size:14px">El Ogata no trata el windup, el relé, el feedforward ni la cascada. Para eso están las transparencias Ing_Control_4 y 5, las prácticas 2, 3 y 5, y el Åström (<i>PID Controllers</i>), que es bibliografía básica.</p>
+<p class="muted" style="font-size:14px">El Ogata no trata el windup, el relé, el feedforward ni la cascada. Para eso están las prácticas 2, 3 y 5 y el Åström (<i>PID Controllers</i>), que es bibliografía básica.</p>
 </section>
-
 <section class="sec" style="--tc:var(--c0);--tcs:var(--c0s)">
-<div class="sh"><span class="badge" aria-hidden="true">✓</span><div class="shx"><p class="kick">Empezar</p><h2 id="progreso">Tu progreso</h2></div></div>
+<div class="sh"><span aria-hidden="true" class="badge">✓</span><div class="shx"><p class="kick">Empezar</p><h2 id="progreso">Tu progreso</h2></div></div>
 <p class="muted">Marca cada punto cuando seas capaz de hacerlo sin mirar la solución. Se guarda en este navegador.</p>
-<div class="bar" aria-hidden="true"><i id="barfill"></i></div>
-<p id="bartxt" class="muted" style="margin:0 0 8px;font-size:14px">0 de 10</p>
+<div aria-hidden="true" class="bar"><i id="barfill"></i></div>
+<p class="muted" id="bartxt" style="margin:0 0 8px;font-size:14px">0 de 10</p>
 <div id="checks">
-  <div class="check"><input type="checkbox" id="pg1"><label for="pg1">Calcular la salida ante una senoide (módulo y fase de G(jω))</label></div>
-  <div class="check"><input type="checkbox" id="pg2"><label for="pg2">Dibujar el Bode asintótico de módulo de cualquier G(s) con polos, ceros e integradores</label></div>
-  <div class="check"><input type="checkbox" id="pg3"><label for="pg3">Dibujar el Bode de fase (asíntotas de 45°/década) y un factor de segundo orden con resonancia</label></div>
-  <div class="check"><input type="checkbox" id="pg4"><label for="pg4">Dibujar el Nyquist a mano: inicio, final, cortes con los ejes y Z = N + P</label></div>
-  <div class="check"><input type="checkbox" id="pg5"><label for="pg5">Calcular MF y MG analíticamente (cruce con t = ω² y parte imaginaria cero)</label></div>
-  <div class="check"><input type="checkbox" id="pg6"><label for="pg6">Calcular el ancho de banda en lazo cerrado</label></div>
-  <div class="check"><input type="checkbox" id="pg7"><label for="pg7">Diseñar un adelanto y un atraso, y comprobar el MF y el MG finales</label></div>
-  <div class="check"><input type="checkbox" id="pg8"><label for="pg8">Windup, setpoint en escalón, filtro derivativo y discretización del PID</label></div>
-  <div class="check"><input type="checkbox" id="pg9"><label for="pg9">Feedforward y cascada: ecuaciones y dibujo de memoria</label></div>
-  <div class="check"><input type="checkbox" id="pg10"><label for="pg10">Ziegler–Nichols (dos métodos), relé y PI por asignación de polos</label></div>
+<div class="check"><input id="pg1" type="checkbox"/><label for="pg1">Calcular la salida ante una senoide (módulo y fase de G(jω))</label></div>
+<div class="check"><input id="pg2" type="checkbox"/><label for="pg2">Dibujar el Bode asintótico de módulo de cualquier G(s) con polos, ceros e integradores</label></div>
+<div class="check"><input id="pg3" type="checkbox"/><label for="pg3">Dibujar el Bode de fase (asíntotas de 45°/década) y un factor de segundo orden con resonancia</label></div>
+<div class="check"><input id="pg4" type="checkbox"/><label for="pg4">Dibujar el Nyquist a mano: inicio, final, cortes con los ejes y Z = N + P</label></div>
+<div class="check"><input id="pg5" type="checkbox"/><label for="pg5">Calcular MF y MG analíticamente (cruce con t = ω² y parte imaginaria cero)</label></div>
+<div class="check"><input id="pg6" type="checkbox"/><label for="pg6">Calcular el ancho de banda en lazo cerrado</label></div>
+<div class="check"><input id="pg7" type="checkbox"/><label for="pg7">Diseñar un adelanto y un atraso, y comprobar el MF y el MG finales</label></div>
+<div class="check"><input id="pg8" type="checkbox"/><label for="pg8">Windup, setpoint en escalón, filtro derivativo y discretización del PID</label></div>
+<div class="check"><input id="pg9" type="checkbox"/><label for="pg9">Feedforward y cascada: ecuaciones y dibujo de memoria</label></div>
+<div class="check"><input id="pg10" type="checkbox"/><label for="pg10">Ziegler–Nichols (dos métodos), relé y PI por asignación de polos</label></div>
 </div>
 </section>
-<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="index.html" style="--tc:var(--c0)"><span class="pg-lab">← Anterior</span><span class="pg-t">Portada</span></a><a class="pg-card next" href="pid.html" style="--tc:var(--c2)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>PID</i>Sistemas controlados y PID</span></a></nav>
-<footer>Basado en la guía docente 2026-27 de Ingeniería de Control (UPCT), los exámenes de 2013, 2015, 2017, 2020 y 2024, los apuntes manuscritos del profesor y su transcripción, las transparencias Ing_Control_3 a 5, las prácticas 2 a 7, una colección de ejercicios complementarios y K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+<nav aria-label="Páginas" class="pager"><a class="pg-card prev" href="index.html" style="--tc:var(--c0)"><span class="pg-lab">← Anterior</span><span class="pg-t">Portada</span></a><a class="pg-card next" href="pid.html" style="--tc:var(--c2)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>PID</i>Sistemas controlados y PID</span></a></nav>
+<footer>Guía no oficial de Ingeniería de Control (UPCT). Bibliografía: K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
 </main>
 </div>
-<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<a aria-label="Volver arriba" class="totop" href="#top" id="totop">↑</a>
 <script src="assets/datos.js"></script>
 <script src="assets/guia.js"></script>
 </body>
