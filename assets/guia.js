@@ -1450,3 +1450,9 @@ try{document.addEventListener('keydown',e=>{if(e.key==='Escape'){['siteNav','src
 let tt;try{tt=g('totop');}catch(__e){if(window.__DBG)console.warn(__e)}try{if(tt)window.addEventListener('scroll',()=>tt.classList.toggle('show',scrollY>900),{passive:true});
 }catch(__e){if(window.__DBG)console.warn(__e)}
 })();
+
+;
+/* vídeos de YouTube: se cargan solo al pulsar (más rápido y sin cookies hasta entonces) */
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button.yt');if(!b)return;const id=b.dataset.yt;const f=document.createElement('iframe');
+ f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'Vídeo de YouTube';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.loading='lazy';b.replaceWith(f);f.focus()});
+

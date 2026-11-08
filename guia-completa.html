@@ -316,6 +316,21 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
 .rbk b{font-family:var(--mono);font-size:12px;color:var(--tc,var(--accent))}
 .rbk input{accent-color:var(--tc,var(--accent));margin:0}
 #smSol .steps li{margin:10px 0}
+.ytbox{margin:26px 0;padding:18px 20px 20px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(180deg,var(--tcs,var(--accent-soft)) 0,var(--surface) 70px)}
+.ytbox .ft{display:inline-block;background:var(--tc,var(--accent));color:var(--surface);padding:3px 10px;border-radius:999px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;margin:0 0 14px}
+.ytgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.ytv{margin:0;min-width:0}
+.yt,.ytv iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:10px;overflow:hidden;background:#000}
+.yt{position:relative;padding:0;cursor:pointer}
+.yt img{width:100%;height:100%;object-fit:cover;display:block;opacity:.92;transition:opacity .2s}
+.yt:hover img,.yt:focus-visible img{opacity:1}
+.yt:focus-visible{outline:3px solid var(--tc,var(--accent));outline-offset:2px}
+.ytp{position:absolute;left:50%;top:50%;width:62px;height:44px;margin:-22px 0 0 -31px;border-radius:12px;background:#e62117;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.ytp::after{content:"";position:absolute;left:25px;top:13px;border-style:solid;border-width:9px 0 9px 15px;border-color:transparent transparent transparent #fff}
+.ytv figcaption{margin-top:10px;font-size:14px;line-height:1.45;display:flex;flex-direction:column;gap:3px}
+.ytv figcaption span{color:var(--muted)}
+.ytv figcaption a{font-size:13px;color:var(--tc,var(--accent))}
+@media (prefers-reduced-motion:reduce){.yt img{transition:none}}
 </style>
 <style>
 body{font-size:17px;line-height:1.6}
@@ -346,7 +361,7 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <div class="hero-in">
 <div class="hero-txt">
 <div class="eyebrow">UPCT · 3.º curso · 1.er cuatrimestre</div>
-<p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-05">5 de noviembre de 2026</time></p>
+<p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-08">8 de noviembre de 2026</time></p>
 <h1>Ingeniería de <span>Control</span></h1>
 <p class="sub">Guía para aprobar</p>
 <p class="lede">Pone el foco en lo que más puntúa: <b>margen de fase y de ganancia</b>, <b>dibujar el Bode</b> de módulo y fase y <b>dibujar el Nyquist</b>. Todos los resultados numéricos están comprobados con código.</p>
@@ -535,6 +550,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <div class="label">Desde cero</div>
 <p>Cuando cambias la consigna (pides 38 °C en vez de 30 °C), la salida no salta al instante. Hace un recorrido: sube, a veces se pasa, oscila y se asienta. Ese recorrido es la <b>respuesta transitoria</b>. Lo que queda al final, la diferencia entre lo que pediste y lo que tienes, es el <b>error en régimen permanente</b>. Un buen control sube rápido, se pasa poco y acaba sin error.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="nF_748YmLWs" aria-label="Reproducir el vídeo: Sistemas de primer orden: explicación detallada"><img src="https://i.ytimg.com/vi/nF_748YmLWs/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Sistemas de primer orden: explicación detallada</b><span>Constante de tiempo τ y respuesta al escalón (63 % en τ). Guía docente, tema 1.</span><a href="https://www.youtube.com/watch?v=nF_748YmLWs" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="9lLRefbit54" aria-label="Reproducir el vídeo: Respuesta en el tiempo de los sistemas de segundo orden"><img src="https://i.ytimg.com/vi/9lLRefbit54/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Respuesta en el tiempo de los sistemas de segundo orden</b><span>ζ, ωn, sobreoscilación y tiempos de pico y de establecimiento. Tema 1.</span><a href="https://www.youtube.com/watch?v=9lLRefbit54" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="qhXPb-cJ94c" aria-label="Reproducir el vídeo: Error en estado estacionario"><img src="https://i.ytimg.com/vi/qhXPb-cJ94c/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Error en estado estacionario</b><span>Tipo del sistema y constantes Kp, Kv: el error ante escalón y rampa. Tema 1.</span><a href="https://www.youtube.com/watch?v=qhXPb-cJ94c" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="chuleta">
 <div class="label">Chuleta</div>
 <div class="rows">
@@ -599,6 +616,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <li><b>D (derivativa), el futuro:</b> si ves que te acercas rápido al centro, empiezas a enderezar antes de pasarte. Evita los bandazos.</li>
 </ul>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="uIBbIe7IcW4" aria-label="Reproducir el vídeo: Control PID: explicación sencilla"><img src="https://i.ytimg.com/vi/uIBbIe7IcW4/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Control PID: explicación sencilla</b><span>Qué hace cada acción (P, I y D) con ejemplos reales. Tema 2.</span><a href="https://www.youtube.com/watch?v=uIBbIe7IcW4" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="jkYIzJPwv74" aria-label="Reproducir el vídeo: Efecto windup en control PI o PID y controlador con antiwindup"><img src="https://i.ytimg.com/vi/jkYIzJPwv74/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Efecto windup en control PI o PID y controlador con antiwindup</b><span>Por qué satura la integral y cómo lo evita el antiwindup. Tema 2, mejoras del PID.</span><a href="https://www.youtube.com/watch?v=jkYIzJPwv74" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="chuleta">
 <div class="label">Chuleta</div>
 <div class="rows">
@@ -659,6 +678,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <div class="label">Desde cero</div>
 <p>Sintonizar es elegir los tres números Kp, Ti y Td. Probar al azar en una planta real es caro y peligroso, así que se hace un <b>ensayo</b> sencillo (dar un escalón o subir la ganancia hasta que oscile), se miden dos o tres datos y una <b>tabla</b> te da los parámetros. Es un punto de partida, no el ajuste final.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="wuu4wM1Ig68" aria-label="Reproducir el vídeo: Sintonización de controladores PID: método de Ziegler-Nichols"><img src="https://i.ytimg.com/vi/wuu4wM1Ig68/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Sintonización de controladores PID: método de Ziegler-Nichols</b><span>Los dos métodos de Ziegler–Nichols y sus tablas.</span><a href="https://www.youtube.com/watch?v=wuu4wM1Ig68" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="tw"><table>
 <thead><tr><th>Método</th><th>Qué se mide</th><th>P</th><th>PI</th><th>PID</th></tr></thead>
 <tbody>
@@ -699,6 +720,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <div class="label">Desde cero</div>
 <p>Un solo lazo PID reacciona cuando el daño ya está hecho: primero la perturbación mueve la salida y luego el PID la corrige. Las estructuras de este tema añaden información para reaccionar antes. El <b>feedforward</b> mide la perturbación y la compensa por adelantado, como frenar al ver un semáforo en ámbar. La <b>cascada</b> pone un segundo lazo rápido que corrige la perturbación antes de que llegue a la salida.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="aZdO59OsJhI" aria-label="Reproducir el vídeo: Control feedforward explicado paso a paso"><img src="https://i.ytimg.com/vi/aZdO59OsJhI/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Control feedforward explicado paso a paso</b><span>Cuándo y cómo se añade la prealimentación a un lazo de realimentación.</span><a href="https://www.youtube.com/watch?v=aZdO59OsJhI" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="j4bKU5m_7OE" aria-label="Reproducir el vídeo: Control en cascada"><img src="https://i.ytimg.com/vi/j4bKU5m_7OE/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Control en cascada</b><span>Lazo interno y lazo externo: para qué sirve y en qué orden se sintoniza.</span><a href="https://www.youtube.com/watch?v=j4bKU5m_7OE" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="chuleta">
 <div class="label">Chuleta</div>
 <div class="rows">
@@ -738,6 +761,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <div class="label">Desde cero · el columpio</div>
 <p>Empuja un columpio despacio y apenas se mueve; empújalo a su ritmo y sube muchísimo; empújalo muy rápido y casi no lo mueve. Cada sistema responde distinto según la frecuencia con que lo excitas. La <b>respuesta en frecuencia</b> mide eso: si metes una senoide, cuánto la amplifica y cuánto la retrasa, para cada frecuencia. El diagrama de Bode lo dibuja, y en él se lee lo cerca que está el lazo de volverse inestable.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="gINHRn6OOfw" aria-label="Reproducir el vídeo: ¿Qué es la respuesta en frecuencia?"><img src="https://i.ytimg.com/vi/gINHRn6OOfw/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>¿Qué es la respuesta en frecuencia?</b><span>La idea de la senoide que entra y sale con otra amplitud y otro desfase.</span><a href="https://www.youtube.com/watch?v=gINHRn6OOfw" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="kWNAHxMoQ-A" aria-label="Reproducir el vídeo: Respuesta en frecuencia y estabilidad"><img src="https://i.ytimg.com/vi/kWNAHxMoQ-A/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Respuesta en frecuencia y estabilidad</b><span>Del Bode a la estabilidad del lazo cerrado.</span><a href="https://www.youtube.com/watch?v=kWNAHxMoQ-A" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="chuleta">
 <div class="label">Chuleta</div>
 <div class="rows">
@@ -785,6 +810,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <p>El Bode son <b>dos gráficas</b> que comparten el eje horizontal, la frecuencia ω en escala logarítmica (cada marca es ×10, una <b>década</b>). Arriba, cuánto amplifica el sistema, en decibelios: 20·log|G(jω)|. Abajo, cuánto retrasa, en grados: ∠G(jω).</p>
 <p>El truco que lo hace dibujable a mano: con logaritmos, <b>multiplicar factores es sumar sus gráficas</b>. Así que se descompone G(s) en piezas sencillas (una ganancia, integradores, polos y ceros), se dibuja cada pieza con rectas (sus <b>asíntotas</b>) y se suman. Hay solo seis piezas posibles y cada una tiene una forma fija que te aprendes una vez.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="Ql9KTeeGkUI" aria-label="Reproducir el vídeo: Diagrama de Bode por el método asintótico (parte 1)"><img src="https://i.ytimg.com/vi/Ql9KTeeGkUI/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Diagrama de Bode por el método asintótico (parte 1)</b><span>El trazado a mano, factor a factor, como se pide en el examen.</span><a href="https://www.youtube.com/watch?v=Ql9KTeeGkUI" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="o3amA2lYyoY" aria-label="Reproducir el vídeo: Diagramas de Bode: trazado asintótico"><img src="https://i.ytimg.com/vi/o3amA2lYyoY/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Diagramas de Bode: trazado asintótico</b><span>Otro ejemplo completo de módulo y fase, comparado con MATLAB.</span><a href="https://www.youtube.com/watch?v=o3amA2lYyoY" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <h3>Las seis piezas</h3>
 <div class="tw"><table>
 <tr><th>Factor</th><th>Módulo (asíntota)</th><th>Fase</th><th>Corrección de la curva real</th></tr>
@@ -855,6 +882,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <p>El Bode dibuja el módulo y la fase por separado. El Nyquist (también llamado <b>diagrama polar</b>) dibuja <b>la misma información en una sola curva</b>: para cada ω, el número complejo L(jω) es una flecha con longitud |L| y ángulo ∠L. La curva es el camino que recorre la punta de esa flecha cuando ω va de 0 a ∞.</p>
 <p>¿Para qué? Porque el lazo cerrado se vuelve inestable cuando 1 + L(jω) = 0, es decir, cuando L(jω) pasa por el punto <b>−1</b>. Mirando si la curva <b>rodea</b> el −1, y por cuánto se libra, sabes si el lazo cerrado es estable y con qué margen. Es el criterio de Nyquist.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="yu89CkxUSJc" aria-label="Reproducir el vídeo: Criterio de estabilidad de Nyquist"><img src="https://i.ytimg.com/vi/yu89CkxUSJc/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Criterio de estabilidad de Nyquist</b><span>De dónde sale Z = N + P y cómo se cuentan las vueltas al −1.</span><a href="https://www.youtube.com/watch?v=yu89CkxUSJc" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="IBg6PqPbnAg" aria-label="Reproducir el vídeo: Ejemplo del criterio de estabilidad de Nyquist"><img src="https://i.ytimg.com/vi/IBg6PqPbnAg/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Ejemplo del criterio de estabilidad de Nyquist</b><span>Un ejercicio resuelto de principio a fin.</span><a href="https://www.youtube.com/watch?v=IBg6PqPbnAg" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="chuleta">
 <span class="label">Criterio de Nyquist (transparencia 24)</span>
 <div class="eq">\[Z=N+P\]</div>
@@ -924,6 +953,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 </ul>
 <p>Para un sistema de fase mínima con P = 0, <b>estable ⟺ MF &gt; 0 y MG &gt; 0 dB</b>. Valores de diseño típicos: MF entre 40° y 60°, MG mayor de 6 a 10 dB.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="ofE7NL9mCbU" aria-label="Reproducir el vídeo: Margen de fase y margen de ganancia en diagramas de Bode"><img src="https://i.ytimg.com/vi/ofE7NL9mCbU/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Margen de fase y margen de ganancia en diagramas de Bode</b><span>Cómo se leen ωc, ω180, MF y MG sobre el Bode.</span><a href="https://www.youtube.com/watch?v=ofE7NL9mCbU" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="fUNVl-UAEQU" aria-label="Reproducir el vídeo: Ejemplo: análisis de estabilidad en frecuencia (MF y MG)"><img src="https://i.ytimg.com/vi/fUNVl-UAEQU/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Ejemplo: análisis de estabilidad en frecuencia (MF y MG)</b><span>Un ejemplo numérico de márgenes, paso a paso.</span><a href="https://www.youtube.com/watch?v=fUNVl-UAEQU" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="chuleta">
 <span class="label">Definiciones</span>
 <div class="rows">
@@ -991,6 +1022,8 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <div class="label">Desde cero</div>
 <p>El Tema 5 te dice si al sistema le falta margen de fase. Este tema te dice cómo dárselo, añadiendo un bloque llamado <b>compensador</b>. Hay dos formas. El <b>adelanto</b> le «presta» fase justo en la frecuencia de cruce: el sistema queda más rápido. El <b>atraso</b> baja la ganancia en alta frecuencia para que el cruce ocurra antes, donde la planta ya tenía fase de sobra: el sistema queda más lento, pero más tranquilo y menos ruidoso.</p>
 </div>
+<div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="iqtVjkGMdSk" aria-label="Reproducir el vídeo: Diseño de un compensador en adelanto con el diagrama de Bode"><img src="https://i.ytimg.com/vi/iqtVjkGMdSk/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Diseño de un compensador en adelanto con el diagrama de Bode</b><span>Ejemplo completo: φm, α, ωm y T.</span><a href="https://www.youtube.com/watch?v=iqtVjkGMdSk" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="KWec8SaFGtA" aria-label="Reproducir el vídeo: Diseño de compensadores de atraso de fase con el diagrama de Bode"><img src="https://i.ytimg.com/vi/KWec8SaFGtA/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Diseño de compensadores de atraso de fase con el diagrama de Bode</b><span>Ejemplo completo: nueva ωc, β y T.</span><a href="https://www.youtube.com/watch?v=KWec8SaFGtA" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
+
 <div class="chuleta">
 <div class="label">Chuleta · notación del Ogata</div>
 <div class="rows">
@@ -2741,6 +2774,11 @@ render(s0>0?s0:newSeed());
 window.__simgen={render,marg,mk,mag,ph,design,bw};
 })();
 
+</script>
+<script>
+/* vídeos de YouTube: se cargan solo al pulsar (más rápido y sin cookies hasta entonces) */
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button.yt');if(!b)return;const id=b.dataset.yt;const f=document.createElement('iframe');
+ f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'Vídeo de YouTube';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.loading='lazy';b.replaceWith(f);f.focus()});
 </script>
 </body>
 </html>
