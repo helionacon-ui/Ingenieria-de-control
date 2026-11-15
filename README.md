@@ -2,7 +2,7 @@
 
 **Proyecto iniciado el 4 de noviembre de 2026.**
 
-Guía interactiva de Ingeniería de Control (UPCT): Bode, Nyquist, márgenes de fase y de ganancia, PID, compensadores de adelanto y retardo, exámenes resueltos, simulacro y entrenadores.
+Guía interactiva de Ingeniería de Control: Bode, Nyquist, márgenes de fase y de ganancia, PID, compensadores de adelanto y retardo, exámenes resueltos, simulacro y entrenadores.
 
 Es una sola página estática (`index.html`), sin compilación ni dependencias locales. MathJax y las fuentes se cargan desde CDN.
 

@@ -15,6 +15,31 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
 <link rel="stylesheet" href="assets/guia.css">
+<script src="asig-nav.js" defer></script>
+<link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,700;1,400;1,700&amp;display=swap">
+<style id="lectura">
+@media screen{
+:root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
+body{font-family:var(--body);font-size:20.5px;line-height:2.1;letter-spacing:.022em;word-spacing:.09em}
+p{margin:0 0 1.75em}
+li{margin:.8em 0}
+p,li{max-width:62ch}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:24px;line-height:1.3}
+h3{font-size:24px;margin:58px 0 18px;line-height:1.35}
+h4{margin-top:34px;margin-bottom:10px}
+.box{padding:24px 30px;margin:32px 0}
+table{font-size:18px;line-height:1.75}
+td,th{padding-top:.85em;padding-bottom:.85em}
+figure.fig figcaption{font-size:17px;line-height:1.8;margin-top:12px}
+figure.fig{margin-block:34px}
+.lede{line-height:1.85}
+.toc a{font-size:15.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){body{font-size:19px;line-height:2}}
+}
+</style>
 </head>
 <body class="pg-calculadora single">
 <div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-08">8 de noviembre de 2026</time></p></div>
@@ -71,7 +96,7 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg
   </div>
 </section>
 <nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="maqueta.html" style="--tc:var(--c2)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>Lab</i>Maqueta de tanques</span></a><a class="pg-card next" href="consultar.html" style="--tc:var(--c0)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>Σ</i>Formulario y glosario</span></a></nav>
-<footer>Guía no oficial de Ingeniería de Control (UPCT). Bibliografía: K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas. Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time>.</footer>
+<footer>Guía no oficial de Ingeniería de Control. Bibliografía: K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas. Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time>.</footer>
 </main>
 </div>
 <a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
