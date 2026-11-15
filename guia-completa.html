@@ -575,6 +575,51 @@ svg .area{fill:var(--good);fill-opacity:.16;stroke:none}
 <div class="plot" id="pTau"></div>
 <figcaption><b>Respuesta al escalón de 1/(τs+1).</b> El punto marca t = τ, donde la salida vale 0,632. La línea discontinua es la tangente en el origen: corta el valor final justo en t = τ.</figcaption>
 </figure>
+<h3>Respuesta de primer orden, paso a paso</h3>
+<p>Para G(s) = K/(τs + 1) con una entrada escalón, la salida sube exponencialmente hacia K. Con tres números (K, τ y el tiempo) se responden casi todas las preguntas de este tipo.</p>
+<figure class="fig"><p class="ft">Figura interactiva · G(s) = 2/(4s + 1) ante un escalón unitario</p>
+<div id="sp-primer" style="font-family:system-ui,sans-serif"><input id="sp-primer-s" type="range" min="0" max="6" step="1" value="0" style="width:100%"><div id="sp-primer-l" style="font-size:13px;color:#56635e;margin:4px 0">paso de la resolución (0 = problema): 0</div><canvas id="sp-primer-c" width="640" height="280" style="width:100%;max-width:640px;height:auto;display:block;background:transparent"></canvas><div id="sp-primer-t" style="font-size:15px;line-height:1.5;margin-top:8px;min-height:90px"></div></div>
+<figcaption>Sube el paso: se escribe la forma de la respuesta, se leen el valor final, el valor en t = τ y el tiempo de establecimiento.</figcaption></figure>
+<div class="box trap"><h4>Trampas típicas</h4><ul><li>Leer el valor final como 1 cuando la ganancia estática es K.</li><li>Tomar el 63 % del valor final como si fuera el 63 % de 1.</li><li>Confundir el tiempo de establecimiento (≈ 4τ al 2 %) con τ.</li></ul></div>
+<script>
+(function(){
+  var K=2, TAU=4, TMAX=20, T=[
+   'Sistema G(s) = 2/(4s + 1) con entrada escalón unitario. Se piden la forma de la respuesta, el valor final, el valor en t = τ y el tiempo de establecimiento.',
+   'Con entrada escalón, Y(s) = K/[s(τs + 1)], y su antitransformada es y(t) = K(1 − e^(−t/τ)). Es una exponencial que parte de 0 y tiende a K.',
+   'Valor final: y(∞) = K = 2. Es la ganancia estática del sistema, no 1.',
+   'Constante de tiempo τ = 4 s. En t = τ, y = K(1 − e^(−1)) = 0,632 · 2 = 1,26. Ese punto (63 % del valor final) es la forma más rápida de leer τ en una gráfica.',
+   'En t = 3τ = 12 s, y = K(1 − e^(−3)) = 0,950 · 2 = 1,90. Cada constante de tiempo cierra alrededor del 63 % de lo que queda.',
+   'Tiempo de establecimiento al 2 %: t_s ≈ 4τ = 16 s, porque e^(−4) ≈ 0,018, es decir, y ≈ 0,982 · 2 dentro de la banda ±2 % del valor final.',
+   'Pendiente inicial: y′(0) = K/τ = 0,5 s⁻¹. La tangente en t = 0 corta el valor final exactamente en t = τ = 4 s. Comprobación: y(4) = 1,26, y el valor final es 2.'
+  ];
+  var cv=document.getElementById('sp-primer-c'), g=cv.getContext('2d'), sl=document.getElementById('sp-primer-s'),
+      lb=document.getElementById('sp-primer-l'), tx=document.getElementById('sp-primer-t');
+  var X0=60,X1=620,Y0=240,SY=90;
+  function X(t){return X0+(X1-X0)*t/TMAX;} function Y(v){return Y0-SY*v;}
+  function line(x1,y1,x2,y2,col,w,dash){g.strokeStyle=col;g.lineWidth=w||1.5;g.setLineDash(dash||[]);g.beginPath();g.moveTo(x1,y1);g.lineTo(x2,y2);g.stroke();g.setLineDash([]);}
+  function txt(s,x,y,col,sz,al){g.fillStyle=col;g.font=(sz||12)+'px system-ui,sans-serif';g.textAlign=al||'left';g.fillText(s,x,y);}
+  function draw(p){
+    g.clearRect(0,0,cv.width,cv.height);
+    line(X0,Y0,X1,Y0,'#8a958f',1); line(X0,Y0,X0,Y(2.6),'#8a958f',1);
+    txt('0',X0-8,Y0+4,'#56635e',11,'right'); txt('t (s)',X1,Y0+18,'#56635e',11,'right');
+    for(var t=0;t<=TMAX;t+=4) txt(String(t),X(t),Y0+16,'#56635e',11,'center');
+    txt('y(t)',X0-6,Y(2.6)-4,'#56635e',11,'right');
+    line(X0,Y(K),X1,Y(K),'#b4232f',1.2,[6,4]); txt('y(∞) = 2',X1,Y(K)-6,'#b4232f',12,'right');
+    g.strokeStyle='#3a63c4';g.lineWidth=2.4;g.setLineDash([]);g.beginPath();
+    for(var s=0;s<=TMAX*10;s++){var tt=s/10, yy=K*(1-Math.exp(-tt/TAU)); s===0?g.moveTo(X(tt),Y(yy)):g.lineTo(X(tt),Y(yy));}
+    g.stroke();
+    if(p>=3){ line(X(TAU),Y0,X(TAU),Y(1.264),'#56635e',1,[4,3]); g.fillStyle='#3a63c4';g.beginPath();g.arc(X(TAU),Y(1.264),4,0,6.283);g.fill(); txt('τ = 4 s → 1,26',X(TAU)+8,Y(1.264)+16,'#3a63c4',12); }
+    if(p>=4){ line(X(3*TAU),Y0,X(3*TAU),Y(1.9),'#56635e',1,[4,3]); g.fillStyle='#2c8a52';g.beginPath();g.arc(X(3*TAU),Y(1.9),4,0,6.283);g.fill(); txt('3τ → 1,90',X(3*TAU)+8,Y(1.9)+16,'#2c8a52',12); }
+    if(p>=5){ g.fillStyle='rgba(44,138,82,0.12)'; g.fillRect(X0,Y(2.04),X1-X0,Y(1.96)-Y(2.04));
+      line(X(16),Y0,X(16),Y(1.96),'#0f8c8c',1.2,[4,3]); txt('t_s ≈ 16 s',X(16)+6,Y0-10,'#0f8c8c',12); }
+    if(p>=6){ line(X0,Y0,X(4),Y(2),'#b8730c',1.4,[5,4]); txt('pendiente 0,5 s⁻¹',X(2.4),Y(1.1),'#b8730c',12,'left'); }
+    lb.textContent='paso de la resolución (0 = problema): '+p;
+    tx.innerHTML='<div>'+T[p]+'</div>';
+  }
+  sl.addEventListener('input',function(){draw(+sl.value);});
+  draw(0);
+})();
+</script>
 <h3>Segundo orden: amortiguamiento y oscilación</h3>
 <div class="prose">
 <p>Con dos polos aparece la oscilación. Si los polos son complejos, s = −ζω<sub>n</sub> ± jω<sub>d</sub>, la respuesta se pasa de la consigna y oscila. El <b>amortiguamiento</b> ζ (entre 0 y 1) fija cuánto oscila: con ζ pequeño, mucho. La <b>frecuencia natural</b> ω<sub>n</sub> fija lo rápido que va. Fíjate en la relación MF ≈ 100·ζ: un margen de fase pequeño (Tema 5) significa un sistema muy oscilante.</p>
