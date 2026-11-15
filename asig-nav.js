@@ -463,4 +463,18 @@
     pairs.forEach(function(p){ if(!cs.getPropertyValue(p[0]).trim() && cs.getPropertyValue(p[1]).trim()) r+=p[0]+':var('+p[1]+');'; });
     if(r){ var s=document.createElement('style'); s.id='an-alias-css'; s.textContent=':root{'+r+'}'; document.head.appendChild(s); }
   })();
+
+  /* ===== Desarrollo teórico a fondo ===== */
+  (function(){
+    var s=document.createElement('style'); s.id='an-deep-css';
+    s.textContent='.deep{margin:14px 0 30px;padding:4px clamp(14px,2.4vw,26px) 16px;border:1px solid var(--line,#d3dcdf);border-left:5px solid var(--accent,#1f4fd1);border-radius:14px;background:color-mix(in srgb,var(--accent,#1f4fd1) 5%,var(--surface,#fff))}'
+      +'.deep h4{margin:22px 0 6px;font-size:1.08em;color:var(--accent,#1f4fd1)}.deep>p,.deep li{max-width:78ch}'
+      +'.deep details.dem{background:var(--surface,#fff);margin:12px 0}.deep details.dem>summary .pn{color:var(--accent,#1f4fd1);font-family:var(--mono,monospace)}'
+      +'.deep .deepnote{margin:18px 0}.deep table{margin:10px 0}'
+      +'.deep p{margin:.9em 0;line-height:1.95}.deep ul,.deep ol{margin:.8em 0 1em;padding-left:1.4em}.deep li{margin:.55em 0;line-height:1.9}'
+      +'.deep ol.pasos{counter-reset:ps;list-style:none;padding-left:0}.deep ol.pasos>li{counter-increment:ps;position:relative;padding-left:2.4em}.deep ol.pasos>li::before{content:counter(ps);position:absolute;left:0;top:.15em;width:1.7em;height:1.7em;border-radius:50%;background:var(--accent,#1f4fd1);color:var(--surface,#fff);font:700 .82em/1.7em var(--mono,monospace);text-align:center}'
+      +'.deep .eqd{margin:.9em 0;padding:.6em 1em;border-left:3px solid color-mix(in srgb,var(--accent,#1f4fd1) 45%,transparent);background:color-mix(in srgb,var(--accent,#1f4fd1) 6%,transparent);overflow-x:auto}'
+      +'.deep h4{margin:30px 0 8px;padding-top:6px;border-top:1px dashed var(--line,#d3dcdf);letter-spacing:.02em}.deep h4:first-of-type{border-top:0;margin-top:14px}';
+    document.head.appendChild(s);
+  })();
 })();
