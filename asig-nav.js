@@ -456,4 +456,11 @@
       +'.an-bar~.topbar .brand{display:none}.an-bar~.topbar .tb-in{justify-content:flex-end}';
     var st=document.createElement('style'); st.id='an-tint-css'; st.textContent=css; document.head.appendChild(st);
   })();
+
+  /* ===== Alias de colores para guías con otros nombres de variables ===== */
+  (function(){
+    var cs=getComputedStyle(document.documentElement),pairs=[['--fg','--ink'],['--muted','--mut'],['--surface','--paper']],r='';
+    pairs.forEach(function(p){ if(!cs.getPropertyValue(p[0]).trim() && cs.getPropertyValue(p[1]).trim()) r+=p[0]+':var('+p[1]+');'; });
+    if(r){ var s=document.createElement('style'); s.id='an-alias-css'; s.textContent=':root{'+r+'}'; document.head.appendChild(s); }
+  })();
 })();
