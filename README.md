@@ -1,4 +1,4 @@
-# Ingeniería de Control · Guía para aprobar
+# Ingeniería de Control · Apuntes
 
 **Proyecto iniciado el 4 de noviembre de 2026.**
 
