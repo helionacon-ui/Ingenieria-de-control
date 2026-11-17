@@ -22,8 +22,9 @@ window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg
 @media screen{
 :root{--body:"Atkinson Hyperlegible Next","Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif}
 body{font-family:var(--body);font-size:20px;line-height:1.95;letter-spacing:.014em;word-spacing:.05em}
-p{margin:0 0 1.5em;max-width:62ch;text-align:left;hyphens:none;-webkit-hyphens:none;text-wrap:pretty}
-li{margin:.72em 0;max-width:64ch}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
 .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
 h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
 h3{font-size:25px;margin:66px 0 20px;line-height:1.3}
@@ -52,19 +53,26 @@ p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.
  color:var(--tc,var(--accent));opacity:.8}
 .deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
 /* ---- formulas aparte: bloque propio, con aire ---- */
-.eqd{margin:1.9em 0;padding:20px 22px;border-radius:12px;text-align:center;
- overflow-x:auto;overflow-y:hidden;
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
  background:color-mix(in srgb,var(--surface) 66%,transparent);
  border-left:3px solid var(--tc,var(--accent))}
-.eqd mjx-container{margin:0!important}
 /* ---- formulas dentro del texto: que no se apelotonen ---- */
 mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
 mjx-container:not([display="true"]){
- padding:.12em .34em;margin:0 .08em;border-radius:6px;line-height:1;
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
  background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
 .box mjx-container:not([display="true"]),
 .inner mjx-container:not([display="true"]){
  background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
 p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
  background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
 /* las listas y pasos con formula, con mas aire entre renglones */
@@ -88,6 +96,8 @@ mjx-container[display]{margin:0!important}
 details>summary{line-height:1.7;padding-block:.5em}
 @media (max-width:600px){
 body{font-size:18.5px;line-height:1.9}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
 .zero:not([style]) .lede::first-letter{font-size:2.6em}
 .deep h4{padding-left:0}
 .deep h4 .hn{position:static;margin-right:.5em}
