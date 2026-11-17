@@ -88,7 +88,7 @@ function Player(el,spec){
   var bar=document.createElement('div');bar.className='manim-bar';
   bar.innerHTML='<button type="button" class="mp" aria-label="Reproducir">▶ Reproducir</button><button type="button" class="mr" aria-label="Volver a empezar">↺</button>'+
     '<input type="range" min="0" max="1000" value="0" aria-label="Posición de la animación"><span class="manim-t">0,0 s</span>'+
-    '<select aria-label="Velocidad"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option><option value="2">2×</option></select>';
+    '<select aria-label="Velocidad"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option><option value="2">2×</option></select><button type="button" class="mv" aria-label="Descargar la animación como vídeo vertical">⬇ Vídeo</button>';
   el.appendChild(bar);
   var tr=document.createElement('div');tr.className='manim-try';tr.innerHTML='<b>Prueba tú:</b><input type="range" min="0" max="1000" value="500" aria-label="Mover el parámetro de la animación"><button type="button">Automático</button>';el.appendChild(tr);
   var tin=tr.querySelector('input'),tauto=tr.querySelector('button'),man=null;
@@ -106,6 +106,19 @@ function Player(el,spec){
   br.addEventListener('click',function(){t=0;render();play();});
   rg.addEventListener('input',function(){t=rg.value/1000*spec.dur;render();});
   sp.addEventListener('change',function(){speed=+sp.value;});
+  var bv=bar.querySelector('.mv');if(!(window.MediaRecorder&&cv.captureStream))bv.style.display='none';
+  bv.addEventListener('click',function(){if(bv.disabled)return;pause();man=null;var VW=1080,VH=1920,off=document.createElement('canvas');off.width=VW;off.height=VH;var o=off.getContext('2d');
+    var types=['video/mp4;codecs=avc1','video/mp4','video/webm;codecs=vp9','video/webm'],mt='';for(var i=0;i<types.length;i++){if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(types[i])){mt=types[i];break;}}
+    var rec;try{rec=new MediaRecorder(off.captureStream(30),mt?{mimeType:mt,videoBitsPerSecond:6e6}:undefined);}catch(e){cap.textContent='Este navegador no permite grabar vídeo.';return;}
+    var chunks=[];rec.ondataavailable=function(e){if(e.data&&e.data.size)chunks.push(e.data);};
+    var guide=(document.title.split('·')[1]||document.title).trim(),lab=bv.textContent;bv.disabled=true;
+    function wrap(txt,x,y,maxw,lh){var words=txt.split(' '),line='';for(var i=0;i<words.length;i++){var tst=line?line+' '+words[i]:words[i];if(o.measureText(tst).width>maxw&&line){o.fillText(line,x,y);line=words[i];y+=lh;}else line=tst;}if(line)o.fillText(line,x,y);}
+    function comp(){o.fillStyle=mix(C.bg,C.y,.07);o.fillRect(0,0,VW,VH);o.fillStyle=C.bg;o.fillRect(20,240,VW-40,H*(VW-60)/W+40);o.fillStyle=C.y;o.fillRect(0,0,VW,14);o.font='600 40px '+SERIF;o.fillStyle=C.mut;o.textAlign='center';o.fillText(guide,VW/2,140);
+      var sc=(VW-60)/W,hh=H*sc;o.drawImage(cv,30,260,VW-60,hh);o.font='44px '+SERIF;o.fillStyle=C.w;o.textAlign='left';var txt=(cap.textContent||'').replace(/\s+/g,' ');wrap(txt,70,260+hh+110,VW-140,62);}
+    var t0=null;t=0;rec.start(250);
+    function step(ts){if(t0===null)t0=ts;t=Math.min(spec.dur,(ts-t0)/1000);render();comp();bv.textContent='Grabando… '+Math.ceil(spec.dur-t)+' s';if(t<spec.dur)requestAnimationFrame(step);else setTimeout(function(){rec.stop();},300);}
+    rec.onstop=function(){var ext=/mp4/.test(rec.mimeType||mt)?'mp4':'webm',blob=new Blob(chunks,{type:rec.mimeType||mt||'video/webm'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(el.getAttribute('data-anim')||'animacion')+'.'+ext;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);bv.disabled=false;bv.textContent=lab;};
+    requestAnimationFrame(step);});
   tin.addEventListener('input',function(){man=tin.value/1000;if(playing)pause();render();});
   tauto.addEventListener('click',function(){man=null;render();play();});
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;

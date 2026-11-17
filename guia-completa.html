@@ -772,6 +772,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <figcaption><b>Banco de pruebas: PID sobre G(s) = 1/(s+1)³.</b> Ti = 20 s equivale casi a quitar la integral, y Td = 0 quita la derivativa. Los preajustes son los valores de Ziegler–Nichols (Tema 3). La derivativa actúa sobre la medida, con filtro N = 10.</figcaption>
 <p class="try">pulsa P: la salida se queda en 0,8. Sube Ti hasta 20 con Kp = 4,8 y Td = 0: error permanente. Después baja Ti: el error desaparece, pero oscila más. Por último sube Td: la oscilación se amortigua.</p>
 </figure>
+<!--manim:ic-pid--><figure class="fig manim-fig" id="anim-ic-pid"><p class="ft">Animación · P, PI y PID</p><div class="manim" data-anim="ic-pid"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h3>Windup: integral + actuador saturado</h3>
 <div class="prose">
 <p>El actuador tiene límites: una válvula no se abre más del 100 %. Si la señal de control se satura, el error baja más despacio de lo que el controlador espera, pero la integral lo sigue sumando. Cuando la salida por fin llega a la consigna, la integral está «cargada» y empuja de más: sobrepico grande y recuperación lenta. Es el <b>windup</b>.</p>
@@ -905,6 +906,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <div class="row"><span class="label">Nyquist</span><div class="eq">\[Z=N+P\]</div><p>Z polos inestables en lazo cerrado, N vueltas horarias a −1, P polos inestables en lazo abierto.</p></div>
 </div>
 </div>
+<!--manim:ic-frec--><figure class="fig manim-fig" id="anim-ic-frec"><p class="ft">Animación · La senoide de entrada y la de salida</p><div class="manim" data-anim="ic-frec"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h3>La senoide de entrada y la de salida</h3>
 <div class="prose"><p>Un sistema lineal estable devuelve una senoide de la <b>misma frecuencia</b>. Solo cambian la amplitud, multiplicada por |G(jω)|, y la fase, desplazada ∠G(jω). Para calcularlo: sustituye s = jω, calcula el módulo (raíz de real² + imaginaria²) y el argumento (arcotangente, atento al cuadrante).</p></div>
 <figure class="fig">
@@ -945,6 +947,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <div class="ytbox"><p class="ft">Míralo explicado en vídeo</p><div class="ytgrid"><figure class="ytv"><button type="button" class="yt" data-yt="Ql9KTeeGkUI" aria-label="Reproducir el vídeo: Diagrama de Bode por el método asintótico (parte 1)"><img src="https://i.ytimg.com/vi/Ql9KTeeGkUI/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Diagrama de Bode por el método asintótico (parte 1)</b><span>El trazado a mano, factor a factor, como se pide en el examen.</span><a href="https://www.youtube.com/watch?v=Ql9KTeeGkUI" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure><figure class="ytv"><button type="button" class="yt" data-yt="o3amA2lYyoY" aria-label="Reproducir el vídeo: Diagramas de Bode: trazado asintótico"><img src="https://i.ytimg.com/vi/o3amA2lYyoY/hqdefault.jpg" alt="" loading="lazy" decoding="async"><span class="ytp" aria-hidden="true"></span></button><figcaption><b>Diagramas de Bode: trazado asintótico</b><span>Otro ejemplo completo de módulo y fase, comparado con MATLAB.</span><a href="https://www.youtube.com/watch?v=o3amA2lYyoY" target="_blank" rel="noopener">Abrir en YouTube ↗</a></figcaption></figure></div></div>
 
+<!--manim:ic-bode--><figure class="fig manim-fig" id="anim-ic-bode"><p class="ft">Animación · Sumar las asíntotas de Bode</p><div class="manim" data-anim="ic-bode"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h3>Las seis piezas</h3>
 <div class="tw"><table>
 <tr><th>Factor</th><th>Módulo (asíntota)</th><th>Fase</th><th>Corrección de la curva real</th></tr>
@@ -1025,6 +1028,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <div class="row"><b>N</b><p>Vueltas en sentido horario de la curva completa (ω de −∞ a +∞) alrededor de −1.</p></div>
 <div class="row"><b>P</b><p>Polos de G(s)H(s) en el semiplano derecho. En casi todos los ejercicios P = 0, y entonces estable ⟺ la curva no rodea el −1.</p></div>
 </div></div>
+<!--manim:ic-nyq--><figure class="fig manim-fig" id="anim-ic-nyq"><p class="ft">Animación · Diagrama de Nyquist</p><div class="manim" data-anim="ic-nyq"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h3>La receta</h3>
 <ol class="steps">
 <li><b>Inicio (ω → 0⁺).</b> Depende del tipo. Tipo 0: empieza en el eje real positivo, en \(K_B\). Tipo 1: viene del infinito con ángulo −90° (desde abajo), pegada a una asíntota vertical en \(\text{Re}=\lim_{\omega\to0}\text{Re}\,G(j\omega)\). Tipo 2: viene del infinito con −180°.</li>
@@ -1096,6 +1100,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <div class="row"><b>Frecuencia de cruce de fase ω<sub>180</sub></b><div class="eq">\[\angle G(j\omega_{180})H(j\omega_{180})=-180^\circ\]</div></div>
 <div class="row"><b>Margen de ganancia</b><div class="eq">\[MG=\frac{1}{|GH(j\omega_{180})|},\quad MG_{dB}=-20\log|GH(j\omega_{180})|\]</div></div>
 </div></div>
+<!--manim:ic-marg--><figure class="fig manim-fig" id="anim-ic-marg"><p class="ft">Animación · Margen de ganancia y de fase</p><div class="manim" data-anim="ic-marg"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h3>Dónde se leen: en el Bode y en el Nyquist</h3>
 <figure class="fig">
 <p class="ft">Simulador · los dos márgenes en las dos gráficas</p>
@@ -1166,6 +1171,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <div class="row"><span class="label">Nueva ω<sub>c</sub> en el adelanto</span><div class="eq">\[|G_1(j\omega_c)|_{dB}=-20\log\frac{1}{\sqrt\alpha}\]</div></div>
 </div>
 </div>
+<!--manim:ic-dis--><figure class="fig manim-fig" id="anim-ic-dis"><p class="ft">Animación · Compensador de adelanto</p><div class="manim" data-anim="ic-dis"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h3>Diseña tu adelanto</h3>
 <div class="prose"><p>Mueve α (cuánta fase aporta) y ω<sub>m</sub> (dónde la aporta). La fase máxima φ<sub>m</sub> se coloca en ω<sub>m</sub>. El truco del procedimiento es poner ω<sub>m</sub> justo en la nueva frecuencia de cruce, que no es la antigua: el compensador sube la ganancia y el cruce se desplaza a la derecha.</p></div>
 <figure class="fig">
@@ -1491,6 +1497,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <section class="sec" style="--tc:var(--c2);--tcs:var(--c2s)">
 <div class="sh"><span aria-hidden="true" class="badge">Lab</span><div class="shx"><p class="kick">Practicar · 1 punto</p><h2 id="maqueta">Trabajo con la maqueta de tanques acoplados</h2><p class="sub2">Según «Explicación trabajos con la maqueta de tanques»: vale 1 punto sobre 10 para el examen y se evalúa con una exposición.</p></div></div>
 <div class="cero"><span class="label">Desde cero</span><p>La maqueta tiene una bomba que llena el tanque 1; el tanque 1 desagua por gravedad en el tanque 2, y el tanque 2 desagua fuera. Un Arduino mide las dos alturas con sensores de ultrasonidos y MATLAB calcula cada 0,3 s la tensión PWM de la bomba (0–250). Tu trabajo es entender la planta, obtener su modelo, proponer un lazo de control, probarlo en simulación y después en la maqueta real.</p></div>
+<!--manim:ic-tanq--><figure class="fig manim-fig" id="anim-ic-tanq"><p class="ft">Animación · Dos tanques en cascada</p><div class="manim" data-anim="ic-tanq"><p class="muted">Activa JavaScript para ver la animación.</p></div><figcaption>Se reproduce sola al llegar a ella. Puedes pausarla, arrastrar la barra para ir a cualquier instante y cambiar la velocidad. Si aparece «Prueba tú», mueve ese control para fijar tú el parámetro. Con «⬇ Vídeo» la descargas en formato vertical.</figcaption></figure><!--/manim-->
 <h3>Las siete tareas del trabajo, y qué hacer en cada una</h3>
 <div class="tw"><table>
 <tr><th>Tarea</th><th>Qué hacer</th><th>Qué enseñar en la exposición</th></tr>
@@ -2913,5 +2920,7 @@ window.__simgen={render,marg,mk,mag,ph,design,bw};
 document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('button.yt');if(!b)return;const id=b.dataset.yt;const f=document.createElement('iframe');
  f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';f.title=b.getAttribute('aria-label')||'Vídeo de YouTube';f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';f.allowFullscreen=true;f.loading='lazy';b.replaceWith(f);f.focus()});
 </script>
+<script src="anim-manim.js?v=28916" defer></script>
+<script src="anim-temas.js?v=28916" defer></script>
 </body>
 </html>
