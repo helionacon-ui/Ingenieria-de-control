@@ -478,3 +478,24 @@
     document.head.appendChild(s);
   })();
 })();
+
+/*mjxwide*/(function(){
+  var st=document.createElement('style');
+  st.textContent='mjx-container.mjx-wide{display:block!important;max-width:100%;overflow-x:auto;overflow-y:hidden;margin:.5em 0!important;text-align:center;-webkit-overflow-scrolling:touch}'
+   +'mjx-container[display="true"]{max-width:100%;overflow-x:auto;overflow-y:hidden}'
+   +'summary:has(mjx-container){display:block}summary:has(mjx-container)::before{display:inline-block;margin-right:10px}summary:has(mjx-container) .pn{margin-right:8px}';
+  document.head.appendChild(st);
+  function box(c){var a=c.parentElement;while(a&&a!==document.body){var d=getComputedStyle(a).display;if(d!=='inline'&&d!=='inline-block'&&d!=='contents')return a;a=a.parentElement;}return document.body;}
+  var q=0;function chk(){q=0;var cs=document.querySelectorAll('mjx-container:not([display="true"])');
+    for(var i=0;i<cs.length;i++){var c=cs[i];if(c.closest('td,th,.eqd'))continue;var b=box(c);
+      if(c.classList.contains('mjx-wide')){continue;}
+      var w=c.getBoundingClientRect().width;if(!w)continue;var bs=getComputedStyle(b);
+      var aw=b.clientWidth-parseFloat(bs.paddingLeft)-parseFloat(bs.paddingRight);
+      if(w>aw+1)c.classList.add('mjx-wide');}}
+  function later(){if(!q){q=1;(window.requestAnimationFrame||setTimeout)(function(){setTimeout(chk,60);});}}
+  if(window.MutationObserver)new MutationObserver(function(m){for(var i=0;i<m.length;i++){for(var j=0;j<m[i].addedNodes.length;j++){var n=m[i].addedNodes[j];if(n.nodeType===1&&(n.tagName==='MJX-CONTAINER'||n.querySelector&&n.querySelector('mjx-container'))){later();return;}}}}).observe(document.documentElement,{childList:true,subtree:true});
+  document.addEventListener('toggle',later,true);
+  var rw=innerWidth;addEventListener('resize',function(){if(innerWidth===rw)return;rw=innerWidth;
+    var w=document.querySelectorAll('mjx-container.mjx-wide');for(var i=0;i<w.length;i++)w[i].classList.remove('mjx-wide');later();});
+  addEventListener('load',later);
+})();
