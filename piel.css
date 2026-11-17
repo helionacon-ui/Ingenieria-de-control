@@ -1,0 +1,633 @@
+/* Piel minimalista. Generada a partir de los colores de la propia guía. */
+/* El clásico no se toca: esta hoja solo actúa con data-piel="min" en <html>. */
+
+:root[data-piel="min"]{
+  --bg:#f5f5f7;
+  --surface:#ffffff;
+  --paper:#ffffff;
+  --fg:#1d1d1f;
+  --ink:#1d1d1f;
+  --muted:#6e6e73;
+  --line:#e5e5ea;
+  --shadow:0 1px 2px rgba(0,0,0,.045),0 10px 30px rgba(0,0,0,.055);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+  --hubc:#40558c;
+  --accent:#40558c;
+  --accent-soft:#f1f2f6;
+  --warn:#854e47;
+  --warn-soft:#f6f2f1;
+  --c0:#5e6d78;
+  --c0s:#f4f4f5;
+  --c1:#4a5c8c;
+  --c1s:#f2f3f6;
+  --c2:#4f876b;
+  --c2s:#f3f6f4;
+  --c3:#956941;
+  --c3s:#f7f4f2;
+  --c4:#865650;
+  --c4s:#f6f3f3;
+  --c5:#4a5c8c;
+  --c5s:#f2f3f6;
+  --c6:#4f876b;
+  --c6s:#f3f6f4;
+  --c7:#956941;
+  --c7s:#f7f4f2;
+  --c8:#956941;
+  --c8s:#f7f4f2;
+}
+@media (prefers-color-scheme: dark){:root[data-piel="min"]:not([data-theme="light"]){
+  --bg:#090b0f;
+  --surface:#15171e;
+  --paper:#15171e;
+  --fg:#f1ebe6;
+  --ink:#f1ebe6;
+  --muted:#a69a92;
+  --line:#272a32;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#7691da;
+  --accent:#7691da;
+  --accent-soft:#1c2233;
+  --warn:#d1887f;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}}
+:root[data-piel="min"][data-theme="dark"]{
+  --bg:#090b0f;
+  --surface:#15171e;
+  --paper:#15171e;
+  --fg:#f1ebe6;
+  --ink:#f1ebe6;
+  --muted:#a69a92;
+  --line:#272a32;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#7691da;
+  --accent:#7691da;
+  --accent-soft:#1c2233;
+  --warn:#d1887f;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}
+@media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="calido"]:not([data-theme="light"]){
+  --bg:#090b0f;
+  --surface:#15171e;
+  --paper:#15171e;
+  --fg:#f1ebe6;
+  --ink:#f1ebe6;
+  --muted:#a69a92;
+  --line:#272a32;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#7691da;
+  --accent:#7691da;
+  --accent-soft:#1c2233;
+  --warn:#d1887f;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}}
+:root[data-piel="min"][data-fondo="calido"][data-theme="dark"]{
+  --bg:#090b0f;
+  --surface:#15171e;
+  --paper:#15171e;
+  --fg:#f1ebe6;
+  --ink:#f1ebe6;
+  --muted:#a69a92;
+  --line:#272a32;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#7691da;
+  --accent:#7691da;
+  --accent-soft:#1c2233;
+  --warn:#d1887f;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}
+@media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="grafito"]:not([data-theme="light"]){
+  --bg:#1c1c1e;
+  --surface:#2c2c2e;
+  --paper:#2c2c2e;
+  --fg:#f2f2f7;
+  --ink:#f2f2f7;
+  --muted:#a1a1a6;
+  --line:#3a3a3c;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#6e8bd8;
+  --accent:#6e8bd8;
+  --accent-soft:#1c2233;
+  --warn:#cf8178;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}}
+:root[data-piel="min"][data-fondo="grafito"][data-theme="dark"]{
+  --bg:#1c1c1e;
+  --surface:#2c2c2e;
+  --paper:#2c2c2e;
+  --fg:#f2f2f7;
+  --ink:#f2f2f7;
+  --muted:#a1a1a6;
+  --line:#3a3a3c;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#6e8bd8;
+  --accent:#6e8bd8;
+  --accent-soft:#1c2233;
+  --warn:#cf8178;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}
+@media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="elevado"]:not([data-theme="light"]){
+  --bg:#141416;
+  --surface:#202024;
+  --paper:#202024;
+  --fg:#f2f2f5;
+  --ink:#f2f2f5;
+  --muted:#9b9ba1;
+  --line:rgba(255,255,255,.08);
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#6a88d7;
+  --accent:#6a88d7;
+  --accent-soft:#1c2233;
+  --warn:#cd7d74;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}}
+:root[data-piel="min"][data-fondo="elevado"][data-theme="dark"]{
+  --bg:#141416;
+  --surface:#202024;
+  --paper:#202024;
+  --fg:#f2f2f5;
+  --ink:#f2f2f5;
+  --muted:#9b9ba1;
+  --line:rgba(255,255,255,.08);
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#6a88d7;
+  --accent:#6a88d7;
+  --accent-soft:#1c2233;
+  --warn:#cd7d74;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}
+@media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="oled"]:not([data-theme="light"]){
+  --bg:#000000;
+  --surface:#1c1c1e;
+  --paper:#1c1c1e;
+  --fg:#f5f5f7;
+  --ink:#f5f5f7;
+  --muted:#98989d;
+  --line:#2c2c2e;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#6684d6;
+  --accent:#6684d6;
+  --accent-soft:#1c2233;
+  --warn:#cc7a70;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}}
+:root[data-piel="min"][data-fondo="oled"][data-theme="dark"]{
+  --bg:#000000;
+  --surface:#1c1c1e;
+  --paper:#1c1c1e;
+  --fg:#f5f5f7;
+  --ink:#f5f5f7;
+  --muted:#98989d;
+  --line:#2c2c2e;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#6684d6;
+  --accent:#6684d6;
+  --accent-soft:#1c2233;
+  --warn:#cc7a70;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}
+@media (prefers-color-scheme: dark){:root[data-piel="min"][data-fondo="pizarra"]:not([data-theme="light"]){
+  --bg:#0d1117;
+  --surface:#161b22;
+  --paper:#161b22;
+  --fg:#e6edf3;
+  --ink:#e6edf3;
+  --muted:#8b949e;
+  --line:#262c36;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#7992d8;
+  --accent:#7992d8;
+  --accent-soft:#1c2233;
+  --warn:#d1887f;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}}
+:root[data-piel="min"][data-fondo="pizarra"][data-theme="dark"]{
+  --bg:#0d1117;
+  --surface:#161b22;
+  --paper:#161b22;
+  --fg:#e6edf3;
+  --ink:#e6edf3;
+  --muted:#8b949e;
+  --line:#262c36;
+  --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
+  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
+  color-scheme:dark;
+  --hubc:#7992d8;
+  --accent:#7992d8;
+  --accent-soft:#1c2233;
+  --warn:#d1887f;
+  --warn-soft:#331e1c;
+  --c0:#a3afb8;
+  --c0s:#26292c;
+  --c1:#92a1c9;
+  --c1s:#202531;
+  --c2:#97c4ae;
+  --c2s:#223029;
+  --c3:#cfab8b;
+  --c3s:#33281e;
+  --c4:#c49c97;
+  --c4s:#302322;
+  --c5:#92a1c9;
+  --c5s:#202531;
+  --c6:#97c4ae;
+  --c6s:#223029;
+  --c7:#cfab8b;
+  --c7s:#33281e;
+  --c8:#cfab8b;
+  --c8s:#33281e;
+}
+
+/* ---------- piel minimalista: estructura ---------- */
+:root[data-piel="min"] body{background:var(--bg)}
+:root[data-piel="min"]{accent-color:var(--accent)}
+:root[data-piel="min"] input[type=range],:root[data-piel="min"] input[type=checkbox]{accent-color:var(--accent)}
+:root[data-piel="min"] .box,
+:root[data-piel="min"] details,
+:root[data-piel="min"] pre,
+:root[data-piel="min"] figure.fig,
+:root[data-piel="min"] figure.ill,
+:root[data-piel="min"] section.sec,
+:root[data-piel="min"] .stats div,
+:root[data-piel="min"] .props div,
+:root[data-piel="min"] .srch-card,
+:root[data-piel="min"] .card,
+:root[data-piel="min"] .exn,
+:root[data-piel="min"] .exrec a,
+:root[data-piel="min"] .vids,
+:root[data-piel="min"] .pager a,
+:root[data-piel="min"] .pages a,
+:root[data-piel="min"] .tw,
+:root[data-piel="min"] .readout,
+:root[data-piel="min"] .sim-cv,
+:root[data-piel="min"] .an-card,
+:root[data-piel="min"] .map a,
+:root[data-piel="min"] .sres,
+:root[data-piel="min"] .qo,
+:root[data-piel="min"] .lab-cv,
+:root[data-piel="min"] .deep,
+:root[data-piel="min"] .an-art,
+:root[data-piel="min"] .an-step,
+:root[data-piel="min"] p.obj{
+  border:none!important;border-radius:16px!important;background:var(--surface)!important;
+  box-shadow:var(--shadow)!important}
+:root[data-piel="min"] .box.key{
+  border:none!important;border-radius:16px!important;background:var(--accent-soft)!important;
+  box-shadow:var(--shadow)!important}
+:root[data-piel="min"] .zero,
+:root[data-piel="min"] .idea,
+:root[data-piel="min"] .box.trap,
+:root[data-piel="min"] .deepnote,
+:root[data-piel="min"] .nota,
+:root[data-piel="min"] .aviso{border:none!important;border-radius:16px!important;box-shadow:var(--shadow)!important}
+:root[data-piel="min"] .tw{overflow:auto}
+:root[data-piel="min"] h1,:root[data-piel="min"] h2,:root[data-piel="min"] h3{letter-spacing:-.022em;font-weight:600}
+:root[data-piel="min"] h4,:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp,
+:root[data-piel="min"] th,:root[data-piel="min"] figure.fig .ft{
+  text-transform:none!important;letter-spacing:.012em!important;font-weight:500!important}
+:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp,:root[data-piel="min"] figure.fig .ft{color:var(--muted)!important}
+:root[data-piel="min"] .tag,:root[data-piel="min"] .pill,:root[data-piel="min"] .exf,:root[data-piel="min"] .qt{
+  border-radius:999px;font-weight:500}
+:root[data-piel="min"] .btn{border:none!important;background:var(--surface)!important;box-shadow:var(--shadow)!important}
+:root[data-piel="min"] th{background:transparent!important;border:none!important;border-bottom:1px solid var(--line)!important}
+:root[data-piel="min"] td{border-color:var(--line)!important}
+:root[data-piel="min"] .toc a{border-left:none!important;border-radius:10px;padding-left:10px}
+:root[data-piel="min"] .toc a:hover,:root[data-piel="min"] .toc a.on{background:var(--accent-soft)}
+:root[data-piel="min"] header.hero{border-bottom:1px solid var(--line)}
+:root[data-piel="min"] .bar,:root[data-piel="min"] .an-pb{border-radius:999px}
+/* barra superior común */
+:root[data-piel="min"] .an-bar,:root[data-piel="min"] .topbar,:root[data-piel="min"] .hubbar{
+  background:color-mix(in srgb,var(--surface) 86%,transparent)!important;
+  border-color:var(--line)!important;box-shadow:0 1px 0 var(--line)!important;
+  -webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px)}
+:root[data-piel="min"] .an-chip,:root[data-piel="min"] .an-btn,:root[data-piel="min"] .crumb{
+  background:var(--surface)!important;color:var(--fg)!important;border:1px solid var(--line)!important;
+  box-shadow:none!important;font-weight:500!important;text-transform:none!important}
+:root[data-piel="min"] .an-chip.on,:root[data-piel="min"] .an-btn.on{background:var(--accent-soft)!important;color:var(--accent)!important}
+:root[data-piel="min"] .an-hub,:root[data-piel="min"] .an-brand{--hubc:var(--accent)}
+/* estructura de la guía anterior de Robotizados (sigue publicada dentro del portal) */
+:root[data-piel="min"] .fg-card,
+:root[data-piel="min"] .an,
+:root[data-piel="min"] .ix,
+:root[data-piel="min"] .cx,
+:root[data-piel="min"] .qx,
+:root[data-piel="min"] .sx,
+:root[data-piel="min"] .dx,
+:root[data-piel="min"] .qz,
+:root[data-piel="min"] .dk,
+:root[data-piel="min"] .sim,
+:root[data-piel="min"] .xc,
+:root[data-piel="min"] .vcard,
+:root[data-piel="min"] .formula{
+  border:none!important;border-radius:16px!important;background:var(--surface)!important;
+  box-shadow:var(--shadow)!important}
+:root[data-piel="min"] .sh{background:none!important;padding:0 0 10px!important;border-radius:0!important;overflow:visible!important}
+:root[data-piel="min"] .sh::after,:root[data-piel="min"] .sh::before{display:none!important}
+:root[data-piel="min"] .badge{background:none!important;color:var(--muted)!important;
+  border:1px solid var(--line)!important;font-weight:500!important;box-shadow:none!important;opacity:.75}
+:root[data-piel="min"] .hero{background:none!important}
+
+/* el filo de luz del fondo «elevado» */
+:root[data-piel="min"][data-fondo="elevado"] .box,
+:root[data-piel="min"][data-fondo="elevado"] details,
+:root[data-piel="min"][data-fondo="elevado"] pre,
+:root[data-piel="min"][data-fondo="elevado"] figure.fig,
+:root[data-piel="min"][data-fondo="elevado"] figure.ill,
+:root[data-piel="min"][data-fondo="elevado"] section.sec,
+:root[data-piel="min"][data-fondo="elevado"] .stats div,
+:root[data-piel="min"][data-fondo="elevado"] .props div,
+:root[data-piel="min"][data-fondo="elevado"] .srch-card,
+:root[data-piel="min"][data-fondo="elevado"] .card,
+:root[data-piel="min"][data-fondo="elevado"] .exn,
+:root[data-piel="min"][data-fondo="elevado"] .exrec a,
+:root[data-piel="min"][data-fondo="elevado"] .vids,
+:root[data-piel="min"][data-fondo="elevado"] .pager a,
+:root[data-piel="min"][data-fondo="elevado"] .pages a,
+:root[data-piel="min"][data-fondo="elevado"] .tw,
+:root[data-piel="min"][data-fondo="elevado"] .readout,
+:root[data-piel="min"][data-fondo="elevado"] .sim-cv,
+:root[data-piel="min"][data-fondo="elevado"] .an-card,
+:root[data-piel="min"][data-fondo="elevado"] .map a,
+:root[data-piel="min"][data-fondo="elevado"] .sres,
+:root[data-piel="min"][data-fondo="elevado"] .qo,
+:root[data-piel="min"][data-fondo="elevado"] .lab-cv,
+:root[data-piel="min"][data-fondo="elevado"] .deep,
+:root[data-piel="min"][data-fondo="elevado"] .an-art,
+:root[data-piel="min"][data-fondo="elevado"] .an-step,
+:root[data-piel="min"][data-fondo="elevado"] p.obj,
+:root[data-piel="min"][data-fondo="elevado"] .box.key,
+:root[data-piel="min"][data-fondo="elevado"] .zero,
+:root[data-piel="min"][data-fondo="elevado"] .idea,
+:root[data-piel="min"][data-fondo="elevado"] .box.trap,
+:root[data-piel="min"][data-fondo="elevado"] .deepnote,
+:root[data-piel="min"][data-fondo="elevado"] .nota,
+:root[data-piel="min"][data-fondo="elevado"] .aviso,
+:root[data-piel="min"][data-fondo="elevado"] .fg-card,
+:root[data-piel="min"][data-fondo="elevado"] .an,
+:root[data-piel="min"][data-fondo="elevado"] .ix,
+:root[data-piel="min"][data-fondo="elevado"] .cx,
+:root[data-piel="min"][data-fondo="elevado"] .qx,
+:root[data-piel="min"][data-fondo="elevado"] .sx,
+:root[data-piel="min"][data-fondo="elevado"] .dx,
+:root[data-piel="min"][data-fondo="elevado"] .qz,
+:root[data-piel="min"][data-fondo="elevado"] .dk,
+:root[data-piel="min"][data-fondo="elevado"] .sim,
+:root[data-piel="min"][data-fondo="elevado"] .xc,
+:root[data-piel="min"][data-fondo="elevado"] .vcard,
+:root[data-piel="min"][data-fondo="elevado"] .formula{box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 1px 2px rgba(0,0,0,.5),0 12px 34px rgba(0,0,0,.4)!important}
+
+/* ---------- selector de aspecto (vale para las dos pieles) ---------- */
+.pl-w{position:fixed;right:max(14px,env(safe-area-inset-right,0px));
+  bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:60;
+  display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.pl-b{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+  background:var(--surface);color:var(--fg);cursor:pointer;display:grid;place-items:center;
+  box-shadow:var(--shadow,0 2px 10px rgba(0,0,0,.12))}
+.pl-b:hover{color:var(--accent);border-color:var(--accent)}
+.pl-b:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pl-p{width:min(286px,calc(100vw - 28px));background:var(--surface);color:var(--fg);
+  border:1px solid var(--line);border-radius:16px;padding:14px 16px 12px;
+  box-shadow:var(--shadow,0 10px 30px rgba(0,0,0,.18));font-family:var(--body,system-ui);text-align:left}
+.pl-h{margin:0 0 10px;font:600 15px/1.2 var(--display,system-ui);letter-spacing:-.01em}
+.pl-f{margin:0 0 12px}
+.pl-t{margin:0 0 6px;font-size:12px;line-height:1.3;color:var(--muted);letter-spacing:.01em}
+.pl-g{display:flex;flex-wrap:wrap;gap:6px}
+.pl-o{font:500 13px/1 var(--body,system-ui);padding:7px 11px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.pl-o:hover{border-color:var(--accent)}
+.pl-o.on{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.pl-o:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.pl-n{margin:2px 0 0;font-size:11.5px;line-height:1.45;color:var(--muted);max-width:none}
+@media print{.pl-w{display:none!important}}
