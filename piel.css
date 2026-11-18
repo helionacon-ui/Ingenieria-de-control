@@ -10,9 +10,9 @@
   --muted:#6e6e73;
   --line:#e5e5ea;
   --shadow:0 1px 2px rgba(0,0,0,.045),0 10px 30px rgba(0,0,0,.055);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:light;
+  --sobre-acento:#ffffff;
+  --on-accent:#ffffff;
   --hubc:#2d4a9a;
   --accent:#2d4a9a;
   --accent-soft:#e7ecfb;
@@ -46,9 +46,9 @@
   --muted:#a69a92;
   --line:#272a32;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090b0f;
+  --on-accent:#090b0f;
   --hubc:#6b8ce5;
   --accent:#6b8ce5;
   --accent-soft:#152244;
@@ -82,9 +82,9 @@
   --muted:#a69a92;
   --line:#272a32;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090b0f;
+  --on-accent:#090b0f;
   --hubc:#6b8ce5;
   --accent:#6b8ce5;
   --accent-soft:#152244;
@@ -118,9 +118,9 @@
   --muted:#a69a92;
   --line:#272a32;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090b0f;
+  --on-accent:#090b0f;
   --hubc:#6b8ce5;
   --accent:#6b8ce5;
   --accent-soft:#152244;
@@ -154,9 +154,9 @@
   --muted:#a69a92;
   --line:#272a32;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#090b0f;
+  --on-accent:#090b0f;
   --hubc:#6b8ce5;
   --accent:#6b8ce5;
   --accent-soft:#152244;
@@ -190,9 +190,9 @@
   --muted:#a1a1a6;
   --line:#3a3a3c;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#1c1c1e;
+  --on-accent:#1c1c1e;
   --hubc:#6385e4;
   --accent:#6385e4;
   --accent-soft:#152244;
@@ -226,9 +226,9 @@
   --muted:#a1a1a6;
   --line:#3a3a3c;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#1c1c1e;
+  --on-accent:#1c1c1e;
   --hubc:#6385e4;
   --accent:#6385e4;
   --accent-soft:#152244;
@@ -262,9 +262,9 @@
   --muted:#9b9ba1;
   --line:rgba(255,255,255,.08);
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#141416;
+  --on-accent:#141416;
   --hubc:#5e82e3;
   --accent:#5e82e3;
   --accent-soft:#152244;
@@ -298,9 +298,9 @@
   --muted:#9b9ba1;
   --line:rgba(255,255,255,.08);
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#141416;
+  --on-accent:#141416;
   --hubc:#5e82e3;
   --accent:#5e82e3;
   --accent-soft:#152244;
@@ -334,9 +334,9 @@
   --muted:#98989d;
   --line:#2c2c2e;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#000000;
+  --on-accent:#000000;
   --hubc:#5a7fe2;
   --accent:#5a7fe2;
   --accent-soft:#152244;
@@ -370,9 +370,9 @@
   --muted:#98989d;
   --line:#2c2c2e;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#000000;
+  --on-accent:#000000;
   --hubc:#5a7fe2;
   --accent:#5a7fe2;
   --accent-soft:#152244;
@@ -406,9 +406,9 @@
   --muted:#8b949e;
   --line:#262c36;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#0d1117;
+  --on-accent:#0d1117;
   --hubc:#7992d8;
   --accent:#7992d8;
   --accent-soft:#152244;
@@ -442,9 +442,9 @@
   --muted:#8b949e;
   --line:#262c36;
   --shadow:0 1px 2px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.42);
-  --display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",system-ui,sans-serif;
-  --mono:ui-monospace,"SF Mono","IBM Plex Mono",Menlo,Consolas,monospace;
   color-scheme:dark;
+  --sobre-acento:#0d1117;
+  --on-accent:#0d1117;
   --hubc:#7992d8;
   --accent:#7992d8;
   --accent-soft:#152244;
@@ -515,12 +515,21 @@
 :root[data-piel="min"] .tw{overflow:auto}
 :root[data-piel="min"] h1,:root[data-piel="min"] h2,:root[data-piel="min"] h3{letter-spacing:-.022em;font-weight:600}
 :root[data-piel="min"] h4,:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp,
-:root[data-piel="min"] th,:root[data-piel="min"] figure.fig .ft{
+:root[data-piel="min"] th,:root[data-piel="min"] .ft{
   text-transform:none!important;letter-spacing:.012em!important;font-weight:500!important}
-:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp,:root[data-piel="min"] figure.fig .ft{color:var(--muted)!important}
+/* Solo se apaga a gris el rótulo que no lleva fondo propio. El que va dentro de una
+   píldora de color conserva su pareja de colores, o el texto quedaría ilegible encima. */
+:root[data-piel="min"] .eyebrow,:root[data-piel="min"] .toc .grp{color:var(--muted)!important}
 :root[data-piel="min"] .tag,:root[data-piel="min"] .pill,:root[data-piel="min"] .exf,:root[data-piel="min"] .qt{
   border-radius:999px;font-weight:500}
-:root[data-piel="min"] .btn{border:none!important;background:var(--surface)!important;box-shadow:var(--shadow)!important}
+/* Botones y píldoras marcadas: manda el relleno y encima va el color que contrasta con él. */
+:root[data-piel="min"] .btn:not(.pri):not(.primary):not(.on){
+  border:none!important;background:var(--surface)!important;box-shadow:var(--shadow)!important}
+:root[data-piel="min"] .btn.pri,:root[data-piel="min"] .btn.primary{
+  background:var(--accent)!important;color:var(--sobre-acento)!important;border-color:transparent!important}
+:root[data-piel="min"] .exf.on,:root[data-piel="min"] .qt.on,:root[data-piel="min"] .pill.on,
+:root[data-piel="min"] .tag.on,:root[data-piel="min"] .qz-o.on{
+  background:var(--accent-soft)!important;color:var(--accent)!important;border-color:transparent!important}
 :root[data-piel="min"] th{background:transparent!important;border:none!important;border-bottom:1px solid var(--line)!important}
 :root[data-piel="min"] td{border-color:var(--line)!important}
 :root[data-piel="min"] .toc a{border-left:none!important;border-radius:10px;padding-left:10px}
