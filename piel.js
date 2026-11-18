@@ -19,10 +19,22 @@
     fondo: (function () { var f = leer('apuntes-fondo'); return FONDO.some(function (x) { return x[0] === f; }) ? f : 'calido'; })()
   };
 
+  /* Instalada como aplicación, la barra de estado toma el color del fondo de la guía. */
+  function barra() {
+    try {
+      var c = getComputedStyle(D).getPropertyValue('--bg').trim();
+      if (!c) return;
+      var m = document.querySelector('meta[name="theme-color"]');
+      if (!m) { m = document.createElement('meta'); m.name = 'theme-color'; document.head.appendChild(m); }
+      m.setAttribute('content', c);
+    } catch (e) {}
+  }
+
   function aplicar() {
     estado.piel === 'min' ? D.setAttribute('data-piel', 'min') : D.removeAttribute('data-piel');
     estado.tema === 'auto' ? D.removeAttribute('data-theme') : D.setAttribute('data-theme', estado.tema);
     D.setAttribute('data-fondo', estado.fondo);
+    barra();
     guardar('apuntes-piel', estado.piel === 'min' ? 'min' : null);
     guardar('apuntes-tema', estado.tema === 'auto' ? null : estado.tema);
     guardar('apuntes-fondo', estado.fondo);
@@ -141,6 +153,11 @@
     document.body.appendChild(caja);
     pintar();
     D.setAttribute('data-fondo', estado.fondo);
+    barra();
+    try {
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+      mq.addEventListener ? mq.addEventListener('change', barra) : mq.addListener(barra);
+    } catch (e) {}
     censar();
     colocar();
     setTimeout(function () { censar(); colocar(); }, 900);
