@@ -92,6 +92,7 @@
       '.sug-l{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}' +
       '.sug-l li{font-size:.84em;line-height:1.55;background:var(--bg);border:1px solid var(--line);' +
       'border-radius:12px;padding:9px 12px}' +
+      '.sug-l li.aqui{border-color:var(--accent)}' +
       '.sug-c{display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}' +
       '.sug-l .tp{flex:0 0 auto;font-size:.84em;font-weight:600;color:var(--accent)}' +
       '.sug-l .pg{flex:1 1 auto;min-width:0;color:var(--muted);font-size:.84em;overflow:hidden;' +
@@ -131,15 +132,14 @@
       '<button type="button" class="pr sug-add">Guardar</button>' +
       '<button type="button" class="sug-ver"></button>' +
       '</div><p class="sug-ok" role="status"></p>' +
-      '<div class="sug-aqui"></div><div class="sug-todas" hidden></div>';
+      '<div class="sug-todas" hidden></div>';
 
     if (pager && pager.parentNode) pager.parentNode.insertBefore(sec, pager);
     else destino.parentNode ? destino.parentNode.insertBefore(sec, destino.nextSibling) : destino.appendChild(sec);
 
     var tx = sec.querySelector('#sug-tx'), tp = sec.querySelector('#sug-tp'),
         bAdd = sec.querySelector('.sug-add'), bVer = sec.querySelector('.sug-ver'),
-        ok = sec.querySelector('.sug-ok'), aqui = sec.querySelector('.sug-aqui'),
-        todas = sec.querySelector('.sug-todas');
+        ok = sec.querySelector('.sug-ok'), todas = sec.querySelector('.sug-todas');
 
     function avisa(m) { ok.textContent = m || ''; if (m) setTimeout(function () { if (ok.textContent === m) ok.textContent = ''; }, 4000); }
 
@@ -165,19 +165,15 @@
       return li;
     }
 
+    /* Nada se muestra hasta pulsar el botón: el recuadro no delata lo anotado. */
     function pinta() {
-      var l = leer(), mias = l.filter(function (s) { return s.pagina === pagina() && s.guia === guia(); });
-      aqui.innerHTML = '';
-      if (mias.length) {
-        var h = document.createElement('p'); h.className = 'sug-p';
-        h.textContent = mias.length === 1 ? 'Tu sugerencia en esta página:' : 'Tus ' + mias.length + ' sugerencias en esta página:';
-        var ul = document.createElement('ul'); ul.className = 'sug-l';
-        mias.slice().reverse().forEach(function (s) { ul.appendChild(fila(s)); });
-        aqui.append(h, ul);
-      }
-      bVer.textContent = l.length ? 'Ver las ' + l.length + ' guardadas' : 'Ver las guardadas';
+      var l = leer();
+      bVer.textContent = l.length
+        ? (todas.hidden ? 'Ver las ' + l.length + ' guardadas' : 'Ocultar las ' + l.length + ' guardadas')
+        : 'Ver las guardadas';
       bVer.disabled = !l.length;
       bVer.style.opacity = l.length ? '' : '.55';
+      bVer.setAttribute('aria-expanded', todas.hidden ? 'false' : 'true');
       if (!todas.hidden) pintaTodas();
     }
 
@@ -191,7 +187,11 @@
         var hg = document.createElement('p'); hg.className = 'sug-g';
         hg.textContent = g + ' · ' + porGuia[g].length;
         var ul = document.createElement('ul'); ul.className = 'sug-l';
-        porGuia[g].slice().reverse().forEach(function (s) { ul.appendChild(fila(s, true)); });
+        porGuia[g].slice().reverse().forEach(function (s) {
+          var li = fila(s, true);
+          if (s.pagina === pagina() && s.guia === guia()) li.className += ' aqui';
+          ul.appendChild(li);
+        });
         todas.append(hg, ul);
       });
       var pie = document.createElement('div'); pie.className = 'sug-f';
@@ -247,7 +247,7 @@
     });
     bVer.addEventListener('click', function () {
       todas.hidden = !todas.hidden;
-      if (!todas.hidden) pintaTodas();
+      pinta();
     });
 
     pinta();
