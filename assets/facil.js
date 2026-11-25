@@ -181,7 +181,7 @@ var F=[
 <li><b>Ecuación real con el PI.</b> El lazo tiene la forma s² + (1 + 3K<sub>p</sub>)/10·s + 3K<sub>p</sub>/(10T<sub>i</sub>).</li>
 <li><b>Igualar coeficientes.</b> Del término en s: K<sub>p</sub> = 1,067. Del término independiente: T<sub>i</sub> = 3,56 s.</li>
 </ol>
-<p><b>Matiz:</b> el PI añade un cero, así que el sobrepico real sale un poco mayor que el de la fórmula. Por eso se elige ζ con margen.</p>`],
+<p><b>Matiz (importante):</b> el PI añade un cero, y el cero sube el sobrepico. Con ζ = 0,7 el sobrepico real sale de unos 12,5 %, más que el 5 % pedido. Para cumplirlo hay que tomar ζ ≈ 1,05 (con ω<sub>n</sub> = 0,3): K<sub>p</sub> ≈ 1,77 y T<sub>i</sub> ≈ 5,9 s, con un sobrepico de unos 4,7 %.</p>`],
 
 ['Concentración en un reactor',`
 <p class="fidea"><b>La idea en una frase:</b> ante una entrada senoidal, la salida tiene la misma frecuencia pero menor amplitud. Lo que hay que calcular es cuánto se reduce.</p>
@@ -333,7 +333,27 @@ var V={
 'P5 ·':[['p5_paso1.png','Paso 1 · K = 0,138 da MF = 40° (y MG = 18 dB).'],['p5_paso2.png','Paso 2 · Atraso β = 1,4: −100 dB en ω ≥ 100 y MF = 45,9°.']],
 'P6 ·':[['p6_paso1.png','Paso 1 · |G| nunca llega a 0 dB: no hay margen de fase.'],['p6_paso2.png','Paso 2 · Con Kc = 98,67 el error es 7,5 %, pero el margen cae a 6,9°.'],['p6_paso3.png','Paso 3 · Adelanto con 15° de colchón → MF = 46,1°.']],
 'P7 ·':[['p7_paso1.png','Paso 1 · Con Kc = 20 es inestable (MF = −28°).'],['p7_paso2.png','Paso 2 · Atraso β = 22: el cruce baja a 0,41 rad/s y MF = 50,4°.']],
-'P8 ·':[['p8_paso1.png','Paso 1 · MF = 90° sin compensar.'],['p8_paso2.png','Paso 2 · Kc = 3,6 para e_p = 10 %: MF = 47,6°.'],['p8_paso3.png','Paso 3 · Adelanto con 12° de colchón → MF = 65,8°.']]
+'P8 ·':[['p8_paso1.png','Paso 1 · MF = 90° sin compensar.'],['p8_paso2.png','Paso 2 · Kc = 3,6 para e_p = 10 %: MF = 47,6°.'],['p8_paso3.png','Paso 3 · Adelanto con 12° de colchón → MF = 65,8°.']],
+'Diagrama de Bode asintótico (1)':[['ac_bode_asintotico1.png','Azul: el diagrama exacto. Gris: las asíntotas. Cada polo baja la pendiente 20 dB/déc.']],
+'Diagrama de Bode asintótico (2)':[['ac_bode_asintotico2.png','El doble integrador da −40 dB/déc y −180°. El polo y el cero cambian la pendiente.']],
+'Salida ante una senoide (primer orden)':[['ac_senoide_primer_orden.png','La salida tiene la misma frecuencia que la entrada, pero con 0,133 de amplitud y 86° de retraso.']],
+'Ancho de banda y respuestas temporales':[['ac_escalon_rampa.png','Escalón: alcanza el 63 % en τ = 5 s. Rampa: sigue con un retraso de 5 s.']],
+'Salida ante una senoide (sistema con integrador)':[['ac_senoide_integrador.png','La amplitud sale casi cero por el integrador. La frecuencia no cambia.']],
+'Margen de fase de un tercer orden':[['ac_margen_tercer_orden.png','ω_c = 1,22 da MF = 41,5°. El cruce de −180° está en ω = 2,83 y da MG = 12 dB.']],
+'Margen de fase y de ganancia':[['ac_margenes_5.png','Con ω_c = 0,684 el margen de fase es 49,1°. Con ω_180 = 2,45 el margen de ganancia es 18,5 dB.']],
+'Efecto de la ganancia en la estabilidad':[['ac_ganancia_estabilidad.png','Con K = 10 el cruce cae antes de −180°: estable. Con K = 100 cae después: inestable.']],
+'Diagramas polares básicos':[['ac_polares.png','Izquierda: 1/(1 + jωT) recorre una semicircunferencia. Derecha: e^(−jωT) recorre la circunferencia unidad.']],
+'Ej. 1a':[['prac_integrador.png','K solo sube o baja la recta de −20 dB/déc. La fase es −90° con cualquiera de los dos valores.']],
+'Ej. 1b':[['prac_primer_orden_T2.png','En ω = 0,5 rad/s el módulo baja 3 dB y la fase vale −45°.']],
+'Ej. 3 ·':[['prac_ej3_margenes.png','MF = 28,9° en ω_c = 2,36 rad/s. MG = 8,1 dB en ω_180 = 3,97 rad/s.']],
+'Sintonía de Ziegler':[['ex_zn_oscilacion.png','Con K = K_cr = 60 el lazo oscila sin amortiguarse, con periodo 1,89 s.']],
+'PI por asignación':[['ex_pi_escalon.png','Con ζ = 0,7 el escalón se pasa un 12,5 %. Hace falta ζ ≈ 1,05 para bajar de 5 %.']],
+'Problema completo':[['ex_completo_bode.png','Sin compensar, MF = 9,6°. Con el atraso, MF = 50,8° y MG = 12,6 dB.']],
+'Mínimo compensador con ζ':[['ex_minimo_zeta.png','Con K = 0,0438 el cruce baja a 0,168 rad/s y el MF sube de 11,4° a 50°.']],
+'Concentración en un reactor':[['ex_reactor_senoide.png','La amplitud de salida es 0,012, menor que 0,05: el proceso ya amortigua la perturbación.']],
+'Problema de frecuencia: G(s) = 30/':[['ex_g30_bode.png','El cruce está en ω_c = 5,39 rad/s con MF = 21°.']],
+'Adelanto del Ogata 7-26 con colchón de 8°':[['ex_ogata_adelanto.png','El adelanto sube el cruce de 6,17 a 9,15 rad/s y el MF de 18° a 52°.']],
+'Senoide con cero y tres polos':[['ac_senoide_cero_tres_polos.png','La salida tiene amplitud 0,0107 veces la entrada y un desfase de −184°.']]
 };
 function galeria(k){var L=V[k];if(!L)return '';return '<div class="vgal">'+L.map(function(x){return '<figure><img src="assets/visual/'+x[0]+'" alt="'+x[1]+'" loading="lazy"><figcaption>'+x[1]+'</figcaption></figure>'}).join('')+'</div>';}
 window.facilHTML=function(e){
