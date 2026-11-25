@@ -1,6 +1,6 @@
 // Guarda la guía para poder leerla sin conexión.
 // Las páginas se piden primero a la red, así que una actualización se ve en cuanto hay cobertura.
-const CACHE = 'ingenieria-de-control-v1-tip6';
+const CACHE = 'ingenieria-de-control-v1-tip7';
 const CORE = ["./", "./anim-manim.js", "./anim-temas.js", "./asig-nav.js", "./bode.html", "./calculadora.html", "./consultar.html", "./diseno.html", "./empezar.html", "./entrena.html", "./examenes.html", "./frecuencia.html", "./guia-completa.html", "./index.html", "./manifest.webmanifest", "./maqueta.html", "./margenes.html", "./nyquist.html", "./pid.html", "./piel.css?v=4", "./piel.js?v=4","./sugerencias.js?v=2", "./problemas.html", "./recursos.html", "./simulacro.html", "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE)

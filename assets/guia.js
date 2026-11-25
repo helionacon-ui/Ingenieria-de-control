@@ -363,7 +363,7 @@ function exCard(e,kind){const tag=`<span class="tag ${kind}">${e.src}</span>`;
   const ap=e.ap?`<ol class="ap">${e.ap.map(x=>`<li>${x}</li>`).join('')}</ol>`:'';
   const chk=e.chk?`<button class="btn" type="button" data-chk='${JSON.stringify(e.chk)}'>Comprobar en la calculadora</button>`:'';
   return `<article class="ex"><div class="ex-top"><h4>${e.t}</h4>${tag}<span class="tag">${e.tema}</span></div><div class="enun">${e.q}</div>${ap}
-  <details class="sol"><summary>Ver solución paso a paso</summary><div class="body">${e.s}${chk?`<div>${chk}</div>`:''}</div></details></article>`}
+  ${window.facilHTML?window.facilHTML(e):''}<details class="sol"><summary>Ver solución paso a paso</summary><div class="body">${e.s}${chk?`<div>${chk}</div>`:''}</div></details></article>`}
 const EX=[
 {t:'Problema de frecuencia: G(s) = 30/(s²+2s+1)',src:'Sept 2015 · 4 pts',tema:'T5 · T6',q:'<p>Sistema en lazo cerrado con G(s) = 30/(s² + 2s + 1) = 30/(s+1)² y H(s) = 1.</p>',
  ap:['¿Cuál es el MF actual?','¿Y el ancho de banda?','Calcular un compensador de adelanto para conseguir un MF de 50°. ¿Qué MG tiene el sistema compensado?','Calcular un compensador de atraso para conseguir un MF de 50°. ¿Qué MG tiene el sistema compensado?'],

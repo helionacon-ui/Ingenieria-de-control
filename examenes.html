@@ -183,6 +183,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 1 -->
 <h3 id="q1">1 · Calcular m para que y siga a la consigna</h3>
 <p class="note">Sept 2015 C1 · sept 2017 C3. «Calcular cuál debe ser la señal de control m para conseguir que la salida y siga a la consigna y<sub>sp</sub> (control feedforward). Dibujar el diagrama de bloques de la solución.»</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> si mides la perturbación d, puedes mover la acción m para que cancele su efecto antes de que llegue a la salida.</p>
+<ol>
+<li>La salida depende de dos cosas: lo que tú haces (m, a través de G<sub>p</sub>) y lo que llega sin que lo hagas (d, a través de G<sub>d</sub>).</li>
+<li>Quieres que y sea igual a la consigna y<sub>sp</sub>. Despejando, m = y<sub>sp</sub>/G<sub>p</sub> − (G<sub>d</sub>/G<sub>p</sub>)·d.</li>
+<li>La parte que depende de d es el feedforward: un bloque que mide d y calcula la corrección.</li>
+<li><b>Requisito:</b> tienes que poder medir d. Si no puedes, este truco no sirve y hay que usar realimentación.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · la idea en un dibujo</p><div class="plot" id="dq1"></div>
 <figcaption><b>Dos caminos llegan a y:</b> la perturbación d por G<sub>d</sub> y la acción m por G<sub>p</sub>. El feedforward mide d y fabrica una m que llega a y con el signo contrario, así que las dos contribuciones se anulan.</figcaption></figure>
 <div class="box key"><h4>Respuesta</h4>
@@ -194,6 +200,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 2 -->
 <h3 id="q2">2 · Explica un método de discretización de un PID</h3>
 <p class="note">Sept 2015 C2.</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> el PID de los libros es continuo, pero el ordenador solo ve el error cada T segundos. Hay que cambiar la integral y la derivada por cuentas con números.</p>
+<ol>
+<li><b>Proporcional:</b> no cambia. Multiplica el error actual por K<sub>p</sub>.</li>
+<li><b>Derivada:</b> es la pendiente del error. Entre dos muestras seguidas es (e<sub>k</sub> − e<sub>k−1</sub>)/T.</li>
+<li><b>Integral:</b> es el área bajo el error. Con trapecios, cada tramo es la media de dos muestras multiplicada por T.</li>
+<li><b>Resultado:</b> en cada instante sumas las tres partes. Un T pequeño hace que el resultado se parezca al continuo.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · del PID continuo al del ordenador</p><div class="plot" id="dq2"></div>
 <div class="plot" id="pq2"></div>
 <figcaption><b>Arriba: la cadena.</b> El ordenador solo ve el error cada T segundos (e<sub>k</sub>), calcula u<sub>k</sub> y un retenedor la mantiene hasta la siguiente muestra. <b>Abajo: cómo se aproxima cada acción.</b> La integral, por el área de trapecios bajo e(t) (Tustin, en naranja); la derivada, por la pendiente entre dos muestras seguidas (en azul).</figcaption></figure>
@@ -206,6 +218,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 3 -->
 <h3 id="q3">3 · Saturación de la señal de control con parte integral</h3>
 <p class="note">Sept 2015 C3 · sept 2017 C1 (dos versiones).</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> el actuador tiene un tope. Si el controlador sigue sumando error mientras el actuador está al tope, la integral se llena de más y tarda en vaciarse.</p>
+<ol>
+<li>Imagina un depósito que no puede llenarse más: el controlador sigue echando agua en la integral.</li>
+<li>Cuando el error por fin cambia de signo, hay que vaciar ese depósito. Tarda, y mientras tanto el sistema se pasa de la consigna: eso es el sobrepico grande.</li>
+<li><b>Solución 1:</b> si la señal que llega al actuador no es la que calculó el PID, se resta la diferencia a la integral. Así la integral nunca se llena de más.</li>
+<li><b>Solución 2:</b> se para la integral mientras el actuador esté al tope.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · por qué aparece el windup</p><div class="plot" id="pq3"></div>
 <figcaption><b>Mientras el actuador está saturado</b> (franja gris), la salida sube despacio y el error es positivo mucho tiempo: la integral acumula un «área positiva» enorme (verde). Para descargarla, el error tiene que hacerse negativo el mismo tiempo: eso es el <b>sobrepico</b> (área roja). Es la explicación clásica: el sumatorio de áreas tiene que volver a cero.</figcaption></figure>
 <figure class="fig"><p class="ft">Diagrama · la solución (recálculo)</p><div class="plot" id="dq3"></div>
@@ -219,6 +237,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 4 -->
 <h3 id="q4">4 · Salida ante una senoide</h3>
 <p class="note">Cuestión de examen. «En el sistema G(s)H(s) = (s + 10)/((s + 1)(s + 3)s) introducimos una senoidal de amplitud 2 y frecuencia 10 rad/s. Calcular la frecuencia y la amplitud de la onda de salida.»</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> una senoide que entra en un sistema lineal sale con la misma frecuencia, pero con otra amplitud y desplazada en el tiempo.</p>
+<ol>
+<li>La frecuencia de salida es la de entrada: 10 rad/s.</li>
+<li>Para la amplitud, sustituyes s por 10j en G y calculas el módulo: 0,0135. Como la entrada tiene amplitud 2, la salida tiene 0,027.</li>
+<li>Para el desplazamiento, sumas los ángulos de cada factor. El numerador (s+10) aporta +45°. Cada factor del denominador resta lo suyo. Total: −202,6°.</li>
+<li>Un desplazamiento de −202,6° equivale a un adelanto de 157,4°. Lo que importa es que sea la misma forma, desplazada.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · qué cambia y qué no</p><div class="plot" id="pq4"></div>
 <figcaption><b>La frecuencia no cambia</b>: las crestas se repiten cada 2π/10 = 0,63 s en las dos señales. Cambian la amplitud (se multiplica por |G(j10)|) y la fase (se desplaza ∠G(j10)). La salida está ampliada ×40 para que se vea.</figcaption></figure>
 <div class="box key"><h4>Respuesta</h4>
@@ -231,6 +255,11 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 5 -->
 <h3 id="q5">5 · Feedforward y feedback juntos</h3>
 <p class="note">Cuestión de examen. «Dibuja un diagrama de bloques con la estructura de control feedforward y feedback juntas. Explica cada uno de los bloques.»</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> dos controles que trabajan juntos: uno se adelanta a la perturbación y el otro corrige los errores que se escapan.</p>
+<ol>
+<li><b>Feedforward:</b> mide d y actúa antes de que d llegue a la salida. Necesita un modelo bastante exacto.</li>
+<li><b>Feedback:</b> mide la salida y corrige el error. No necesita modelo ni conocer d, pero reacciona cuando el error ya existe.</li>
+<li><b>Juntos:</b> el feedforward hace el trabajo grande y el feedback limpia lo que sobra.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · la estructura completa, con los sensores</p><div class="plot" id="dq5"></div>
 <figcaption>Es el dibujo típico. G<sub>m2</sub> mide la perturbación para el feedforward y G<sub>m1</sub> mide la salida para el feedback. Las dos acciones se suman antes del elemento final G<sub>f</sub> (la válvula).</figcaption></figure>
 <div class="box key"><h4>Respuesta: qué es cada bloque</h4>
@@ -246,6 +275,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 6 -->
 <h3 id="q6">6 · Mejorar el tiempo de respuesta sin importar el sobrepico</h3>
 <p class="note">Cuestión de examen.</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> para ir más rápido hay que subir la ganancia. Pero el error permanente solo desaparece con integral.</p>
+<ol>
+<li><b>Solo P:</b> más ganancia, más rapidez, pero queda un error fijo.</li>
+<li><b>P + D:</b> la derivada permite subir la ganancia sin tanta oscilación. Sigue habiendo error fijo.</li>
+<li><b>P + I + D:</b> la integral elimina el error. Es la opción si no se puede tolerar error.</li>
+<li><b>Dato clave:</b> como el sobrepico no importa, puedes subir K<sub>p</sub> más de lo normal.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · P, PD y PID sobre la misma planta</p><div class="plot" id="pq6"></div>
 <figcaption><b>Planta 1/((s+1)(2s+1)).</b> Gris: P con K<sub>p</sub> = 2, lento y con error. Azul: PD (K<sub>p</sub> = 8, T<sub>d</sub> = 0,4), mucho más rápido pero con error permanente. Naranja: PID, rápido y sin error, con más sobrepico.</figcaption></figure>
 <div class="box key"><h4>Respuesta (depende de lo que se pida)</h4>
@@ -256,6 +291,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 7 -->
 <h3 id="q7">7 · Dibuja todas las mejoras del PID que conozcas</h3>
 <p class="note">Cuestión de examen · Práctica 2.</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> el PID básico tiene defectos, y cada mejora soluciona uno concreto.</p>
+<ol>
+<li><b>Peso b en la referencia:</b> evita el tirón de la proporcional cuando cambia la consigna.</li>
+<li><b>Derivada sobre la medida (−y):</b> evita el pico derivativo cuando la consigna cambia de golpe.</li>
+<li><b>Filtro en la derivada:</b> evita que el ruido se amplifique.</li>
+<li><b>Antiwindup:</b> evita que la integral se llene cuando el actuador está al tope.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · el PID «completo» de la práctica 2</p><div class="plot" id="dq7"></div>
 <figcaption>Las tres mejoras en un solo dibujo. <b>1 · Referencia ponderada:</b> la P ve b·r − y. <b>2 · Derivada filtrada y sobre la medida:</b> la D ve −y a través de K·T<sub>d</sub>s/(1 + T<sub>d</sub>s/N). <b>3 · Antiwindup:</b> la diferencia entre la salida del PID y la del actuador vuelve al integrador por 1/T<sub>t</sub>.</figcaption></figure>
 <div class="box key"><h4>Respuesta: para qué sirve cada mejora</h4>
@@ -268,6 +309,11 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 8 -->
 <h3 id="q8">8 · Control en cascada</h3>
 <p class="note">Dic 2024 C3: «Dibuja un diagrama de bloques para el control en cascada del sistema. Explica cada función de transferencia y cada variable que aparece.» Y sus características.</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> dos lazos, uno dentro del otro. El de dentro es rápido y protege al de fuera.</p>
+<ol>
+<li><b>Lazo externo (lento):</b> controla lo que te importa, por ejemplo la temperatura, y da una consigna al interno.</li>
+<li><b>Lazo interno (rápido):</b> controla algo intermedio, por ejemplo el caudal. Si ese caudal se desvía, lo corrige antes de que la temperatura se entere.</li>
+<li><b>Regla:</b> el lazo interno debe ser de 3 a 5 veces más rápido. Se sintoniza primero el de dentro.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · cascada con todas las letras</p><div class="plot" id="dq8"></div>
 <figcaption>Ejemplo típico: horno cuya temperatura (y<sub>1</sub>) depende del caudal de combustible (y<sub>2</sub>). Si la presión del combustible varía (d<sub>2</sub>), el lazo interno de caudal la corrige en segundos, antes de que la temperatura se entere.</figcaption></figure>
 <div class="box key"><h4>Respuesta</h4>
@@ -285,6 +331,11 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 9 -->
 <h3 id="q9">9 · Concentración en dos tanques ante una entrada senoidal</h3>
 <p class="note">Feb 2020. «La concentración de alimentación varía como una senoidal de amplitud 0,1 mol/m³ y frecuencia 0,2 rad/min. Se requiere una variación menor de 0,05 mol/m³ a la salida. ¿Es posible sin cerrar el lazo?» Con C<sub>A2</sub>/C<sub>A0</sub> = K<sub>p</sub>/(τs + 1)², K<sub>p</sub> = 0,448 y τ = 8,25 min.</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> un tanque actúa como un filtro: deja pasar las variaciones lentas y frena las rápidas.</p>
+<ol>
+<li>La entrada oscila con un periodo de 2π/0,2 ≈ 31 minutos.</li>
+<li>Como ωτ = 0,2 · 8,25 = 1,65, la oscilación es más rápida que la respuesta del tanque. Por eso el tanque casi no la sigue.</li>
+<li>La amplitud de salida es 0,1 · 0,120 = 0,012, menor que el límite de 0,05. No hace falta regulación.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · los dos tanques y lo que pasa con la oscilación</p><div class="plot" id="dq9"></div><div class="plot" id="pq9"></div>
 <figcaption><b>Cada tanque es un filtro de primer orden</b> (τ = 8,25 min): una oscilación de 0,2 rad/min, con un periodo de 31 minutos, es demasiado rápida para que el tanque la siga entera. Dos tanques en serie la atenúan dos veces.</figcaption></figure>
 <div class="box key"><h4>Respuesta</h4>
@@ -295,6 +346,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 10 -->
 <h3 id="q10">10 · Método de sintonía por relé</h3>
 <p class="note">Dic 2024 C1: «Explica el método de sintonía relé feedback.»</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> en vez de un controlador se pone un interruptor (relé). El sistema empieza a oscilar solo, y con esa oscilación se calcula el controlador.</p>
+<ol>
+<li>El relé cambia la salida entre +d y −d según el signo del error.</li>
+<li>El sistema oscila de forma estable, con amplitud a y periodo P<sub>u</sub>. Esa oscilación aparece donde la fase vale −180°.</li>
+<li>Con la amplitud calculas la ganancia crítica: K<sub>u</sub> = 4d/(πa).</li>
+<li>Con K<sub>u</sub> y P<sub>u</sub> usas la tabla de Ziegler–Nichols. No hay que llevar el sistema a la inestabilidad a mano.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · el ensayo</p><div class="plot" id="dq10"></div><div class="plot" id="pq10"></div>
 <figcaption><b>Arriba:</b> se sustituye el controlador por un relé de amplitud ±d. <b>Abajo:</b> el lazo entra solo en una oscilación estable; se miden su amplitud a y su periodo P<sub>u</sub>.</figcaption></figure>
 <div class="box key"><h4>Respuesta</h4>
@@ -307,6 +364,11 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 11 -->
 <h3 id="q11">11 · Problemas de un PID con la consigna en escalón</h3>
 <p class="note">Dic 2024 C2: «Explica qué problemas nos podemos encontrar al usar un PID cuando el setpoint es un escalón. ¿Cómo se soluciona?»</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> un escalón en la consigna da un tirón al controlador. Hay que suavizarlo.</p>
+<ol>
+<li><b>Patada derivativa:</b> la derivada de un escalón es un pico enorme. El actuador recibe un golpe.</li>
+<li><b>Salto proporcional:</b> la proporcional también salta de golpe al cambiar la consigna.</li>
+<li><b>Solución:</b> que la derivada mire solo la medida, y que la proporcional mire una consigna ponderada b·r. Así el escalón no da tirones.</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · la patada en la señal de control</p><div class="plot" id="pq11"></div>
 <figcaption><b>Señal de control ante un escalón de consigna.</b> Rojo: PID clásico, con D y P sobre el error; en t = 0 la derivada del escalón da un pico enorme (recortado en el dibujo). Azul: la D actúa solo sobre la medida y la P con peso b = 0,5; arranca suave.</figcaption></figure>
 <div class="box key"><h4>Respuesta</h4>
@@ -318,6 +380,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <!-- 12 -->
 <h3 id="q12">12 · PI por asignación de polos con Mp y ts</h3>
 <p class="note">Sept 2017 C2: «Calcular un PI mediante asignación de polos, sabiendo que las condiciones a cumplir son M<sub>p</sub> &lt; 5 % y t<sub>s</sub> &lt; 20 s.»</p>
+<details class="facil"><summary>Explicación sencilla · léela antes de la respuesta</summary><div class="fbody"><p class="fidea"><b>La idea en una frase:</b> las especificaciones se traducen en una zona del plano s donde deben estar los polos. Después se calcula el PI para que los polos caigan ahí.</p>
+<ol>
+<li><b>M<sub>p</sub> &lt; 5 %</b> exige ζ &gt; 0,69.</li>
+<li><b>t<sub>s</sub> &lt; 20 s</b> exige ζω<sub>n</sub> &gt; 0,2.</li>
+<li>Eliges ζ = 0,7 y ω<sub>n</sub> = 0,3 rad/s. Eso da la ecuación deseada s² + 0,42s + 0,09.</li>
+<li>La igualas con la ecuación real del PI: dos coeficientes y dos incógnitas (K<sub>p</sub> y T<sub>i</sub>).</li></ol></div></details>
 <figure class="fig"><p class="ft">Diagrama · las condiciones son una región del plano s</p><div class="plot" id="pq12"></div>
 <figcaption><b>M<sub>p</sub> &lt; 5 % exige ζ &gt; 0,69:</b> los polos tienen que estar dentro del cono que forman las rectas grises. <b>t<sub>s</sub> &lt; 20 s exige ζω<sub>n</sub> &gt; 0,2:</b> a la izquierda de la recta vertical naranja. Los polos elegidos (ζ = 0,7, ω<sub>n</sub> = 0,3) están en la zona válida, sombreada.</figcaption></figure>
 <div class="box key"><h4>Respuesta</h4>
@@ -332,6 +400,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </div>
 <a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
 <script src="assets/datos.js"></script>
+<script src="assets/facil.js?v=1"></script>
 <script src="assets/guia.js"></script>
 </body>
 </html>
