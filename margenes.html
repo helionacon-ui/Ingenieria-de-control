@@ -120,7 +120,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
 </head>
 <body class="pg-margenes single">
-<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-08">8 de noviembre de 2026</time></p></div>
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-25">25 de noviembre de 2026</time></p></div>
 <header class="topbar">
   <div class="tb-in">
     <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
@@ -177,6 +177,25 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <div class="row"><b>Margen de ganancia</b><div class="eq">\[MG=\frac{1}{|GH(j\omega_{180})|},\quad MG_{dB}=-20\log|GH(j\omega_{180})|\]</div></div>
 </div></div>
 
+<h3 id="porque">¿Por qué el 1 y el −180°?</h3>
+<p>Con realimentación unitaria (H = 1), el lazo cerrado tiene la ecuación característica <code>1 + L(s) = 0</code>, donde L(s) = G(s)H(s). Un polo del lazo cerrado sobre el eje imaginario da una oscilación que no se apaga, y eso ocurre cuando L(jω) vale −1 para alguna frecuencia:</p>
+<p>\[1+L(j\omega)=0 \;\Longleftrightarrow\; L(j\omega)=-1=1\cdot e^{-j180^\circ}\]</p>
+<p>Esa igualdad pide dos cosas a la vez, y cada margen mide la distancia a una de ellas:</p>
+<ul>
+<li><b>|L| = 1 (0 dB).</b> La señal que da la vuelta al lazo vuelve con el mismo tamaño que tenía. Si volviera mayor, crecería; si menor, se apagaría. Solo con igualdad se sostiene. Por eso ω<sub>c</sub> se define donde |L| = 1, y el margen de fase mide cuánto le falta a la fase de ese punto para llegar a −180°.</li>
+<li><b>∠L = −180°.</b> La señal vuelve en contrafase. La realimentación resta, pero si L = −1 la resta se convierte en suma: e = r − L·e = r + e, y el lazo se mantiene solo. Por eso el margen de ganancia se mide en ω<sub>180</sub>, donde la fase es −180°.</li>
+</ul>
+<p>Con esto salen las dos fórmulas de la chuleta:</p>
+<ul>
+<li><b>MF = 180° + ∠L(jω<sub>c</sub>).</b> Si en ω<sub>c</sub> la fase vale −131°, la distancia angular hasta −180° es 49°. Es el ángulo que separa el punto de la curva del semieje real negativo, medido sobre el círculo |L| = 1.</li>
+<li><b>MG = 1/|L(jω<sub>180</sub>)|.</b> En ω<sub>180</sub> el punto cae sobre el eje real negativo, en −|L|. Hay que multiplicar la ganancia por k para llevarlo a −1, así que k = 1/|L|. Si |L(jω<sub>180</sub>)| = 0,119, entonces k = 8,4, que son 20·log(8,4) = 18,5 dB.</li>
+</ul>
+<figure class="fig">
+<p class="ft">Imagen · Dónde están los márgenes en el Nyquist</p>
+<img src="assets/margenes-nyquist.svg" alt="Diagrama de Nyquist de L(s) = 5/(s(s+1)(s+6)) con el círculo unidad y el punto −1. El margen de fase es de 49 grados, el ángulo entre el punto donde la curva corta el círculo unidad y el semieje real negativo. El margen de ganancia es de 8,4 veces (18,5 dB), la distancia entre el corte con el eje real, en −0,119, y el punto −1. A la derecha, por qué |L| = 1 y la fase −180°: si L = −1, entonces 1 + L = 0." style="width:100%;height:auto;display:block;border-radius:12px;background:#fff">
+<figcaption><b>Izquierda:</b> el Nyquist de L(s) = 5/(s(s+1)(s+6)). El margen de fase es el ángulo verde entre el punto donde la curva corta el círculo unidad (ω<sub>c</sub> ≈ 0,68 rad/s) y el semieje real negativo: 49°. El margen de ganancia es el tramo ámbar entre el corte con el eje real (ω<sub>180</sub> ≈ 2,45 rad/s) y −1: 8,4 veces, o 18,5 dB. <b>Derecha:</b> por qué el 1 y el −180°. Si L = −1, entonces 1 + L = 0.</figcaption>
+</figure>
+
 <h3>Dónde se leen: en el Bode y en el Nyquist</h3>
 <figure class="fig">
 <p class="ft">Simulador · los dos márgenes en las dos gráficas</p>
@@ -207,6 +226,8 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <li><b>MF negativo o MG negativo en dB:</b> lazo cerrado inestable (si P = 0).</li>
 <li><b>MATLAB</b> (<code>margin</code>) da el MG en veces, no en dB; conviértelo con 20·log.</li>
 <li><b>Un retardo</b> \(e^{-Ls}\) no cambia el módulo, así que ω<sub>c</sub> no se mueve, pero resta \(\omega_cL\) radianes al MF. Lo ves en el simulador de abajo.</li>
+<li><b>Lazo inestable en abierto (polos en el semiplano derecho, P ≠ 0):</b> el signo del MF y del MG ya no basta. Hay que contar cuántas veces la curva rodea el punto −1 (criterio de Nyquist).</li>
+<li><b>Sistemas condicionalmente estables:</b> la ganancia puede bajar o subir hasta cruzar −1. Tienen dos márgenes de ganancia, uno por encima de K y otro por debajo; mira los dos.</li>
 </ul></div>
 
 <figure class="fig">
@@ -217,7 +238,7 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 </figure>
 
 <h3>Qué dice el MF sobre la respuesta temporal</h3>
-<p>Para un lazo cerrado de segundo orden, el MF fija el amortiguamiento y, con él, el sobrepico. Es la tabla que conviene tener en la cabeza para interpretar el resultado de un problema:</p>
+<p>Para un lazo cerrado de segundo orden, el MF fija el amortiguamiento y, con él, el sobrepico. Una regla práctica es <b>ζ ≈ MF/100</b>, con el MF en grados; vale para MF de hasta unos 60°. Es una aproximación: el sobrepico exacto sale de ζ, no directamente del MF. Es la tabla que conviene tener en la cabeza para interpretar el resultado de un problema:</p>
 <div class="tw" id="mfTab"></div>
 
 <h3>Generador de ejercicios con corrección</h3>
