@@ -2,12 +2,15 @@
 (function(){
 var css='details.facil{margin:10px 0 4px;border:1px solid var(--line,#dfe5ec);border-left:4px solid var(--c8,#7a4fd1);border-radius:10px;background:var(--surface,#fff)}'+
 'details.facil>summary{cursor:pointer;padding:10px 14px;font-weight:700;color:var(--fg,#1d2530)}'+
-'details.facil .fbody{padding:4px 16px 14px;line-height:1.7}'+
+'details.facil{font-size:clamp(16px,0.9rem + 0.35vw,22px)}'+
+'details.facil .fbody{padding:4px 16px 14px;line-height:1.7;max-width:none}'+
+'details.facil .fbody p,details.facil .fbody li{max-width:none}'+
+'details.facil>summary{font-size:1em}'+
 'details.facil .fbody p{margin:.5em 0}'+
 'details.facil .fbody ol{padding-left:1.3em}'+
 'details.facil .fbody li{margin:.45em 0}'+
 'details.facil .fbody .fidea{background:var(--bg,#f6f8fb);border-radius:8px;padding:8px 12px}';
-css+='.vgal{margin:8px 0 6px}.vgal figure{margin:14px 0}.vgal img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line,#dfe5ec);background:#fff}.vgal figcaption{font-weight:700;margin-top:6px;color:var(--fg,#1d2530)}';
+css+='.vgal{margin:8px 0 6px}.vgal figure{margin:14px 0}.vgal img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line,#dfe5ec);background:#fff}.vgal figcaption{font-weight:700;margin-top:6px;color:var(--fg,#1d2530);font-size:1em;max-width:none}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 
 var F=[
@@ -326,14 +329,14 @@ var F=[
 ];
 
 var V={
-'P1 ·':[['p1_paso1.png','Paso 1 · Busca dónde la ganancia vale 1: ahí está ω_c.'],['p1_paso2.png','Paso 2 · Mira la fase en ω_c: lo que le falta para −180° es el margen.'],['p1_paso3.png','Paso 3 · Ancho de banda del lazo cerrado: donde cae 3 dB.'],['p1_paso4.png','Paso 4 · El adelanto sube la fase en ω_m y mueve el cruce.'],['p1_resumen.png','Resumen de los números.']],
-'P2 ·':[['p2_paso1.png','Paso 1 · Subir Kc = 10 desplaza la curva: Kv = 20.'],['p2_paso2.png','Paso 2 · Fase en ω_c = −162° → MF = 18°.'],['p2_paso3.png','Paso 3 · Adelanto con 5° de colchón → MF ≈ 50°.']],
-'P3 ·':[['p3_paso1.png','Paso 1 · Una ganancia K = 0,0438 lleva el cruce a la fase −130°.'],['p3_resumen.png','Resumen de los números.']],
-'P4 ·':[['p4_paso1.png','Paso 1 · Con Kv = 5 el cruce cae en fase −193°: inestable.'],['p4_paso2.png','Paso 2 · Con el atraso, el cruce baja a 0,45 rad/s y MF = 41,6°.']],
-'P5 ·':[['p5_paso1.png','Paso 1 · K = 0,138 da MF = 40° (y MG = 18 dB).'],['p5_paso2.png','Paso 2 · Atraso β = 1,4: −100 dB en ω ≥ 100 y MF = 45,9°.']],
-'P6 ·':[['p6_paso1.png','Paso 1 · |G| nunca llega a 0 dB: no hay margen de fase.'],['p6_paso2.png','Paso 2 · Con Kc = 98,67 el error es 7,5 %, pero el margen cae a 6,9°.'],['p6_paso3.png','Paso 3 · Adelanto con 15° de colchón → MF = 46,1°.']],
-'P7 ·':[['p7_paso1.png','Paso 1 · Con Kc = 20 es inestable (MF = −28°).'],['p7_paso2.png','Paso 2 · Atraso β = 22: el cruce baja a 0,41 rad/s y MF = 50,4°.']],
-'P8 ·':[['p8_paso1.png','Paso 1 · MF = 90° sin compensar.'],['p8_paso2.png','Paso 2 · Kc = 3,6 para e_p = 10 %: MF = 47,6°.'],['p8_paso3.png','Paso 3 · Adelanto con 12° de colchón → MF = 65,8°.']],
+'P1 ·':[['p1_paso1.png','Paso 1 · Busca dónde la ganancia vale 1: ahí está ω_c.'],['p1_paso2.png','Paso 2 · Mira la fase en ω_c: lo que le falta para −180° es el margen.'],['p1_paso3.png','Paso 3 · Ancho de banda del lazo cerrado: donde cae 3 dB.'],['p1_paso4.png','Paso 4 · El adelanto sube la fase en ω_m y mueve el cruce.'],['p1_resumen.png','Resumen de los números.'],['anim_p1.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
+'P2 ·':[['p2_paso1.png','Paso 1 · Subir Kc = 10 desplaza la curva: Kv = 20.'],['p2_paso2.png','Paso 2 · Fase en ω_c = −162° → MF = 18°.'],['p2_paso3.png','Paso 3 · Adelanto con 5° de colchón → MF ≈ 50°.'],['anim_p2.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
+'P3 ·':[['p3_paso1.png','Paso 1 · Una ganancia K = 0,0438 lleva el cruce a la fase −130°.'],['p3_resumen.png','Resumen de los números.'],['anim_p3.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
+'P4 ·':[['p4_paso1.png','Paso 1 · Con Kv = 5 el cruce cae en fase −193°: inestable.'],['p4_paso2.png','Paso 2 · Con el atraso, el cruce baja a 0,45 rad/s y MF = 41,6°.'],['anim_p4.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
+'P5 ·':[['p5_paso1.png','Paso 1 · K = 0,138 da MF = 40° (y MG = 18 dB).'],['p5_paso2.png','Paso 2 · Atraso β = 1,4: −100 dB en ω ≥ 100 y MF = 45,9°.'],['anim_p5.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
+'P6 ·':[['p6_paso1.png','Paso 1 · |G| nunca llega a 0 dB: no hay margen de fase.'],['p6_paso2.png','Paso 2 · Con Kc = 98,67 el error es 7,5 %, pero el margen cae a 6,9°.'],['p6_paso3.png','Paso 3 · Adelanto con 15° de colchón → MF = 46,1°.'],['anim_p6.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
+'P7 ·':[['p7_paso1.png','Paso 1 · Con Kc = 20 es inestable (MF = −28°).'],['p7_paso2.png','Paso 2 · Atraso β = 22: el cruce baja a 0,41 rad/s y MF = 50,4°.'],['anim_p7.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
+'P8 ·':[['p8_paso1.png','Paso 1 · MF = 90° sin compensar.'],['p8_paso2.png','Paso 2 · Kc = 3,6 para e_p = 10 %: MF = 47,6°.'],['p8_paso3.png','Paso 3 · Adelanto con 12° de colchón → MF = 65,8°.'],['anim_p8.gif','Animación · el punto recorre el Bode hasta ω_c y se lee el margen de fase.']],
 'Diagrama de Bode asintótico (1)':[['ac_bode_asintotico1.png','Azul: el diagrama exacto. Gris: las asíntotas. Cada polo baja la pendiente 20 dB/déc.']],
 'Diagrama de Bode asintótico (2)':[['ac_bode_asintotico2.png','El doble integrador da −40 dB/déc y −180°. El polo y el cero cambian la pendiente.']],
 'Salida ante una senoide (primer orden)':[['ac_senoide_primer_orden.png','La salida tiene la misma frecuencia que la entrada, pero con 0,133 de amplitud y 86° de retraso.']],
@@ -353,7 +356,11 @@ var V={
 'Concentración en un reactor':[['ex_reactor_senoide.png','La amplitud de salida es 0,012, menor que 0,05: el proceso ya amortigua la perturbación.']],
 'Problema de frecuencia: G(s) = 30/':[['ex_g30_bode.png','El cruce está en ω_c = 5,39 rad/s con MF = 21°.']],
 'Adelanto del Ogata 7-26 con colchón de 8°':[['ex_ogata_adelanto.png','El adelanto sube el cruce de 6,17 a 9,15 rad/s y el MF de 18° a 52°.']],
-'Senoide con cero y tres polos':[['ac_senoide_cero_tres_polos.png','La salida tiene amplitud 0,0107 veces la entrada y un desfase de −184°.']]
+'Senoide con cero y tres polos':[['ac_senoide_cero_tres_polos.png','La salida tiene amplitud 0,0107 veces la entrada y un desfase de −184°.']],
+'Ej. 2 ·':[['ej2_tabla_zeta.png','Cuanto más ζ, más margen de fase y menos pico de resonancia.'],['teo_mf_vs_zeta.png','MF frente a ζ: la regla MF ≈ 100·ζ funciona bien hasta ζ ≈ 0,7.']],
+'Problema de frecuencia: alerón':[['ex_aleron_bode.png','El cruce está en 0,31 rad/s y MF = 18°.'],['ex_aleron_resonancia.png','Con K = 1 el lazo tiene un pico de resonancia cerca de ω_n = 0,316 rad/s.'],['ex_aleron_escalon.png','Con K = 1 el escalón se pasa cerca de un 60 %.']],
+'Sistema de tipo 0':[['ex_tipo0_bode.png','Con K = 4 el MF es 45,2°. Con el adelanto sube a 64,4°.']],
+'Compensador más sencillo y adelanto':[['ex_compensador_sencillo.png','a) Con K = 0,219 el MF es 50°. b) Con el adelanto, el MF pasa de 18° a 52°.']]
 };
 function galeria(k){var L=V[k];if(!L)return '';return '<div class="vgal">'+L.map(function(x){return '<figure><img src="assets/visual/'+x[0]+'" alt="'+x[1]+'" loading="lazy"><figcaption>'+x[1]+'</figcaption></figure>'}).join('')+'</div>';}
 window.facilHTML=function(e){
