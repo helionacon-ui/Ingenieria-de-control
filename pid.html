@@ -261,6 +261,11 @@ mjx-container:not([display="true"]){padding:.2em .32em}
     <p class="try">pulsa P: la salida se queda en 0,8. Sube Ti hasta 20 con Kp = 4,8 y Td = 0: error permanente. Después baja Ti: el error desaparece, pero oscila más. Por último sube Td: la oscilación se amortigua.</p>
   </figure>
 
+  <figure class="fig">
+    <img src="assets/visual/teo_pid_acciones.png" alt="Tres gráficas: la acción P da un escalón, la I una rampa y la D un pico en el instante del cambio." loading="lazy">
+    <figcaption>Un error escalón y lo que hace cada acción. La P responde ya con su valor. La I acumula, así que crece sin parar mientras el error exista. La D solo reacciona al cambio, por eso su pico dura un instante.</figcaption>
+  </figure>
+
   <h3>Windup: integral + actuador saturado</h3>
   <div class="prose">
     <p>El actuador tiene límites: una válvula no se abre más del 100 %. Si la señal de control se satura, el error baja más despacio de lo que el controlador espera, pero la integral lo sigue sumando. Cuando la salida por fin llega a la consigna, la integral está «cargada» y empuja de más: sobrepico grande y recuperación lenta. Es el <b>windup</b>.</p>
