@@ -367,9 +367,14 @@ mjx-container:not([display="true"]){padding:.2em .32em}
       <div class="row"><span class="label">Feedforward ideal</span><div class="eq">\[G_{ff}(s)=-\frac{G_d(s)}{G_p(s)}\]</div></div>
       <div class="row"><span class="label">Feedforward estático</span><div class="eq">\[G_{ff}=-\frac{K_d}{K_p}\]</div><p>Si la inversa exacta no es realizable.</p></div>
       <div class="row"><span class="label">Cascada</span><p>Lazo interno 3 a 5 veces más rápido; el secundario suele ser un P; se sintoniza primero el interno.</p></div>
-      <div class="row"><span class="label">Ratio</span><p>Mantiene la proporción entre dos caudales: la consigna del controlado es R·(caudal medido).</p></div>
+      <div class="row"><span class="label">Ratio</span><p>Mantiene la proporción entre dos caudales: la consigna del controlado es R·(caudal medido).</p></div><figure class="fig"><img src="assets/visual/t4_ratio.png" alt="Caudal A, consigna R·A y caudal B real en un control de relación." loading="lazy"><figcaption>Control de relación: B sigue a A con la proporción R. Cuando A cambia, B cambia detrás con un pequeño retardo.</figcaption></figure>
     </div>
   </div>
+
+  <figure class="fig">
+    <img src="assets/visual/t4_feedforward.png" alt="Respuesta a una perturbación sin feedforward, con feedforward al 80 % y con feedforward ideal." loading="lazy">
+    <figcaption>Una perturbación en escalón. Solo con realimentación queda un error de 0,2. Con feedforward al 80 % baja a 0,04, y con el modelo exacto llega a cero.</figcaption>
+  </figure>
 
   <h3>Feedforward</h3>
   <div class="prose"><p>Con y = G<sub>p</sub>·u + G<sub>d</sub>·d, para que d no llegue a y hay que imponer G<sub>p</sub>·G<sub>ff</sub> + G<sub>d</sub> = 0. Feedforward y feedback van juntos: el primero corrige rápido lo que se mide y el segundo corrige los errores de modelo y las perturbaciones que no se miden. Si G<sub>p</sub> tiene más retardo que G<sub>d</sub>, la inversa exacta no es realizable y se usa solo la ganancia estática.</p></div>
@@ -383,6 +388,11 @@ mjx-container:not([display="true"]){padding:.2em .32em}
     <div class="plot" id="pFF"></div>
     <figcaption><b>Rechazo de una perturbación escalón en t = 5 s.</b> G<sub>p</sub> = 1/(5s+1), G<sub>d</sub> = 1/(2s+1), PI de realimentación (K<sub>p</sub> = 2, T<sub>i</sub> = 5 s). La consigna es 0: cualquier desviación es error. Rojo: solo realimentación. Azul: con el feedforward elegido, G<sub>ff</sub> = −(5s+1)/(2s+1) escalado por el acierto del modelo.</figcaption>
     <p class="try">pon el acierto en 70 %: el feedforward ya no anula la perturbación, pero la realimentación corrige lo que queda.</p>
+  </figure>
+
+  <figure class="fig">
+    <img src="assets/visual/t4_cascada.png" alt="Respuesta a una perturbación con un solo lazo y con cascada." loading="lazy">
+    <figcaption>La misma perturbación en la válvula. Con cascada el error baja de 0,5 a 0,09 porque el lazo interno la corrige antes de que llegue al tanque.</figcaption>
   </figure>
 
   <h3>Cascada</h3>
