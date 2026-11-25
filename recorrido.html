@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Recorrido visual · Ingeniería de Control</title>
+<meta name="description" content="El temario de Ingeniería de Control en orden, T1 a T6, con los dibujos y animaciones de cada tema.">
+<link rel="stylesheet" href="assets/guia.css">
+<style>
+:root{--ink:#1d2530;--muted:#5b6777;--line:#dfe5ec;--blue:#1f4fd1}
+body{font-size:clamp(17px,0.9rem + 0.4vw,22px);line-height:1.6;color:var(--ink);margin:0}
+.wrapv{max-width:1280px;margin:0 auto;padding:clamp(18px,3vw,48px)}
+h1{font-size:clamp(30px,4vw,52px);line-height:1.1;margin:0 0 .3em}
+.intro{color:var(--muted);max-width:none;margin:0 0 1.2em}
+.tema{margin:clamp(34px,5vw,64px) 0 10px;padding-left:12px;border-left:5px solid var(--blue)}
+.tema h2{margin:0;font-size:clamp(24px,2.8vw,36px);line-height:1.2}
+.tema p{margin:.3em 0 0;color:var(--muted);max-width:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(12px,1.6vw,22px);margin-top:14px}
+figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;overflow:hidden}
+figure img{width:100%;height:auto;display:block;border-radius:8px}
+figcaption{font-size:.92em;line-height:1.5;margin-top:8px;color:var(--ink)}
+.todo{background:#fbf7ea;border:1px dashed #d9b84a;border-radius:12px;padding:12px 16px;margin-top:14px;color:#6b5a1a;max-width:none}
+.back{display:inline-block;margin-top:34px;font-weight:600}
+</style>
+</head>
+<body>
+<main class="wrapv">
+<h1>Recorrido visual del temario</h1>
+<p class="intro">Los temas en orden, de T1 a T6. En cada uno, los dibujos y animaciones que mejor explican lo que pide el examen.</p>
+
+<section>
+<div class="tema"><h2>T1 · Sistemas controlados</h2><p>Qué es un escalón, cuánto tarda la respuesta y cuánto error queda.</p></div>
+<div class="grid">
+<figure><img src="assets/visual/ac_escalon_rampa.png" alt="Respuestas a escalón y a rampa del sistema 1/(5s + 1)." loading="lazy"><figcaption>Escalón y rampa de un sistema de primer orden. La constante de tiempo τ marca la velocidad.</figcaption></figure>
+<figure><img src="assets/visual/ex_aleron_escalon.png" alt="Escalón de un lazo muy oscilatorio." loading="lazy"><figcaption>Un lazo con poco amortiguamiento se pasa de la consigna y tarda en asentarse.</figcaption></figure>
+</div>
+</section>
+
+<section>
+<div class="tema"><h2>T2 · Controlador PID</h2><p>Qué hace cada acción: P, I y D.</p></div>
+<div class="grid">
+<figure><img src="assets/visual/teo_pid_acciones.png" alt="Respuesta de las acciones P, I y D ante un error escalón." loading="lazy"><figcaption>La P responde con su valor, la I acumula y la D solo reacciona al cambio.</figcaption></figure>
+</div>
+</section>
+
+<section>
+<div class="tema"><h2>T3 · Sintonía del PID</h2><p>Ziegler–Nichols y asignación de polos.</p></div>
+<div class="grid">
+<figure><img src="assets/visual/ex_zn_oscilacion.png" alt="Oscilación sostenida con la ganancia crítica." loading="lazy"><figcaption>Con la ganancia crítica el lazo oscila sin amortiguarse: de ahí salen K<sub>p</sub>, T<sub>i</sub> y T<sub>d</sub>.</figcaption></figure>
+<figure><img src="assets/visual/ex_pi_escalon.png" alt="Escalón del lazo con un PI calculado por asignación de polos." loading="lazy"><figcaption>El cero del PI sube el sobrepico. Hay que tomar ζ mayor para cumplir el 5 %.</figcaption></figure>
+</div>
+</section>
+
+<section>
+<div class="tema"><h2>T4 · Estructuras de control</h2><p>Feedforward, cascada, ratio y multivariable.</p></div>
+<p class="todo">Todavía no hay dibujos de este tema. Las explicaciones están en la página PID, en el apartado de estructuras.</p>
+</section>
+
+<section>
+<div class="tema"><h2>T5 · Respuesta en frecuencia</h2><p>Bode, Nyquist, márgenes y resonancia.</p></div>
+<div class="grid">
+<figure><img src="assets/visual/ac_bode_asintotico1.png" alt="Diagrama de Bode exacto y asintótico." loading="lazy"><figcaption>Cada polo baja la pendiente 20 dB por década. Las asíntotas aproximan la curva.</figcaption></figure>
+<figure><img src="assets/visual/ac_polares.png" alt="Diagramas polares de 1/(1+jωT) y de e^(−jωT)." loading="lazy"><figcaption>Dos diagramas polares básicos: una semicircunferencia y una circunferencia unidad.</figcaption></figure>
+<figure><img src="assets/visual/nyq_estable_inestable.png" alt="Dos diagramas de Nyquist, uno estable y otro inestable." loading="lazy"><figcaption>La posición de −1 decide la estabilidad.</figcaption></figure>
+<figure><img src="assets/visual/frec_resonancia_zeta.png" alt="Módulo del lazo cerrado para varios valores de zeta." loading="lazy"><figcaption>Cuanto menor es ζ, mayor el pico de resonancia y menor el ancho de banda.</figcaption></figure>
+<figure><img src="assets/visual/ac_margenes_5.png" alt="Márgenes de 5/(s(s+1)(s+6))." loading="lazy"><figcaption>Margen de fase y margen de ganancia sobre el Bode.</figcaption></figure>
+</div>
+</section>
+
+<section>
+<div class="tema"><h2>T6 · Diseño en frecuencia</h2><p>Compensadores de adelanto, atraso y cómo se eligen.</p></div>
+<div class="grid">
+<figure><img src="assets/visual/teo_adelanto_alpha.png" alt="Relación entre la fase del adelanto y α." loading="lazy"><figcaption>De la fase que quieres añadir sale α.</figcaption></figure>
+<figure><img src="assets/visual/ex_completo_bode.png" alt="Problema completo con y sin atraso." loading="lazy"><figcaption>Un atraso sube el margen de fase sin cambiar el error.</figcaption></figure>
+<figure><img src="assets/visual/margenes_mg_nyquist.png" alt="Margen de ganancia en el Nyquist." loading="lazy"><figcaption>El margen de ganancia es la distancia entre el cruce y −1.</figcaption></figure>
+<figure><img src="assets/visual/anim_p1.gif" alt="Animación del Bode del problema P1." loading="lazy"><figcaption>Animación del problema P1: el punto recorre el Bode hasta ω<sub>c</sub>.</figcaption></figure>
+<figure><img src="assets/visual/anim_p8.gif" alt="Animación del Bode del problema P8." loading="lazy"><figcaption>Animación del problema P8.</figcaption></figure>
+</div>
+</section>
+
+<a class="back" href="index.html">← Volver al inicio</a>
+</main>
+</body>
+</html>

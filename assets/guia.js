@@ -733,7 +733,11 @@ function genChk(){if(!GN)return;const{m}=GN;const num=v=>{v=String(v).trim().toL
   $('gnRes').innerHTML=r.map(([n,o])=>`<span class="chip ${o?'ok':'bad'}">${n} ${o?'✓':'✗'}</span>`).join('');if(r.some(x=>!x[1])){$('gnSol').textContent=genSol();$('gnSol').hidden=false}}
 try{$('gnNew').addEventListener('click',genNew);
 }catch(__e){if(window.__DBG)console.warn(__e)}try{$('gnChk').addEventListener('click',genChk);
-}catch(__e){if(window.__DBG)console.warn(__e)}try{$('gnShow').addEventListener('click',()=>{if(!GN)return;$('gnSol').textContent=genSol();$('gnSol').hidden=false});
+}catch(__e){if(window.__DBG)console.warn(__e)}try{$('gnShow').addEventListener('click',()=>{if(!GN)return;$('gnSol').textContent=genSol();$('gnSol').hidden=false;
+  try{if(window.facilSVG&&GN){const {K,den,m}=GN;const magD=w=>{const z=pval(den,C(0,w));return 20*Math.log10(K/cabs(z))};const phD=w=>{const z=pval(den,C(0,w));return -Math.atan2(z.im,z.re)*180/Math.PI};
+    const mk=[];if(m.wc>0&&isFinite(m.wc))mk.push({w:m.wc,mag:0,ph:phD(m.wc),label:'ωc',color:'#1f8a5b'});if(m.w180>0&&isFinite(m.w180))mk.push({w:m.w180,mag:magD(m.w180),ph:-180,label:'ω180',color:'#c0392b'});
+    let box=document.getElementById('gnFig');if(!box){box=document.createElement('div');box.id='gnFig';$('gnSol').insertAdjacentElement('afterend',box)}
+    box.innerHTML='<h4>Dibujo del Bode de la solución</h4>'+window.facilSVG.bode(magD,phD,mk)}}catch(e){}});
 }catch(__e){if(window.__DBG)console.warn(__e)}try{genNew();
 }catch(__e){if(window.__DBG)console.warn(__e)}
 
@@ -1308,7 +1312,7 @@ function problemHTML(P){
   const phTerms=(N?['90°']:[]).concat(ps.map(p=>`${fx(Math.atan(m.wc/p)*D,1)}°`)).map(t=>'−'+t).join(' ');
   let cSol=`\\(${magEq}\\Rightarrow\\) <b>ω<sub>c</sub> = ${fx(m.wc,2)} rad/s</b>; fase ${phTerms} = ${fx(ph(G,m.wc),1)}° → <b>MF = ${fx(m.MF,1)}°</b>. `;
   let nyq;
-  if(isFinite(m.w180)){
+  if(m.w180>0&&isFinite(m.w180)){
     let imTxt;
     if(N===1){imTxt=`la parte imaginaria de \\(j\\omega(j\\omega+${fx(ps[0])})(j\\omega+${fx(ps[1])})\\) se anula en \\(\\omega^2=${fx(ps[0]*ps[1])}\\)`}
     else{const s2=ps[0]*ps[1]+ps[0]*ps[2]+ps[1]*ps[2];imTxt=`la parte imaginaria de \\((j\\omega+${fx(ps[0])})(j\\omega+${fx(ps[1])})(j\\omega+${fx(ps[2])})\\) se anula en \\(\\omega^2=${fx(s2)}\\)`}
@@ -1363,13 +1367,13 @@ function genSeno(){
   const G=mk(k,0,ps);const M=mag(G,w),F=ph(G,w);
   const q=`Al sistema \\(G(s)=${Gt}\\) se le aplica la entrada \\(x(t)=${A}\\,\\sin(${fx(w)}t)\\). Calcula la salida en régimen permanente.`;
   const a=`Misma frecuencia, ω = ${fx(w)} rad/s. \\(|G(j${fx(w)})|=\\frac{${k}}{${ps.map(p=>`\\sqrt{${fx(w*w)}+${fx(p*p)}}`).join('\\,')}}=${fx(M,4)}\\), amplitud ${A}·${fx(M,4)} = <b>${fx(A*M,3)}</b>. Fase: ${ps.map(p=>`−arctan(${fx(w)}/${fx(p)})`).join(' ')} = <b>${fx(F,1)}°</b>. <b>y(t) = ${fx(A*M,3)}·sen(${fx(w)}t ${F<0?'−':'+'} ${fx(Math.abs(F),1)}°)</b>.`;
-  return{q,a,l:'#q4',r:[[0.2,'misma ω'],[0.4,'módulo'],[0.4,'fase']]}}
+  return{q,a,l:'#q4',r:[[0.2,'misma ω'],[0.4,'módulo'],[0.4,'fase']],fig:(window.facilSVG?window.facilSVG.sine(A,w,M,F):'')}}
 function genSegundo(){
   for(let t=0;t<100;t++){const a=pk([1,2,3,4,5,6,8]);const K=pk([1,2,4,5,8,10,16,20,25]);const wn=Math.sqrt(K),z=a/(2*wn);if(z<0.15||z>0.85)continue;
     const Mp=Math.exp(-z*Math.PI/Math.sqrt(1-z*z)),wd=wn*Math.sqrt(1-z*z),tp=Math.PI/wd,ts=4/(z*wn);
     const q=`El sistema \\(G(s)=\\dfrac{${K}}{s(s+${a})}\\) se realimenta con H(s) = 1. Calcula ζ, ω<sub>n</sub>, la sobreoscilación, el tiempo de pico, el tiempo de establecimiento (2 %) y el error ante una rampa unitaria.`;
     const ans=`Lazo cerrado \\(\\frac{${K}}{s^2+${a}s+${K}}\\): ω<sub>n</sub> = √${K} = <b>${fx(wn,3)} rad/s</b>, 2ζω<sub>n</sub> = ${a} → <b>ζ = ${fx(z,3)}</b>. \\(M_p=e^{-\\zeta\\pi/\\sqrt{1-\\zeta^2}}\\) = <b>${fx(Mp*100,1)} %</b>. ω<sub>d</sub> = ${fx(wd,3)}, t<sub>p</sub> = π/ω<sub>d</sub> = <b>${fx(tp,3)} s</b>, t<sub>s</sub> ≈ 4/(ζω<sub>n</sub>) = <b>${fx(ts,2)} s</b>. Tipo 1: K<sub>v</sub> = ${K}/${a} → <b>e<sub>v</sub> = ${fx(a/K,3)}</b>; ante escalón el error es 0.`;
-    return{q,a:ans,l:'#t1',r:[[0.3,'ζ y ω<sub>n</sub>'],[0.4,'M<sub>p</sub>, t<sub>p</sub>, t<sub>s</sub>'],[0.3,'error ante rampa']]}}}
+    return{q,a:ans,l:'#t1',r:[[0.3,'ζ y ω<sub>n</sub>'],[0.4,'M<sub>p</sub>, t<sub>p</sub>, t<sub>s</sub>'],[0.3,'error ante rampa']],fig:(window.facilSVG?window.facilSVG.step(K,a):'')}}}
 const ZNA={P:[1,Infinity,0],PI:[0.9,1/0.3,0],PID:[1.2,2,0.5]};
 const ZNC={P:[0.5,Infinity,0],PI:[0.45,1/1.2,0],PID:[0.6,0.5,0.125]};
 function znRow(type,Kp,Ti,Td){return `<b>K<sub>p</sub> = ${fx(Kp,3)}</b>${isFinite(Ti)?`, <b>T<sub>i</sub> = ${fx(Ti,3)} s</b>`:''}${Td?`, <b>T<sub>d</sub> = ${fx(Td,3)} s</b>`:''}`}
@@ -1386,13 +1390,22 @@ function genZN(){
    a:`Relé en lugar del controlador → ciclo límite. Función descriptiva: \\(K_u\\approx\\frac{4d}{\\pi a}=\\frac{4\\cdot${d}}{\\pi\\cdot${fx(a)}}\\) = <b>${fx(Ku,3)}</b>, P<sub>u</sub> = ${Pu} s. Tabla de ZN en lazo cerrado (${type}): ${znRow(type,Kp,Ti,Td)}.`,l:'#q10',r:[[0.3,'explicación'],[0.3,'K<sub>u</sub>'],[0.4,'parámetros']]}}
 
 /* ================= MONTAJE ================= */
+function figProblema(P){
+  if(!window.facilSVG||!P)return '';
+  const f=window.facilSVG;const magF=G=>w=>20*Math.log10(mag(G,w));const phF=G=>w=>ph(G,w);
+  const marks=(G,m)=>{const out=[];if(m.wc>0&&isFinite(m.wc))out.push({w:m.wc,mag:0,ph:ph(G,m.wc),label:'ωc',color:'#1f8a5b'});if(m.w180>0&&isFinite(m.w180))out.push({w:m.w180,mag:20*Math.log10(mag(G,m.w180)),ph:-180,label:'ω180',color:'#c0392b'});return out};
+  let h=`<h4>Dibujo · planta sin compensar</h4>`+f.bode(magF(P.G),phF(P.G),marks(P.G,P.m));
+  const b=P.d&&P.d.best;
+  if(b&&b.G)h+=`<h4>Dibujo · con el ${b.type==='lead'?'adelanto':'atraso'}</h4>`+f.bode(magF(b.G),phF(b.G),marks(b.G,b.m));
+  return '<div class="gen-fig">'+h+'</div>';
+}
 function render(seed){
   R=rng(seed);let P=null;for(let k=0;k<20&&!P;k++)P=genProblem();
   const PH=problemHTML(P);
   const C=[pk(TEO),R()<0.5?genSeno():genSegundo(),genZN()];
   const order=[0,1,2];
   let enun=PH.enun+order.map((i,j)=>`<h4>Cuestión ${j+1} (1 punto)</h4><p>${C[i].q}</p>`).join('');
-  let sol=PH.sol+order.map((i,j)=>`<details><summary>Cuestión ${j+1} <span class="src">1 punto</span></summary><div class="inner"><p>${C[i].a} <a href="${C[i].l}">Repasar el tema</a>.</p><div class="rbg">${C[i].r.map(([p,t])=>rb(p,t)).join('')}</div></div></details>`).join('');
+  let sol=PH.sol+figProblema(P)+order.map((i,j)=>`<details><summary>Cuestión ${j+1} <span class="src">1 punto</span></summary><div class="inner"><p>${C[i].a} <a href="${C[i].l}">Repasar el tema</a>.</p>${C[i].fig||''}<div class="rbg">${C[i].r.map(([p,t])=>rb(p,t)).join('')}</div></div></details>`).join('');
   const tx=h=>h.replace(/\\\((.*?)\\\)/gs,(m0,b)=>'\\('+b.replace(/(\d),(\d)/g,'$1{,}$2')+'\\)');
   $('smEnun').innerHTML=tx(enun);$('smSol').innerHTML=tx(sol);$('smNum').textContent='Simulacro n.º '+seed;
   $('smSol').querySelectorAll('[data-smchk]').forEach(b=>b.addEventListener('click',()=>{if(typeof load==='function')load(...JSON.parse(b.getAttribute('data-smchk')))}));

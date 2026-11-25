@@ -372,3 +372,62 @@ window.facilHTML=function(e){
   return '';
 };
 })();
+/* ---- dibujos SVG generados con cada problema aleatorio ---- */
+(function(){
+function niceTicks(a,b){const t=[];for(let v=Math.ceil(a);v<=b;v++)t.push(v);return t}
+/* plotSVG: una gráfica sencilla. xs, series[{ys,color,dash}], marks[{x,y,label,color}] */
+function plotSVG(o){
+  const W=640,H=o.h||260,L=56,R=16,T=22,B=40;
+  const xs=o.xs,ymin=o.ymin,ymax=o.ymax,xmin=o.xmin,xmax=o.xmax;
+  const X=x=>L+(x-xmin)/(xmax-xmin)*(W-L-R);
+  const Y=y=>T+(ymax-y)/(ymax-ymin)*(H-T-B);
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${o.label||'gráfica'}" style="max-width:100%;height:auto;font-family:inherit">`;
+  s+=`<rect x="0" y="0" width="${W}" height="${H}" fill="#fff"/>`;
+  if(o.title)s+=`<text x="${L}" y="16" font-size="14" font-weight="700" fill="#1d2530">${o.title}</text>`;
+  for(const t of (o.yticks||[])){const y=Y(t.v);s+=`<line x1="${L}" x2="${W-R}" y1="${y}" y2="${y}" stroke="#eef2f6"/><text x="${L-6}" y="${y+4}" font-size="11" text-anchor="end" fill="#5b6777">${t.l}</text>`}
+  for(const t of (o.xticks||[])){const x=X(t.v);s+=`<line x1="${x}" x2="${x}" y1="${T}" y2="${H-B}" stroke="#eef2f6"/><text x="${x}" y="${H-B+16}" font-size="11" text-anchor="middle" fill="#5b6777">${t.l}</text>`}
+  if(o.zero!==undefined)s+=`<line x1="${L}" x2="${W-R}" y1="${Y(o.zero)}" y2="${Y(o.zero)}" stroke="#7d8a97" stroke-dasharray="4 3"/>`;
+  s+=`<line x1="${L}" x2="${L}" y1="${T}" y2="${H-B}" stroke="#9aa5b1"/><line x1="${L}" x2="${W-R}" y1="${H-B}" y2="${H-B}" stroke="#9aa5b1"/>`;
+  for(const se of o.series){
+    let d='';xs.forEach((x,i)=>{const y=se.ys[i];if(!isFinite(y))return;y<ymin-1e3||y>ymax+1e3?null:0;d+=(d?'L':'M')+X(x).toFixed(1)+' '+Y(Math.max(ymin,Math.min(ymax,y))).toFixed(1)});
+    s+=`<path d="${d}" fill="none" stroke="${se.color}" stroke-width="${se.w||3}" stroke-dasharray="${se.dash||''}" stroke-linejoin="round"/>`;
+  }
+  for(const m of (o.marks||[])){const x=X(m.x),y=Y(m.y);
+    s+=`<line x1="${x}" x2="${x}" y1="${T}" y2="${H-B}" stroke="${m.color}" stroke-dasharray="3 3"/><circle cx="${x}" cy="${y}" r="5" fill="${m.color}"/><text x="${x+7}" y="${Math.max(T+12,y-8)}" font-size="12" font-weight="700" fill="${m.color}">${m.label}</text>`}
+  if(o.xlabel)s+=`<text x="${(L+W-R)/2}" y="${H-6}" font-size="12" text-anchor="middle" fill="#5b6777">${o.xlabel}</text>`;
+  return s+'</svg>';
+}
+function bodeSVG(magDb,phDeg,marks){
+  const ws=[];for(let i=0;i<=240;i++)ws.push(Math.pow(10,-2+4*i/240));
+  const lx=ws.map(Math.log10);
+  const M=ws.map(magDb),P=ws.map(phDeg);
+  const mlo=Math.floor(Math.min(...M.filter(isFinite))/10)*10-5,mhi=Math.ceil(Math.max(...M.filter(isFinite))/10)*10+5;
+  const plo=Math.floor(Math.min(...P.filter(isFinite))/30)*30-15,phi=Math.ceil(Math.max(...P.filter(isFinite))/30)*30+15;
+  const xt=[-2,-1,0,1,2].map(v=>({v,l:['0,01','0,1','1','10','100'][v+2]}));
+  const mk=(m)=>({x:Math.log10(m.w),y:m.y,label:m.label,color:m.color});
+  const mm=marks.map(m=>({x:Math.log10(m.w),y:m.mag,label:m.label,color:m.color}));
+  const pm=marks.filter(m=>isFinite(m.ph)).map(m=>({x:Math.log10(m.w),y:m.ph,label:m.label,color:m.color}));
+  const yt=(a,b,st)=>{const t=[];for(let v=a;v<=b;v+=st)t.push({v,l:String(v).replace('-','−').replace('.',',')});return t};
+  const top=plotSVG({xs:lx,xmin:-2,xmax:2,ymin:mlo,ymax:mhi,series:[{ys:M,color:'#1f4fd1'}],marks:mm,yticks:yt(mlo,mhi,Math.max(10,Math.round((mhi-mlo)/4/10)*10)),zero:0,title:'|G| (dB)',h:230,label:'Módulo'});
+  const bot=plotSVG({xs:lx,xmin:-2,xmax:2,ymin:plo,ymax:phi,series:[{ys:P,color:'#1f4fd1'}],marks:pm,yticks:yt(plo,phi,60),zero:-180,title:'fase (°)',h:230,xticks:xt,xlabel:'ω (rad/s)',label:'Fase'});
+  return '<div class="facil-svg" style="display:grid;gap:4px">'+top+bot+'</div>';
+}
+function stepSVG(K,a){
+  const wn=Math.sqrt(K),z=a/(2*wn),wd=wn*Math.sqrt(1-z*z);const tmax=8/(z*wn);
+  const ts=[];for(let i=0;i<=300;i++)ts.push(tmax*i/300);
+  const y=ts.map(t=>1-Math.exp(-z*wn*t)*(Math.cos(wd*t)+z/Math.sqrt(1-z*z)*Math.sin(wd*t)));
+  const Mp=Math.exp(-z*Math.PI/Math.sqrt(1-z*z)),tp=Math.PI/wd;
+  const ymax=Math.max(1.1,1+Mp+0.08);
+  return plotSVG({xs:ts,xmin:0,xmax:tmax,ymin:0,ymax:ymax,series:[{ys:y,color:'#1f4fd1'}],zero:1,
+    yticks:[{v:0,l:'0'},{v:1,l:'1'}],xticks:niceTicks(0,tmax).filter((_,i,a)=>a.length<8||i%Math.ceil(a.length/6)===0).map(v=>({v,l:String(v)})),
+    marks:[{x:tp,y:1+Mp,label:'M_p = '+(100*Mp).toFixed(1).replace('.',',')+' %',color:'#c0392b'}],title:'Respuesta al escalón (lazo cerrado)',h:240,xlabel:'tiempo (s)',label:'Escalón'});
+}
+function sineSVG(A,w,M,F){
+  const T=2*Math.PI/w;const ts=[];for(let i=0;i<=240;i++)ts.push(2*T*i/240);
+  const xin=ts.map(t=>A*Math.sin(w*t)),yout=ts.map(t=>A*M*Math.sin(w*t+F*Math.PI/180));
+  const amp=A*1.15;
+  return plotSVG({xs:ts,xmin:0,xmax:2*T,ymin:-amp,ymax:amp,series:[{ys:xin,color:'#7d8a97',dash:'6 4',w:2.5},{ys:yout,color:'#1f4fd1'}],zero:0,
+    title:'Entrada (gris) y salida (azul)',h:240,xlabel:'tiempo (s)',label:'Senoide'});
+}
+window.facilSVG={bode:bodeSVG,step:stepSVG,sine:sineSVG,plot:plotSVG};
+})();

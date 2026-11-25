@@ -195,7 +195,12 @@ mjx-container:not([display="true"]){padding:.2em .32em}
     <p class="try">sube K: la curva de magnitud sube, el cruce ω<sub>c</sub> se va a la derecha, donde la fase es peor, y el MF baja.</p>
   </figure>
 
-  <h3>Nyquist</h3>
+  <figure class="fig">
+  <img src="assets/visual/frec_resonancia_zeta.png" alt="Módulo del lazo cerrado de segundo orden para varios valores de zeta: el pico crece cuando zeta baja." loading="lazy">
+  <figcaption>Respuesta en frecuencia de un lazo de segundo orden. El ancho de banda ω_b es la frecuencia donde la curva cae 3 dB. Cuanto menor es ζ, más alto es el pico de resonancia.</figcaption>
+</figure>
+
+<h3>Nyquist</h3>
   <div class="prose"><p>Nyquist dibuja L(jω) en el plano complejo (la flecha del T0, para todas las frecuencias) y cuenta las vueltas alrededor del punto −1. Si el lazo abierto es estable, el cerrado es estable cuando la curva <b>no rodea</b> −1. El MG es la inversa de lo que mide el corte con el eje real negativo; el MF, el ángulo donde la curva corta la circunferencia unidad.</p></div>
   <figure class="fig">
     <div class="ctrl"><label for="kN">K = <span id="kNV" class="mono">1.0</span><input id="kN" type="range" min="0.2" max="6" step="0.1" value="1"></label><div class="readout" id="rN"></div></div>

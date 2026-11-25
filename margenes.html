@@ -209,6 +209,11 @@ mjx-container:not([display="true"]){padding:.2em .32em}
 <p class="try">con «K/(s(s+1)(s+5))», sube K hasta que el MG llegue a 0 dB (K = 30): el MF también llega a 0° y la curva pasa justo por −1. Con más K los dos son negativos.</p>
 </figure>
 
+<figure class="fig">
+  <img src="assets/visual/margenes_mg_nyquist.png" alt="Diagrama de Nyquist con el cruce en −0,119 y la distancia hasta −1 medida como margen de ganancia." loading="lazy">
+  <figcaption>El margen de ganancia en el Nyquist. El cruce con el eje real está en −0,119 y −1 está a 8,4 veces esa distancia: ese es el MG, que son 18,5 dB.</figcaption>
+</figure>
+
 <h3>Cómo se calculan sin gráfica</h3>
 <ol class="steps">
 <li><b>ω<sub>c</sub>:</b> iguala el módulo a 1 y eleva al cuadrado para quitar las raíces. Con \(t=\omega^2\) suele quedar una ecuación de segundo o tercer grado. Ejemplo: \(\left|\frac{40}{j\omega(j\omega+2)}\right|=1\Rightarrow \omega^4+4\omega^2-1600=0\Rightarrow t=38{,}05,\ \omega_c=6{,}17\) rad/s.</li>
