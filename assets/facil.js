@@ -7,6 +7,7 @@ var css='details.facil{margin:10px 0 4px;border:1px solid var(--line,#dfe5ec);bo
 'details.facil .fbody ol{padding-left:1.3em}'+
 'details.facil .fbody li{margin:.45em 0}'+
 'details.facil .fbody .fidea{background:var(--bg,#f6f8fb);border-radius:8px;padding:8px 12px}';
+css+='.vgal{margin:8px 0 6px}.vgal figure{margin:14px 0}.vgal img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line,#dfe5ec);background:#fff}.vgal figcaption{font-weight:700;margin-top:6px;color:var(--fg,#1d2530)}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 
 var F=[
@@ -324,10 +325,21 @@ var F=[
 </ol>`]
 ];
 
+var V={
+'P1 ·':[['p1_paso1.png','Paso 1 · Busca dónde la ganancia vale 1: ahí está ω_c.'],['p1_paso2.png','Paso 2 · Mira la fase en ω_c: lo que le falta para −180° es el margen.'],['p1_paso3.png','Paso 3 · Ancho de banda del lazo cerrado: donde cae 3 dB.'],['p1_paso4.png','Paso 4 · El adelanto sube la fase en ω_m y mueve el cruce.'],['p1_resumen.png','Resumen de los números.']],
+'P2 ·':[['p2_paso1.png','Paso 1 · Subir Kc = 10 desplaza la curva: Kv = 20.'],['p2_paso2.png','Paso 2 · Fase en ω_c = −162° → MF = 18°.'],['p2_paso3.png','Paso 3 · Adelanto con 5° de colchón → MF ≈ 50°.']],
+'P3 ·':[['p3_paso1.png','Paso 1 · Una ganancia K = 0,0438 lleva el cruce a la fase −130°.'],['p3_resumen.png','Resumen de los números.']],
+'P4 ·':[['p4_paso1.png','Paso 1 · Con Kv = 5 el cruce cae en fase −193°: inestable.'],['p4_paso2.png','Paso 2 · Con el atraso, el cruce baja a 0,45 rad/s y MF = 41,6°.']],
+'P5 ·':[['p5_paso1.png','Paso 1 · K = 0,138 da MF = 40° (y MG = 18 dB).'],['p5_paso2.png','Paso 2 · Atraso β = 1,4: −100 dB en ω ≥ 100 y MF = 45,9°.']],
+'P6 ·':[['p6_paso1.png','Paso 1 · |G| nunca llega a 0 dB: no hay margen de fase.'],['p6_paso2.png','Paso 2 · Con Kc = 98,67 el error es 7,5 %, pero el margen cae a 6,9°.'],['p6_paso3.png','Paso 3 · Adelanto con 15° de colchón → MF = 46,1°.']],
+'P7 ·':[['p7_paso1.png','Paso 1 · Con Kc = 20 es inestable (MF = −28°).'],['p7_paso2.png','Paso 2 · Atraso β = 22: el cruce baja a 0,41 rad/s y MF = 50,4°.']],
+'P8 ·':[['p8_paso1.png','Paso 1 · MF = 90° sin compensar.'],['p8_paso2.png','Paso 2 · Kc = 3,6 para e_p = 10 %: MF = 47,6°.'],['p8_paso3.png','Paso 3 · Adelanto con 12° de colchón → MF = 65,8°.']]
+};
+function galeria(k){var L=V[k];if(!L)return '';return '<div class="vgal">'+L.map(function(x){return '<figure><img src="assets/visual/'+x[0]+'" alt="'+x[1]+'" loading="lazy"><figcaption>'+x[1]+'</figcaption></figure>'}).join('')+'</div>';}
 window.facilHTML=function(e){
   for(var i=0;i<F.length;i++){
     if(e.t.indexOf(F[i][0])===0){
-      return '<details class="facil"><summary>Explicación sencilla · léela antes de la solución</summary><div class="fbody">'+F[i][1]+'</div></details>';
+      return '<details class="facil" open><summary>Explicación visual y sencilla · léela antes de la solución</summary><div class="fbody">'+galeria(F[i][0])+F[i][1]+'</div></details>';
     }
   }
   return '';
