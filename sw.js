@@ -1,7 +1,7 @@
 // Guarda la guía para poder leerla sin conexión.
 // Las páginas se piden primero a la red, así que una actualización se ve en cuanto hay cobertura.
-const CACHE = 'ingenieria-de-control-v1-tip12';
-const CORE = ["./", "./anim-manim.js", "./anim-temas.js", "./asig-nav.js", "./bode.html", "./calculadora.html", "./consultar.html", "./diseno.html", "./empezar.html", "./entrena.html", "./examenes.html", "./frecuencia.html", "./guia-completa.html", "./index.html", "./manifest.webmanifest", "./maqueta.html", "./margenes.html", "./nyquist.html", "./pid.html", "./piel.css?v=4", "./piel.js?v=4","./sugerencias.js?v=2", "./problemas.html", "./recorrido.html", "./recursos.html", "./simulacro.html", "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"];
+const CACHE = 'ingenieria-de-control-v1-tip13';
+const CORE = ["./", "./anim-manim.js", "./anim-temas.js", "./asig-nav.js", "./bode.html", "./calculadora.html", "./consultar.html", "./diseno.html", "./empezar.html", "./entrena.html", "./assets/julio2026/fig1_esquema.png", "./assets/julio2026/fig2_polar.png", "./assets/julio2026/fig3_bode.png", "./assets/julio2026/fig4_adelanto.png", "./assets/julio2026/fig5_c1.png", "./assets/julio2026/fig6_c2.png", "./Resolucion-Examen-Control-Julio-2026.pdf", "./examenes.html", "./frecuencia.html", "./guia-completa.html", "./index.html", "./manifest.webmanifest", "./maqueta.html", "./margenes.html", "./nyquist.html", "./pid.html", "./piel.css?v=4", "./piel.js?v=4","./sugerencias.js?v=2", "./problemas.html", "./recorrido.html", "./recursos.html", "./simulacro.html", "https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE)
     .then(c => Promise.all(CORE.map(u => c.add(new Request(u, {mode: u.startsWith('http') ? 'no-cors' : 'same-origin'})).catch(() => {}))))
