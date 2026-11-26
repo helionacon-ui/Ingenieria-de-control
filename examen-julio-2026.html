@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Examen de control julio 2026 · Resolución · Ingeniería de Control</title>
+<meta name="description" content="Resolución paso a paso del examen de control de julio de 2026: problema 1 (a-e) y cuestiones C1 y C2.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-12 -12 24 24'%3E%3Ccircle r='11' fill='%231f4fd1'/%3E%3Cpath d='M-7 -4 C-2 -4 2 -1 7 5' stroke='white' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='0' cy='-2' r='2.2' fill='%234cc38a'/%3E%3C/svg%3E">
+
+
+
+<script>
+window.MathJax={loader:{load:['ui/lazy']},tex:{inlineMath:[['\\(','\\)']],displayMath:[['\\[','\\]']]},svg:{fontCache:'global'}};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js" async></script>
+<link rel="stylesheet" href="assets/guia.css">
+<script src="asig-nav.js" defer></script>
+
+<style id="lectura">
+@media screen{
+:root{--body:"Caladea","Cambria",Georgia,"Times New Roman",serif}
+body{font-family:var(--body);font-size:23px;line-height:1.82;letter-spacing:.004em;word-spacing:.02em;font-optical-sizing:auto}
+p{margin:0 0 1.5em;max-width:66ch;text-align:left;hyphens:none;-webkit-hyphens:none;
+ text-wrap:pretty;overflow-wrap:break-word;hanging-punctuation:first last}
+li{margin:.72em 0;max-width:66ch;text-wrap:pretty}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+h2{margin-top:92px;margin-bottom:22px;line-height:1.25}
+h3{font-size:29px;margin:66px 0 20px;line-height:1.3}
+h4{margin:38px 0 12px;line-height:1.4}
+/* ---- entradilla con capitular ---- */
+.zero .lede{font-size:1.05em;line-height:1.86;text-align:left}
+.zero[style] .lede::first-line{font-weight:600;letter-spacing:.03em}
+.zero:not([style]) .lede::first-letter{float:left;font-size:3.05em;line-height:.84;font-weight:700;padding:.06em .14em 0 0;color:var(--tc,var(--accent))}
+/* ---- sumario del tema ---- */
+p.obj{max-width:none;text-align:left;margin:0 0 1.7em;padding:14px 20px;border-radius:10px;
+ background:color-mix(in srgb,var(--surface) 62%,transparent);
+ border-left:3px solid var(--tc,var(--accent));font-size:.95em;line-height:1.75}
+p.obj>b:first-child{display:block;font-weight:700;font-size:.9em;line-height:1.7;
+ letter-spacing:.04em;color:var(--tc,var(--accent))}
+/* ---- términos con entrada, al modo de un manual ---- */
+p.run{margin:0 0 1.38em}
+p.run>b:first-child{display:block;font-weight:700;font-size:.95em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+/* ---- rótulos internos ---- */
+.zero>.ft{font:700 11.5px/1.6 var(--mono,monospace);letter-spacing:.1em;text-transform:uppercase}
+.zero>.ft:not(:first-child){margin-top:2.1em;font-family:var(--body);font-size:1em;
+ font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--fg);opacity:.9}
+/* ---- desarrollo teórico ---- */
+.deep h4{position:relative;padding-left:2.35em;font-size:1.03em}
+.deep h4 .hn{position:absolute;left:0;top:.06em;font:700 .84em/1.7 var(--mono,monospace);
+ color:var(--tc,var(--accent));opacity:.8}
+.deep>h4:not(:first-child){border-top:1px solid var(--line);padding-top:30px;margin-top:42px}
+/* ---- formulas aparte: bloque propio, con aire ---- */
+.eqd{margin:2.1em 0;padding:24px 26px;border-radius:12px;text-align:center;
+ max-width:none;overflow-x:auto;overflow-y:hidden;
+ background:color-mix(in srgb,var(--surface) 66%,transparent);
+ border-left:3px solid var(--tc,var(--accent))}
+/* ---- formulas dentro del texto: que no se apelotonen ---- */
+mjx-container{font-size:1.05em}
+/* el recuadro envuelve la formula entera: sin line-height forzado, con relleno
+   proporcional a su altura y sin cortes al partir de linea */
+mjx-container:not([display="true"]){
+ display:inline-block;padding:.22em .4em;margin:0 .1em;border-radius:7px;
+ box-decoration-break:clone;-webkit-box-decoration-break:clone;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 9%,transparent)}
+mjx-container:not([display="true"]) svg{overflow:visible}
+.box mjx-container:not([display="true"]),
+.inner mjx-container:not([display="true"]){
+ background:color-mix(in srgb,var(--tc,var(--accent)) 13%,transparent)}
+/* la formula aparte manda sobre el panel: ni se recorta ni se encoge */
+.eqd mjx-container{margin:0!important;padding:0;background:none;
+ max-width:100%;min-width:0!important;display:inline-block}
+.eqd mjx-container svg{max-width:100%;height:auto}
+p code,li code,td code{padding:.14em .4em;margin:0 .08em;border-radius:6px;font-size:.95em;
+ background:color-mix(in srgb,var(--tc,var(--accent)) 10%,transparent)}
+/* las listas y pasos con formula, con mas aire entre renglones */
+li{line-height:2}
+/* ---- notas al margen, sin duplicar el rótulo ---- */
+.box.deepnote{padding:15px 20px;margin:1.5em 0;border-radius:0 10px 10px 0;
+ background:color-mix(in srgb,var(--surface) 76%,transparent)}
+.box.key.deepnote::before,.box.trap.deepnote::before{content:none}
+.box.deepnote>b:first-child{display:block;font-weight:700;font-size:.92em;line-height:1.7;
+ letter-spacing:.03em;color:var(--tc,var(--accent))}
+.box.trap.deepnote>b:first-child{color:var(--warn)}
+/* ---- resto ---- */
+.box{padding:22px 28px;margin:30px 0}
+table{font-size:20px;line-height:1.7}
+td,th{padding-top:.8em;padding-bottom:.8em}
+figure.fig figcaption{font-size:18.5px;line-height:1.78;margin-top:12px}
+figure.fig{margin-block:34px}
+.toc a{font-size:16.5px;padding:8px 0 8px 10px}
+svg,svg text,canvas,.katex,mjx-container{letter-spacing:normal;word-spacing:normal}
+mjx-container[display]{margin:0!important}
+details>summary{line-height:1.7;padding-block:.5em}
+@media (max-width:600px){
+body{font-size:20.5px;line-height:1.8}
+.eqd{padding:16px 12px;font-size:.94em}
+mjx-container:not([display="true"]){padding:.2em .32em}
+.zero:not([style]) .lede::first-letter{font-size:2.6em}
+.deep h4{padding-left:0}
+.deep h4 .hn{position:static;margin-right:.5em}
+}
+}
+</style>
+
+<script>(function(){try{var d=document.documentElement,s=localStorage,p=s.getItem("apuntes-piel");if(p==="min")d.setAttribute("data-piel","min");var t=s.getItem("apuntes-tema");if(t==="dark"||t==="light")d.setAttribute("data-theme",t);var f=s.getItem("apuntes-fondo");if(f)d.setAttribute("data-fondo",f);}catch(e){}})();</script>
+<link rel="stylesheet" href="piel.css?v=4">
+<script src="piel.js?v=4" defer></script>
+<script src="sugerencias.js?v=2" defer></script>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f4fd1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Control">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png" sizes="192x192" type="image/png">
+<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link id="lectura-font" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body class="pg-problemas">
+<div class="hub-bar"><a href="https://helionacon-ui.github.io/GIEIA-UPCT/">← Todas las guías GIEyA</a><p class="fecha" style="margin:6px 0 0;max-width:none;font:13px/1.45 system-ui,sans-serif;color:var(--muted,#5b6660)">Proyecto iniciado el <time datetime="2026-11-04">4 de noviembre de 2026</time> · Última actualización: <time datetime="2026-11-08">8 de noviembre de 2026</time></p></div>
+<header class="topbar">
+  <div class="tb-in">
+    <a class="brand" href="index.html"><span class="brand-dot" aria-hidden="true"></span><span>Ingeniería de <b>Control</b></span></a>
+    <button type="button" class="tb-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">Temas</button>
+    <button type="button" class="tb-btn" id="srchBtn" aria-expanded="false" aria-controls="srchPanel">Buscar</button>
+  </div>
+  <nav class="site-nav" id="siteNav" aria-label="Páginas de la guía" hidden><div class="tng"><span class="tngl">Empezar</span><a href="empezar.html" class="tn" style="--tc:var(--c0)"><i>0</i>Empieza aquí</a></div><div class="tng"><span class="tngl">Bloque 1 · PID</span><a href="pid.html" class="tn" style="--tc:var(--c2)"><i>PID</i>Sistemas controlados y PID</a></div><div class="tng"><span class="tngl">Bloque 2 · Frecuencia</span><a href="frecuencia.html" class="tn" style="--tc:var(--c5)"><i>T5</i>Respuesta en frecuencia</a><a href="bode.html" class="tn" style="--tc:var(--c5)"><i>B</i>Bode a mano</a><a href="nyquist.html" class="tn" style="--tc:var(--c7)"><i>N</i>Nyquist a mano</a><a href="margenes.html" class="tn" style="--tc:var(--c6)"><i>MF</i>Margen de fase y de ganancia</a><a href="diseno.html" class="tn" style="--tc:var(--c3)"><i>T6</i>Diseño de compensadores</a></div><div class="tng"><span class="tngl">Practicar</span><a href="examenes.html" class="tn" style="--tc:var(--c8)"><i>EX</i>Exámenes y teoría</a><a href="simulacro.html" class="tn" style="--tc:var(--c4)"><i>2 h</i>Simulacro de examen</a><a href="entrena.html" class="tn" style="--tc:var(--c1)"><i>✎</i>Entrena y autoevalúate</a><a href="problemas.html" class="tn" style="--tc:var(--c8)"><i>Prof</i>Problemas resueltos</a><a href="examen-julio-2026.html" class="tn on" style="--tc:var(--c8)" aria-current="page"><i>J26</i>Examen julio 2026</a><a href="maqueta.html" class="tn" style="--tc:var(--c2)"><i>Lab</i>Maqueta de tanques</a><a href="calculadora.html" class="tn" style="--tc:var(--c8)"><i>f(s)</i>Calculadora</a></div><div class="tng"><span class="tngl">Consultar</span><a href="consultar.html" class="tn" style="--tc:var(--c0)"><i>Σ</i>Formulario y glosario</a><a href="recursos.html" class="tn" style="--tc:var(--c0)"><i>Plan</i>Plan de estudio</a></div></nav>
+  <div class="srch-panel" id="srchPanel" hidden>
+    <label for="srch" class="srch-lab">Buscar en toda la guía</label>
+    <input type="search" id="srch" placeholder="Por ejemplo: margen de ganancia, asíntota, Nyquist, windup…" autocomplete="off" spellcheck="false">
+    <div id="srch-out" class="srch-out" hidden></div>
+  </div>
+</header>
+<header class="phero" style="--tc:var(--c8);--tcs:var(--c8s)">
+  <div class="phero-in">
+    <span class="phero-badge" aria-hidden="true">J26</span>
+    <div class="phero-txt">
+      <p class="phero-kick">Practicar · resolución del examen</p>
+      <h1>Examen de control · julio 2026</h1>
+      <p class="phero-desc">Resolución paso a paso del problema 1 (apartados a–e) y de las cuestiones C1 y C2, con una comprobación para cada resultado.</p>
+      <div class="phero-chips"><a href="#resumen">Resultados</a><a href="#p1">Problema 1</a><a href="#cuestiones">Cuestiones C1 y C2</a><a href="Resolucion-Examen-Control-Julio-2026.pdf">PDF detallado</a></div>
+    </div>
+  </div>
+  <div class="phero-prog" aria-hidden="true"><i style="width:100%"></i></div>
+</header>
+<div class="wrap" id="top">
+<nav class="toc" aria-label="Índice">
+  <div class="grp">En esta página</div>
+  <a href="#resumen" style="--tc:var(--c8)">Resultados</a><a href="#p1" style="--tc:var(--c8)">Problema 1 (a–e)</a><a href="#cuestiones" style="--tc:var(--c8)">Cuestiones C1 y C2</a><a href="#descarga" style="--tc:var(--c8)">PDF detallado</a>
+</nav>
+<main>
+
+<section class="sec" id="resumen" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">J26</span><div class="shx"><p class="kick">Practicar</p><h2>Resultados</h2><p class="sub2">Qué sale en cada apartado y cómo se comprueba.</p></div></div>
+<div class="tw"><table>
+<thead><tr><th>Apartado</th><th>Resultado</th><th>Comprobación</th></tr></thead>
+<tbody>
+<tr><td>a) Diagrama polar</td><td>Tercer cuadrante, MF ≈ 25°, MG = ∞</td><td>Con ω = 2: Re = −1, Im = −0,5</td></tr>
+<tr><td>b) Estabilidad</td><td>Estable (N = 0, P = 0, Z = 0)</td><td>Routh: polos −0,5 ± j2,18</td></tr>
+<tr><td>c) Sin desfase</td><td>ω = √5 ≈ 2,24 rad/s</td><td>T(j√5) = 1</td></tr>
+<tr><td>d) MF = 50°, MG ≥ 10 dB</td><td>D(s) = 0,22</td><td>MF = 50,0°, MG = ∞</td></tr>
+<tr><td>e) MF = 50°, Kv &gt; 10</td><td>D(s) = 11(s + 2,2)/(s + 11)</td><td>MF ≈ 53°, Kv = 11, MG = ∞</td></tr>
+<tr><td>C1) Feedforward + feedback</td><td>Y/R = G(C + Ff)/(1 + GC); Ff = 1/G si H = 1</td><td>Con H = 5/s: Ff = s + 5/s</td></tr>
+<tr><td>C2) PID modificado</td><td>Filtro en D, pesos b y c, derivada en la medida, anti-windup, feedforward</td><td>Figura 6</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="sec" id="p1" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">P1</span><div class="shx"><p class="kick">Practicar</p><h2>Problema 1</h2><p class="sub2">Esquema, lazo abierto y cerrado, y los apartados a–e.</p></div></div>
+<div class="zero"><p class="ft">Cómo leerlo</p>
+<p class="lede">El sistema está realimentado negativamente con G(s) = 1/(s+1), D(s) = 1 y H(s) = 5/s. Los números van con coma decimal. Cada apartado sigue el mismo orden: qué se pide, la cuenta paso a paso y una comprobación.</p></div>
+
+<figure class="fig"><p class="ft">Esquema del problema</p><img src="assets/julio2026/fig1_esquema.png" alt="Lazo realimentado: R entra al sumador, pasa por D y G, sale Y y se realimenta a través de H." loading="lazy"><figcaption>La salida Y se realimenta por H, se resta a la referencia R y el error pasa por D y G.</figcaption></figure>
+
+<h3>Lazo abierto y lazo cerrado</h3>
+<ol class="steps">
+<li>En serie se multiplican: \(L(s)=D\,G\,H = 1\cdot\frac{1}{s+1}\cdot\frac{5}{s}=\frac{5}{s(s+1)}\). El «1/s» de H da un polo en s = 0.</li>
+<li>Lazo cerrado: \(T(s)=\dfrac{DG}{1+DGH}=\dfrac{1/(s+1)}{1+\frac{5}{s(s+1)}}\). Multiplicando arriba y abajo por s(s+1): \(T(s)=\dfrac{s}{s^2+s+5}\).</li>
+</ol>
+
+<h3>a) Diagrama polar de L(s)</h3>
+<ol class="steps">
+<li>Sustituir s = jω: \(L(j\omega)=\dfrac{5}{j\omega(j\omega+1)}\).</li>
+<li>Como \(j^2=-1\), el denominador es \(-\omega^2+j\omega\). Multiplicando por su conjugado: \(L(j\omega)=\dfrac{5(-\omega^2-j\omega)}{\omega^2(\omega^2+1)}\).</li>
+<li>Parte real e imaginaria: \(\operatorname{Re}L=\dfrac{-5}{1+\omega^2}\), \(\operatorname{Im}L=\dfrac{-5}{\omega(1+\omega^2)}\).</li>
+<li>Módulo y fase: \(|L|=\dfrac{5}{\omega\sqrt{1+\omega^2}}\), \(\angle L=-90^\circ-\arctan\omega\).</li>
+</ol>
+<div class="tw"><table>
+<thead><tr><th>ω (rad/s)</th><th>Re L</th><th>Im L</th><th>|L|</th><th>∠L</th></tr></thead>
+<tbody>
+<tr><td>0⁺</td><td>−5</td><td>−∞</td><td>∞</td><td>−90°</td></tr>
+<tr><td>0,5</td><td>−4,00</td><td>−8,00</td><td>8,94</td><td>−116,6°</td></tr>
+<tr><td>1</td><td>−2,50</td><td>−2,50</td><td>3,54</td><td>−135,0°</td></tr>
+<tr><td>2</td><td>−1,00</td><td>−0,50</td><td>1,12</td><td>−153,4°</td></tr>
+<tr><td>5</td><td>−0,19</td><td>−0,04</td><td>0,20</td><td>−168,7°</td></tr>
+<tr><td>∞</td><td>0</td><td>0</td><td>0</td><td>−180°</td></tr>
+</tbody></table></div>
+<figure class="fig"><p class="ft">Diagrama polar</p><img src="assets/julio2026/fig2_polar.png" alt="Diagrama polar de 5/(s(s+1)): curva en el tercer cuadrante que no cruza el semieje real negativo." loading="lazy"><figcaption>Línea continua: ω &gt; 0. Discontinua: su simétrica (ω &lt; 0). Empieza en la asíntota Re = −5 y termina en el origen.</figcaption></figure>
+<ul>
+<li>La curva no cruza el semieje real negativo a frecuencia finita, así que <b>MG = ∞</b>.</li>
+<li>Cruce |L| = 1: \(\omega^2(1+\omega^2)=25\), luego \(\omega_c^2=\frac{-1+\sqrt{101}}{2}\approx 4{,}52\) y \(\omega_c\approx 2{,}13\) rad/s. Fase \(-154{,}8^\circ\), así que <b>MF ≈ 25°</b>.</li>
+</ul>
+<div class="box"><h4>Comprobación</h4><p>Con ω = 2 la fórmula da Re = −1 e Im = −0,5, que es el punto de la figura.</p></div>
+
+<h3>b) ¿Es estable tal y como está?</h3>
+<div class="box key"><h4>Criterio de Nyquist, en versión intuitiva</h4><p>Imagina que −1 es un poste. Recorre la curva polar de ω = −∞ a +∞ y cuenta las vueltas alrededor del poste (N). Con P polos inestables en lazo abierto, Z = N + P son los polos inestables del lazo cerrado. Si Z = 0, el sistema es estable.</p></div>
+<ol class="steps">
+<li>P: los polos de L son s = 0 y s = −1, ninguno en el semiplano derecho. Así que <b>P = 0</b>. El polo en s = 0 se rodea por la derecha con un semicírculo pequeño.</li>
+<li>N: la curva no cruza el semieje real negativo salvo en el origen, así que no da vueltas alrededor de −1. <b>N = 0</b>.</li>
+<li>\(Z = N+P = 0\). El sistema cerrado es estable.</li>
+</ol>
+<div class="box"><h4>Comprobación con Routh</h4><p>s² + s + 5 tiene coeficientes positivos. Sus raíces, \(s=\frac{-1\pm j\sqrt{19}}{2}\), tienen parte real −0,5 &lt; 0.</p></div>
+<p><b>Respuesta:</b> sí, es estable. Con MF ≈ 25° el colchón es poco, y d) y e) lo mejoran.</p>
+
+<h3>c) ¿Para qué ω no hay desfase?</h3>
+<ol class="steps">
+<li>\(T(j\omega)=\dfrac{j\omega}{5-\omega^2+j\omega}\). Su fase es \(\angle T = 90^\circ - \angle(5-\omega^2+j\omega)\).</li>
+<li>Fase cero exige que el denominador tenga parte real nula: \(5-\omega^2=0\), es decir, \(\omega=\sqrt5\approx 2{,}24\) rad/s.</li>
+<li>Comprobación: \(T(j\sqrt5)=\dfrac{j\sqrt5}{j\sqrt5}=1\). Ni desfase ni atenuación.</li>
+</ol>
+<div class="tw"><table>
+<thead><tr><th>ω (rad/s)</th><th>|T|</th><th>Desfase de T</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>0,243</td><td>+76,0° (adelanta)</td></tr>
+<tr><td>√5 ≈ 2,24</td><td>1,000</td><td>0°</td></tr>
+<tr><td>3</td><td>0,600</td><td>−53,1° (retrasa)</td></tr>
+</tbody></table></div>
+<div class="box key"><h4>Respuesta c)</h4><p>ω = √5 ≈ 2,24 rad/s.</p></div>
+
+<h3>d) Compensador mínimo con MF = 50° y MG ≥ 10 dB</h3>
+<ol class="steps">
+<li>Fase necesaria en el cruce: \(\angle L(j\omega_c)=-180^\circ+50^\circ=-130^\circ\).</li>
+<li>Un compensador de ganancia no cambia la fase. Así, \(-90^\circ-\arctan\omega_c=-130^\circ\), luego \(\omega_c=\tan 40^\circ\approx 0{,}839\) rad/s.</li>
+<li>Ganancia unitaria en ese punto: \(K=\dfrac{\omega_c\sqrt{1+\omega_c^2}}{5}=\dfrac{0{,}839\cdot 1{,}305}{5}\approx 0{,}22\).</li>
+<li>MG: como la fase nunca llega a −180° a frecuencia finita, <b>MG = ∞</b> ≥ 10 dB.</li>
+</ol>
+<figure class="fig"><p class="ft">Bode de L(s) con cada compensador</p><img src="assets/julio2026/fig3_bode.png" alt="Diagramas de Bode de L sin compensar, con D = 0,22 y con el adelanto de e). Se marcan los márgenes de fase." loading="lazy"><figcaption>Azul: D = 0,22, MF = 50°. Violeta: el adelanto de e), MF ≈ 53°. Gris discontinua: sin compensar, MF ≈ 25°.</figcaption></figure>
+<div class="box trap"><h4>Matiz sobre MG</h4><p>El requisito de MG no restringe nada aquí. Cualquier compensador de ganancia o de adelanto mantiene la fase por encima de −180°, así que MG siempre es infinito.</p></div>
+<div class="box key"><h4>Respuesta d)</h4><p>D(s) = 0,22 (ganancia pura, el compensador de menor orden posible).</p></div>
+
+<h3>e) Compensador mínimo con MF = 50° y Kv &gt; 10</h3>
+<ol class="steps">
+<li>Kv: \(K_v=\lim_{s\to0}s\,L(s)=5\,D(0)\). Entonces \(5D(0)&gt;10\), es decir, \(D(0)&gt;2\). Elegimos \(K_c=2{,}2\), así que Kv = 11.</li>
+<li>Con solo esa ganancia el cruce cae en ω ≈ 3,24 rad/s con MF ≈ 17°. Faltan unos 33°.</li>
+<li>Adelanto con \(\alpha=z/p\). Su fase máxima cumple \(\operatorname{sen}\varphi_m=\dfrac{1-\alpha}{1+\alpha}\). Con α = 0,2: \(\operatorname{sen}\varphi_m=\tfrac{2}{3}\), luego \(\varphi_m\approx 41{,}8^\circ\).</li>
+<li>Frecuencia de máxima fase: el adelanto sube el módulo en \(1/\sqrt\alpha\approx 2{,}24\) en ω_m, así que hay que cruzar donde \(\dfrac{11}{\omega\sqrt{1+\omega^2}}=\sqrt{0{,}2}\approx0{,}447\). Resultado: \(\omega_m\approx 4{,}9\) rad/s.</li>
+<li>Cero y polo: \(z=\omega_m\sqrt\alpha\approx 2{,}2\) y \(p=\omega_m/\sqrt\alpha\approx 11\). Comprobación: \(z\,p\approx\omega_m^2\).</li>
+<li>Con \(D(s)=K_c\dfrac{s+z}{s+p}\cdot\dfrac{p}{z}\) y \(p/z=5\): \(D(s)=\dfrac{11\,(s+2{,}2)}{s+11}\).</li>
+</ol>
+<figure class="fig"><p class="ft">Fase que añade el adelanto</p><img src="assets/julio2026/fig4_adelanto.png" alt="Fase de D(s) frente a la frecuencia: máximo de unos 41,8 grados en ω = 4,92." loading="lazy"><figcaption>El máximo está en ω_m = √(z·p) ≈ 4,92 rad/s, con unos 41,8°.</figcaption></figure>
+<div class="tw"><table>
+<thead><tr><th>Factor de L(s) = 55(s+2,2)/(s(s+1)(s+11))</th><th>Fase en ω = 4,9</th></tr></thead>
+<tbody>
+<tr><td>(s + 2,2), cero</td><td>+65,8°</td></tr>
+<tr><td>s, integrador</td><td>−90,0°</td></tr>
+<tr><td>(s + 1)</td><td>−78,4°</td></tr>
+<tr><td>(s + 11)</td><td>−24,0°</td></tr>
+<tr><td><b>Total ∠L</b></td><td><b>−126,6° → MF ≈ 53°</b></td></tr>
+</tbody></table></div>
+<div class="box"><h4>Comprobación</h4><p>|L(4,9)| ≈ 1,00. Como ∠L nunca llega a −180°, MG = ∞. MF ≈ 53° ≥ 50° ✓ y Kv = 11 &gt; 10 ✓.</p></div>
+<div class="box key"><h4>Respuesta e)</h4><p>\(D(s)=\dfrac{11\,(s+2{,}2)}{s+11}\). Un cero y un polo: es el compensador de menor orden que cumple las dos condiciones.</p></div>
+</section>
+
+<section class="sec" id="cuestiones" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">C</span><div class="shx"><p class="kick">Practicar</p><h2>Cuestiones C1 y C2</h2><p class="sub2">Feedforward + feedback, y PID con modificaciones.</p></div></div>
+
+<h3>C1 · Feedforward + feedback</h3>
+<p>El feedforward <i>anticipa</i> a partir de la referencia; el feedback <i>corrige</i> lo que queda. Supuesto: \(u=F_f R + C(R-Y)\) e \(Y=Gu\).</p>
+<figure class="fig"><p class="ft">Feedforward + feedback</p><img src="assets/julio2026/fig5_c1.png" alt="Esquema con un bloque Ff en paralelo sobre la referencia, un controlador C en la rama de error, la planta G y la realimentación H." loading="lazy"><figcaption>Ff actúa sobre la referencia; C actúa sobre el error.</figcaption></figure>
+<ol class="steps">
+<li>Sustituir: \(Y=G\bigl(F_fR+C(R-Y)\bigr)\).</li>
+<li>Pasar la Y de la derecha a la izquierda: \(Y(1+GC)=G(C+F_f)R\).</li>
+<li>Función de transferencia: \(\dfrac{Y}{R}=\dfrac{G(C+F_f)}{1+GC}=\dfrac{GC}{1+GC}+\dfrac{G F_f}{1+GC}\).</li>
+<li>Seguimiento perfecto con H = 1: \(G F_f=1\), luego \(F_f=\dfrac{1}{G}\).</li>
+<li>Con H ≠ 1, u = F_f R + D(R − HY) da \(\dfrac{Y}{R}=\dfrac{G(D+F_f)}{1+GDH}\), y Y = R exige \(F_f=\dfrac1G+D(H-1)\).</li>
+<li>Con G = 1/(s+1), D = 1, H = 5/s: \(F_f=(s+1)+\left(\tfrac{5}{s}-1\right)=s+\dfrac{5}{s}\).</li>
+</ol>
+<div class="box trap"><h4>Ojo</h4><p>El término s equivale a derivar. Un Ff con derivada pura no es propio, así que no se puede construir exactamente: solo aproximar.</p></div>
+
+<h3>C2 · PID con modificaciones</h3>
+<p>\(u=K_pe+K_i\int e\,dt+K_d\dfrac{de}{dt}\), con \(C(s)=K_p\bigl(1+\tfrac{1}{T_is}+T_ds\bigr)\), \(T_i=K_p/K_i\) y \(T_d=K_d/K_p\). El término P reacciona al error presente, el I elimina el error acumulado y el D anticipa su tendencia.</p>
+<figure class="fig"><p class="ft">PID con modificaciones</p><img src="assets/julio2026/fig6_c2.png" alt="Diagrama de bloques PID con filtro en la derivada, saturación, planta y lazo anti-windup." loading="lazy"><figcaption>Símbolos: r(t), y(t), e = r − y, u y u_sat, Gp(s), Kp, Ki, Kd, Ti, Td, N, b, c, Kt.</figcaption></figure>
+<ul>
+<li><b>Derivada filtrada:</b> \(D(s)=\dfrac{K_d s}{1+T_d s/N}\). Evita amplificar el ruido (N típico entre 5 y 20).</li>
+<li><b>Pesos b y c:</b> \(u=K_p(br-y)+K_i\!\int(r-y)\,dt+K_d\,s\dfrac{cr-y}{1+T_ds/N}\). Suaviza el sobreimpulso ante cambios de referencia.</li>
+<li><b>Derivada sobre la medida:</b> el término D usa −dy/dt, evitando el pico («derivative kick»).</li>
+<li><b>Anti-windup:</b> \(\dfrac{d(\text{integral})}{dt}=K_ie+K_t(u_{sat}-u)\). Si el actuador satura, la integral deja de acumular.</li>
+<li><b>Feedforward:</b> \(u_{total}=u_{PID}+u_{ff}\), anticipando la acción necesaria.</li>
+</ul>
+</section>
+
+<section class="sec" id="descarga" style="--tc:var(--c8);--tcs:var(--c8s)">
+<div class="sh"><span class="badge" aria-hidden="true">PDF</span><div class="shx"><p class="kick">Descargar</p><h2>Versión PDF detallada</h2><p class="sub2">Misma resolución, con más pasos y explicaciones para empezar desde cero.</p></div></div>
+<p><a class="btn pri" href="Resolucion-Examen-Control-Julio-2026.pdf">Descargar el PDF (18 páginas)</a></p>
+<p class="note">Los resultados están recalculados numéricamente. Dos supuestos: en d) el «compensador mínimo» se interpreta como una ganancia pura, y en C1 se supone que Ff entra sumándose a la entrada de la planta.</p>
+</section>
+
+<nav class="pager" aria-label="Páginas"><a class="pg-card prev" href="problemas.html" style="--tc:var(--c8)"><span class="pg-lab">← Anterior</span><span class="pg-t"><i>Prof</i>Problemas resueltos</span></a><a class="pg-card next" href="maqueta.html" style="--tc:var(--c2)"><span class="pg-lab">Siguiente →</span><span class="pg-t"><i>Lab</i>Maqueta de tanques</span></a></nav>
+<footer>Guía no oficial de Ingeniería de Control. Bibliografía: K. Ogata, <i>Ingeniería de control moderna</i>, 5.ª ed. Las gráficas y simulaciones se calculan en tu navegador con las funciones de transferencia indicadas.</footer>
+</main>
+</div>
+<a href="#top" class="totop" id="totop" aria-label="Volver arriba">↑</a>
+<script src="assets/datos.js"></script>
+<script src="assets/facil.js?v=1"></script>
+<script src="assets/guia.js"></script>
+</body>
+</html>
